@@ -9,13 +9,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Google Analytics Configuration
 function initializeTracking() {
-    // Replace 'YOUR_GA_ID' with your actual Google Analytics ID
+    // Google Analytics Integration - Replace with actual GA4 ID when available
     if (typeof gtag !== 'undefined') {
-        gtag('config', 'YOUR_GA_ID', {
+        gtag('config', 'G-XXXXXXXXXX', {
             page_title: document.title,
-            page_location: window.location.href
+            page_location: window.location.href,
+            send_page_view: true
         });
     }
+    
+    // Track initial page load
+    trackPageView(getPageName());
 }
 
 // Conversion Tracking Functions
@@ -72,8 +76,8 @@ function initializeDemoBooking() {
                 // Track the demo booking
                 trackDemo(industry);
                 
-                // Replace with your actual Calendly link
-                const calendlyUrl = 'https://calendly.com/your-account/demo-call';
+                // Use industry-specific Calendly link
+                const calendlyUrl = getCalendlyUrl(industry);
                 window.open(calendlyUrl, '_blank');
             }
         });
@@ -275,3 +279,63 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Utility Functions
+function getPageName() {
+    const path = window.location.pathname;
+    const page = path.split('/').pop() || 'home';
+    return page.replace('.html', '');
+}
+
+// Error handling wrapper for tracking functions
+function safeTrack(trackingFunction, ...args) {
+    try {
+        trackingFunction(...args);
+    } catch (error) {
+        console.warn('Tracking error:', error);
+    }
+}
+
+// Enhanced form validation
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validatePhone(phone) {
+    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+    return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+}
+
+// Improved error handling for form submissions
+function handleFormError(error, formElement) {
+    console.error('Form submission error:', error);
+    
+    // Show user-friendly error message
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = 'Something went wrong. Please try again or contact us directly.';
+    errorDiv.style.cssText = 'color: #ef4444; padding: 1rem; background: #fee; border-radius: 0.5rem; margin-top: 1rem;';
+    
+    formElement.appendChild(errorDiv);
+    
+    // Remove error message after 5 seconds
+    setTimeout(() => {
+        if (errorDiv.parentNode) {
+            errorDiv.remove();
+        }
+    }, 5000);
+}
+
+// Fix Calendly URL placeholder
+function getCalendlyUrl(industry = 'general') {
+    // Industry-specific Calendly links (replace with actual URLs)
+    const calendlyUrls = {
+        healthcare: 'https://calendly.com/aichatbotsolutions/healthcare-demo',
+        legal: 'https://calendly.com/aichatbotsolutions/legal-demo',
+        retail: 'https://calendly.com/aichatbotsolutions/retail-demo',
+        general: 'https://calendly.com/aichatbotsolutions/demo-call'
+    };
+    
+    return calendlyUrls[industry] || calendlyUrls.general;
+}

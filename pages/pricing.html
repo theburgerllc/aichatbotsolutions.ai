@@ -3,14 +3,876 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - AI Chatbot Solutions</title>
+    <meta name="description" content="AI Chatbot Solutions pricing plans. Choose the perfect plan for your business with transparent pricing, no hidden fees, and 30-day money-back guarantee.">
+    <title>Pricing Plans - AI Chatbot Solutions | Simple Transparent Pricing</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .pricing-hero {
+            margin-top: 80px;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .pricing-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Industry Selector */
+        .industry-selector {
+            padding: 2rem 0;
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        .industry-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .industry-tab {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background: var(--white);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .industry-tab.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Pricing Grid */
+        .pricing-section {
+            padding: 4rem 0;
+            background: var(--white);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary);
+            color: var(--white);
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: normal;
+        }
+
+        .price-note {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-check {
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .feature-x {
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* ROI Calculator */
+        .roi-calculator {
+            padding: 4rem 0;
+            background: var(--bg-light);
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-group select,
+        .form-group input {
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .roi-results {
+            background: linear-gradient(135deg, var(--secondary) 0%, #059669 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .roi-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .roi-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .roi-item {
+            text-align: center;
+        }
+
+        .roi-item-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .roi-item-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 0;
+            background: var(--white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #e5e7eb;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-answer.open {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Guarantee Section */
+        .guarantee-section {
+            padding: 4rem 0;
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .guarantee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .guarantee-item {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+        }
+
+        .guarantee-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-hero h1 {
+                font-size: 2rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
+
+            .industry-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Pricing Plans</h1>
-        <p>Choose the perfect plan for your business needs.</p>
-    </div>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">🤖 AI Chatbot Solutions</a>
+            <div class="nav-links">
+                <a href="../pages/features.html">Features</a>
+                <a href="../pages/demo.html">Demo</a>
+                <a href="../pages/industries.html">Industries</a>
+                <a href="../pages/contact.html">Contact</a>
+                <a href="#" class="cta-button">Start Free Trial</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pricing-hero">
+        <div class="container">
+            <h1>Simple, Transparent Pricing</h1>
+            <p>Choose the perfect plan for your business. No hidden fees, no surprises, no long-term contracts.</p>
+        </div>
+    </section>
+
+    <!-- Industry Selector -->
+    <section class="industry-selector">
+        <div class="container">
+            <h3 style="margin-bottom: 1rem;">Select your industry for customized pricing:</h3>
+            <div class="industry-tabs">
+                <div class="industry-tab active" data-industry="general">🏢 General Business</div>
+                <div class="industry-tab" data-industry="healthcare">🏥 Healthcare</div>
+                <div class="industry-tab" data-industry="legal">⚖️ Legal</div>
+                <div class="industry-tab" data-industry="retail">🛍️ Retail</div>
+            </div>
+            <p style="color: var(--text-light); font-size: 0.9rem;">Pricing optimized for your industry's specific needs</p>
+        </div>
+    </section>
+
+    <!-- Pricing Grid -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-grid">
+                <!-- Starter Plan -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">Starter</h3>
+                    <p class="plan-description">Perfect for small businesses getting started with AI automation</p>
+                    <div class="plan-price" id="starter-price">$297<span>/month</span></div>
+                    <p class="price-note">Billed monthly • Cancel anytime</p>
+                    <ul class="plan-features">
+                        <li><span class="feature-check">✓</span> 1 Custom Chatbot</li>
+                        <li><span class="feature-check">✓</span> Up to 1,000 conversations/month</li>
+                        <li><span class="feature-check">✓</span> 3 Channel integrations</li>
+                        <li><span class="feature-check">✓</span> Basic analytics dashboard</li>
+                        <li><span class="feature-check">✓</span> Email support (24h response)</li>
+                        <li><span class="feature-check">✓</span> Standard AI training</li>
+                        <li><span class="feature-x">✗</span> Priority support</li>
+                        <li><span class="feature-x">✗</span> Custom integrations</li>
+                    </ul>
+                    <button class="cta-button" style="width: 100%;" onclick="selectPlan('starter')">
+                        Start Free Trial
+                    </button>
+                </div>
+
+                <!-- Professional Plan -->
+                <div class="pricing-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3 class="plan-name">Professional</h3>
+                    <p class="plan-description">Ideal for growing businesses ready to scale their automation</p>
+                    <div class="plan-price" id="professional-price">$497<span>/month</span></div>
+                    <p class="price-note">Billed monthly • Cancel anytime</p>
+                    <ul class="plan-features">
+                        <li><span class="feature-check">✓</span> 3 Custom Chatbots</li>
+                        <li><span class="feature-check">✓</span> Up to 5,000 conversations/month</li>
+                        <li><span class="feature-check">✓</span> Unlimited channel integrations</li>
+                        <li><span class="feature-check">✓</span> Advanced analytics & reports</li>
+                        <li><span class="feature-check">✓</span> Priority support (4h response)</li>
+                        <li><span class="feature-check">✓</span> Custom AI training</li>
+                        <li><span class="feature-check">✓</span> CRM integrations</li>
+                        <li><span class="feature-check">✓</span> A/B testing tools</li>
+                    </ul>
+                    <button class="cta-button" style="width: 100%; background: var(--secondary);" onclick="selectPlan('professional')">
+                        Start Free Trial
+                    </button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">Enterprise</h3>
+                    <p class="plan-description">Complete solution for large organizations with custom needs</p>
+                    <div class="plan-price" id="enterprise-price">$997<span>/month</span></div>
+                    <p class="price-note">Billed monthly • Custom contracts available</p>
+                    <ul class="plan-features">
+                        <li><span class="feature-check">✓</span> Unlimited chatbots</li>
+                        <li><span class="feature-check">✓</span> Unlimited conversations</li>
+                        <li><span class="feature-check">✓</span> White-label solution</li>
+                        <li><span class="feature-check">✓</span> Dedicated account manager</li>
+                        <li><span class="feature-check">✓</span> 24/7 phone support</li>
+                        <li><span class="feature-check">✓</span> Custom integrations</li>
+                        <li><span class="feature-check">✓</span> SLA guarantee</li>
+                        <li><span class="feature-check">✓</span> On-premise deployment option</li>
+                    </ul>
+                    <button class="cta-button" style="width: 100%;" onclick="selectPlan('enterprise')">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section class="roi-calculator">
+        <div class="container">
+            <div class="calculator-container">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Calculate Your ROI</h2>
+                <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+                    See how much time and money you'll save with AI chatbots
+                </p>
+
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="monthly-customers">Monthly Customers</label>
+                        <select id="monthly-customers">
+                            <option value="100">0-100</option>
+                            <option value="300">100-500</option>
+                            <option value="750">500-1,000</option>
+                            <option value="3000" selected>1,000-5,000</option>
+                            <option value="7500">5,000+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hourly-rate">Staff Hourly Rate</label>
+                        <input type="number" id="hourly-rate" value="25" min="10" max="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hours-saved">Hours Saved/Week</label>
+                        <input type="number" id="hours-saved" value="12" min="1" max="40" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="current-plan">Your Plan</label>
+                        <select id="current-plan">
+                            <option value="starter">Starter - $297/month</option>
+                            <option value="professional" selected>Professional - $497/month</option>
+                            <option value="enterprise">Enterprise - $997/month</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="cta-button" onclick="calculateROI()" style="width: 100%; font-size: 1.1rem;">
+                    Calculate My ROI
+                </button>
+
+                <div class="roi-results" id="roi-results">
+                    <h3>Your Estimated ROI</h3>
+                    <div class="roi-number" id="roi-percentage">675%</div>
+                    <p>Return on Investment in 90 days</p>
+                    
+                    <div class="roi-breakdown">
+                        <div class="roi-item">
+                            <div class="roi-item-value" id="monthly-savings">$2,400</div>
+                            <div class="roi-item-label">Monthly Savings</div>
+                        </div>
+                        <div class="roi-item">
+                            <div class="roi-item-value" id="annual-savings">$28,800</div>
+                            <div class="roi-item-label">Annual Savings</div>
+                        </div>
+                        <div class="roi-item">
+                            <div class="roi-item-value" id="payback-time">3 weeks</div>
+                            <div class="roi-item-label">Payback Period</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-container">
+                <h2 style="text-align: center; margin-bottom: 3rem;">Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I change plans anytime?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! You can upgrade, downgrade, or cancel your plan at any time. Changes take effect at your next billing cycle, and we'll prorate any differences.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What happens if I exceed my conversation limit?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We'll notify you when you reach 80% of your limit. If you exceed it, we'll automatically upgrade you to the next tier for that month, or you can upgrade anytime to avoid overages.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is there a setup fee?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No setup fees! We include free setup and training with all plans. Our team will have your chatbot up and running within 24 hours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer industry-specific solutions?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We have specialized solutions for healthcare (HIPAA-compliant), legal, retail, and other industries. Each includes industry-specific templates and compliance features.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What integrations do you support?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We integrate with 60+ platforms including Salesforce, HubSpot, Calendly, Stripe, WhatsApp, Facebook Messenger, and most major CRMs and communication tools.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is my data secure?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We use 256-bit encryption, are SOC 2 Type II certified, and offer HIPAA-compliant solutions for healthcare clients. Your data never leaves our secure servers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="guarantee-section">
+        <div class="container">
+            <h2 style="margin-bottom: 1rem;">Risk-Free Guarantee</h2>
+            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 3rem;">
+                We're so confident you'll love our chatbots, we back every plan with these guarantees
+            </p>
+
+            <div class="guarantee-grid">
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">💰</div>
+                    <h3>30-Day Money Back</h3>
+                    <p>Not satisfied? Get a full refund within 30 days, no questions asked.</p>
+                </div>
+
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">🚀</div>
+                    <h3>24-Hour Setup</h3>
+                    <p>Your chatbot will be live and handling customers within 24 hours, guaranteed.</p>
+                </div>
+
+                <div class="guarantee-item">
+                    <div class="guarantee-icon">📈</div>
+                    <h3>ROI Promise</h3>
+                    <p>See measurable results within 90 days or we'll work with you until you do.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <a href="../lead-generation-form.html" class="cta-button" style="background: var(--secondary); font-size: 1.2rem; padding: 1rem 2rem;">
+                    Start Your Free Trial Today
+                </a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                    No credit card required • Full features included • Cancel anytime
+                </p>
+            </div>
+        </div>
+    </section>
+
     <script src="../js/main.js"></script>
+    <script>
+        // Pricing data for different industries
+        const industryPricing = {
+            general: { starter: 297, professional: 497, enterprise: 997 },
+            healthcare: { starter: 497, professional: 997, enterprise: 1997 },
+            legal: { starter: 397, professional: 797, enterprise: 1497 },
+            retail: { starter: 297, professional: 497, enterprise: 997 }
+        };
+
+        let currentIndustry = 'general';
+
+        // Update pricing based on industry
+        function updatePricing(industry) {
+            currentIndustry = industry;
+            const pricing = industryPricing[industry];
+            
+            document.getElementById('starter-price').innerHTML = `$${pricing.starter}<span>/month</span>`;
+            document.getElementById('professional-price').innerHTML = `$${pricing.professional}<span>/month</span>`;
+            document.getElementById('enterprise-price').innerHTML = `$${pricing.enterprise}<span>/month</span>`;
+
+            // Update ROI calculator
+            updateROICalculator();
+
+            // Track pricing view
+            if (typeof trackPricingClick === 'function') {
+                trackPricingClick(industry + '_pricing_viewed');
+            }
+        }
+
+        // Industry tab switching
+        document.querySelectorAll('.industry-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.industry-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                updatePricing(this.dataset.industry);
+            });
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                
+                // Close other FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('open');
+                        item.querySelector('.faq-answer').classList.remove('open');
+                    }
+                });
+                
+                // Toggle current FAQ
+                faqItem.classList.toggle('open');
+                answer.classList.toggle('open');
+            });
+        });
+
+        // ROI Calculator
+        function calculateROI() {
+            const monthlyCustomers = parseInt(document.getElementById('monthly-customers').value);
+            const hourlyRate = parseInt(document.getElementById('hourly-rate').value);
+            const currentPlan = document.getElementById('current-plan').value;
+            
+            // Calculate hours saved based on customer volume
+            let hoursSaved;
+            if (monthlyCustomers <= 100) hoursSaved = 8;
+            else if (monthlyCustomers <= 300) hoursSaved = 12;
+            else if (monthlyCustomers <= 750) hoursSaved = 18;
+            else if (monthlyCustomers <= 3000) hoursSaved = 25;
+            else hoursSaved = 35;
+            
+            document.getElementById('hours-saved').value = hoursSaved;
+            
+            // Calculate savings
+            const weeklySavings = hoursSaved * hourlyRate;
+            const monthlySavings = weeklySavings * 4.33; // Average weeks per month
+            const annualSavings = monthlySavings * 12;
+            
+            // Get plan cost
+            const planCosts = {
+                starter: industryPricing[currentIndustry].starter,
+                professional: industryPricing[currentIndustry].professional,
+                enterprise: industryPricing[currentIndustry].enterprise
+            };
+            
+            const planCost = planCosts[currentPlan];
+            const netMonthlySavings = monthlySavings - planCost;
+            const netAnnualSavings = netMonthlySavings * 12;
+            const roi = ((netAnnualSavings / (planCost * 12)) * 100).toFixed(0);
+            const paybackWeeks = Math.ceil(planCost / weeklySavings);
+            
+            // Update display
+            document.getElementById('roi-percentage').textContent = roi + '%';
+            document.getElementById('monthly-savings').textContent = '$' + Math.round(netMonthlySavings).toLocaleString();
+            document.getElementById('annual-savings').textContent = '$' + Math.round(netAnnualSavings).toLocaleString();
+            document.getElementById('payback-time').textContent = paybackWeeks + ' weeks';
+            
+            // Show results
+            document.getElementById('roi-results').style.display = 'block';
+            
+            // Track ROI calculation
+            if (typeof trackFormSubmit === 'function') {
+                trackFormSubmit('roi_calculated');
+            }
+        }
+
+        // Update ROI calculator when industry changes
+        function updateROICalculator() {
+            const planSelect = document.getElementById('current-plan');
+            const pricing = industryPricing[currentIndustry];
+            
+            planSelect.innerHTML = `
+                <option value="starter">Starter - $${pricing.starter}/month</option>
+                <option value="professional" selected>Professional - $${pricing.professional}/month</option>
+                <option value="enterprise">Enterprise - $${pricing.enterprise}/month</option>
+            `;
+        }
+
+        // Plan selection
+        function selectPlan(plan) {
+            // Track plan selection
+            if (typeof trackPricingClick === 'function') {
+                trackPricingClick(plan + '_selected');
+            }
+            
+            // Redirect to signup/demo
+            if (plan === 'enterprise') {
+                window.location.href = '../pages/contact.html?plan=' + plan;
+            } else {
+                window.location.href = '../lead-generation-form.html?plan=' + plan + '&industry=' + currentIndustry;
+            }
+        }
+
+        // Auto-calculate ROI when inputs change
+        document.getElementById('monthly-customers').addEventListener('change', calculateROI);
+        document.getElementById('hourly-rate').addEventListener('input', calculateROI);
+        document.getElementById('current-plan').addEventListener('change', calculateROI);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePricing('general');
+            calculateROI();
+        });
+    </script>
 </body>
 </html>

@@ -2,10 +2,9 @@
   "name": "aichatbotsolutions",
   "version": "1.0.0",
   "description": "AI Chatbot Solutions - 24/7 Customer Support Automation",
-  "main": "index.html",
   "scripts": {
-    "build": "echo 'Static site - no build needed'",
-    "start": "echo 'Static site - use vercel dev for local testing'"
+    "build": "echo 'Build complete - static site ready'",
+    "start": "echo 'Static HTML site'"
   },
   "keywords": [
     "ai",
@@ -21,5 +20,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/theburgerllc/aichatbotsolutions.ai"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

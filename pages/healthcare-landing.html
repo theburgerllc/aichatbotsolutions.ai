@@ -3,8 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HIPAA-compliant AI chatbots for healthcare providers. Automate appointment scheduling, patient FAQs, and prescription refills.">
-    <title>Healthcare AI Chatbots - HIPAA Compliant Automation | AI Chatbot Solutions</title>
+    <meta name="description" content="HIPAA-compliant AI chatbots for healthcare. 40% fewer no-shows, 10+ hours saved weekly. Automate patient scheduling, FAQs, prescriptions. 675% ROI.">
+    <title>HIPAA-Compliant Healthcare AI Chatbots | 40% Fewer No-Shows</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="hipaa compliant chatbot, healthcare ai chatbot, medical practice automation, patient scheduling automation, healthcare customer service, medical chatbot">
+    <meta name="author" content="AI Chatbot Solutions">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://aichatbotsolutions.ai/pages/healthcare-landing.html">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="HIPAA-Compliant Healthcare AI Chatbots | 40% Fewer No-Shows">
+    <meta property="og:description" content="HIPAA-compliant AI chatbots for healthcare providers. Reduce no-shows by 40%, save 10+ hours weekly. Automate patient scheduling and support.">
+    <meta property="og:image" content="https://aichatbotsolutions.ai/assets/images/logo.png">
+    <meta property="og:url" content="https://aichatbotsolutions.ai/pages/healthcare-landing.html">
+    <meta property="og:type" content="website">
     <style>
         /* Reuse main styles from index.html */
         * {
@@ -236,10 +249,16 @@
     <!-- Navigation (reuse from main site) -->
     <nav style="background: white; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); position: fixed; width: 100%; top: 0; z-index: 1000;">
         <div style="max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;">
-            <a href="/" style="font-size: 1.5rem; font-weight: bold; color: var(--primary); text-decoration: none;">
+            <a href="../index.html" style="font-size: 1.5rem; font-weight: bold; color: var(--primary); text-decoration: none;">
                 🤖 AI Chatbot Solutions
             </a>
-            <a href="#demo" class="cta-button" style="background: var(--primary);">Book Healthcare Demo</a>
+            <div style="display: flex; gap: 2rem; align-items: center;">
+                <a href="features.html" style="color: var(--text-dark); text-decoration: none; font-weight: 500;">Features</a>
+                <a href="demo.html" style="color: var(--text-dark); text-decoration: none; font-weight: 500;">Demo</a>
+                <a href="pricing.html" style="color: var(--text-dark); text-decoration: none; font-weight: 500;">Pricing</a>
+                <a href="contact.html" style="color: var(--text-dark); text-decoration: none; font-weight: 500;">Contact</a>
+                <a href="../lead-generation-form.html" class="cta-button" style="background: var(--primary);">Get Started</a>
+            </div>
         </div>
     </nav>
 
@@ -251,7 +270,7 @@
             </div>
             <h1>AI Chatbots Built for Healthcare Providers</h1>
             <p>Automate patient communications, reduce no-shows by 40%, and save your staff 10+ hours per week with HIPAA-compliant chatbots.</p>
-            <a href="#demo" class="cta-button" style="background: white; color: var(--healthcare-blue); font-size: 1.25rem; padding: 1rem 2rem;">
+            <a href="../lead-generation-form.html?industry=healthcare" class="cta-button" style="background: white; color: var(--healthcare-blue); font-size: 1.25rem; padding: 1rem 2rem;">
                 Get Your Free Healthcare Demo
             </a>
         </div>
@@ -406,16 +425,29 @@
         <p style="font-size: 1.25rem; color: var(--text-light); margin-bottom: 2rem;">
             Join hundreds of healthcare providers saving time and improving patient satisfaction
         </p>
-        <a href="#demo" class="cta-button">Schedule Your Free Healthcare Demo</a>
+        <a href="../lead-generation-form.html?industry=healthcare" class="cta-button">Schedule Your Free Healthcare Demo</a>
         <p style="margin-top: 1rem; color: var(--text-light);">
             Setup in 24 hours • No technical skills required • 30-day money-back guarantee
         </p>
     </section>
 
-    <!-- BotPenguin Widget -->
+    <script src="../js/main.js"></script>
     <script>
-        // Add your healthcare-specific BotPenguin bot here
-        // Configure it with healthcare-specific flows and HIPAA compliance settings
+        // Track page view and healthcare interest
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof trackPageView === 'function') {
+                trackPageView('healthcare_landing_page');
+            }
+        });
+
+        // Track CTA clicks
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('healthcare_cta_clicked', this.textContent);
+                }
+            });
+        });
     </script>
 </body>
 </html>

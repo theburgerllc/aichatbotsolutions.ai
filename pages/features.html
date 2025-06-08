@@ -77,6 +77,32 @@
             color: var(--primary);
         }
 
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mobile-nav.open {
+            display: flex;
+        }
+
         .cta-button {
             background: var(--primary);
             color: var(--white);
@@ -424,6 +450,19 @@
         }
 
         @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+                position: relative;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
             .features-hero h1 {
                 font-size: 2rem;
             }
@@ -455,6 +494,14 @@
         <div class="nav-container">
             <a href="../index.html" class="logo">🤖 AI Chatbot Solutions</a>
             <div class="nav-links">
+                <a href="demo.html">Demo</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="../lead-generation-form.html" class="cta-button">Get Started</a>
+            </div>
+            <button class="mobile-menu-button" onclick="toggleMobileMenu()">☰</button>
+            <div class="mobile-nav" id="mobile-nav">
                 <a href="demo.html">Demo</a>
                 <a href="pricing.html">Pricing</a>
                 <a href="about.html">About</a>
@@ -900,6 +947,22 @@
             // Track page view
             if (typeof trackPageView === 'function') {
                 trackPageView('features_page');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileNav.classList.toggle('open');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const mobileNav = document.getElementById('mobile-nav');
+            const menuButton = document.querySelector('.mobile-menu-button');
+            
+            if (!mobileNav.contains(e.target) && !menuButton.contains(e.target)) {
+                mobileNav.classList.remove('open');
             }
         });
 

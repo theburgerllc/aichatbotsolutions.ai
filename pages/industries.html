@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI chatbot solutions for healthcare, legal, retail, and more industries. Discover industry-specific automation tailored to your business needs.">
+    <title>Industries We Serve - AI Chatbot Solutions | Industry-Specific Automation</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --healthcare-blue: #0891b2;
+            --legal-gold: #d97706;
+            --retail-purple: #7c3aed;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .industries-hero {
+            margin-top: 80px;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .industries-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .industries-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Featured Industries */
+        .featured-industries {
+            padding: 5rem 0;
+            background: var(--bg-light);
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .industry-card {
+            background: var(--white);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .industry-header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .industry-card.healthcare .industry-header {
+            background: linear-gradient(135deg, var(--healthcare-blue) 0%, #0e7490 100%);
+            color: var(--white);
+        }
+
+        .industry-card.legal .industry-header {
+            background: linear-gradient(135deg, #1c1917 0%, var(--legal-gold) 100%);
+            color: var(--white);
+        }
+
+        .industry-card.retail .industry-header {
+            background: linear-gradient(135deg, var(--retail-purple) 0%, #ec4899 100%);
+            color: var(--white);
+        }
+
+        .industry-card.general .industry-header {
+            background: linear-gradient(135deg, var(--secondary) 0%, #059669 100%);
+            color: var(--white);
+        }
+
+        .industry-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .industry-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .industry-subtitle {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .industry-content {
+            padding: 2rem;
+        }
+
+        .industry-description {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .industry-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .industry-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .feature-check {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .industry-stats {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .industry-cta {
+            text-align: center;
+        }
+
+        .industry-button {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .industry-card.healthcare .industry-button {
+            background: var(--healthcare-blue);
+        }
+
+        .industry-card.legal .industry-button {
+            background: var(--legal-gold);
+        }
+
+        .industry-card.retail .industry-button {
+            background: var(--retail-purple);
+        }
+
+        .industry-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* More Industries */
+        .more-industries {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .more-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .more-industry-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .more-industry-card:hover {
+            transform: translateY(-5px);
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .more-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .more-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .more-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* ROI Comparison */
+        .roi-comparison {
+            padding: 5rem 0;
+            background: var(--bg-light);
+        }
+
+        .comparison-table {
+            background: var(--white);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-top: 3rem;
+        }
+
+        .comparison-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 1rem;
+            font-weight: 600;
+        }
+
+        .comparison-row {
+            padding: 1rem 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            align-items: center;
+        }
+
+        .comparison-row:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .comparison-industry {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .comparison-metric {
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Success Stories */
+        .success-stories {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .story-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .story-card.healthcare {
+            border-left-color: var(--healthcare-blue);
+        }
+
+        .story-card.legal {
+            border-left-color: var(--legal-gold);
+        }
+
+        .story-card.retail {
+            border-left-color: var(--retail-purple);
+        }
+
+        .story-quote {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .story-author {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .story-company {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .industries-cta {
+            padding: 5rem 0;
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .industries-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .industries-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .industries-hero h1 {
+                font-size: 2rem;
+            }
+
+            .industries-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-header,
+            .comparison-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">🤖 AI Chatbot Solutions</a>
+            <div class="nav-links">
+                <a href="../pages/features.html">Features</a>
+                <a href="../pages/demo.html">Demo</a>
+                <a href="../pages/pricing.html">Pricing</a>
+                <a href="../pages/contact.html">Contact</a>
+                <a href="../lead-generation-form.html" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="industries-hero">
+        <div class="container">
+            <h1>Industry-Specific AI Solutions</h1>
+            <p>Tailored chatbot automation designed for your industry's unique needs, compliance requirements, and customer expectations. From healthcare to retail, we've got you covered.</p>
+        </div>
+    </section>
+
+    <!-- Featured Industries -->
+    <section class="featured-industries">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Our Specialized Solutions</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem;">Deep industry expertise with proven results across key sectors</p>
+            
+            <div class="industries-grid">
+                <!-- Healthcare -->
+                <div class="industry-card healthcare" onclick="window.location.href='../healthcare-landing-page.html'">
+                    <div class="industry-header">
+                        <div class="industry-icon">🏥</div>
+                        <div class="industry-title">Healthcare & Medical</div>
+                        <div class="industry-subtitle">HIPAA-Compliant Automation</div>
+                    </div>
+                    <div class="industry-content">
+                        <div class="industry-description">
+                            Streamline patient communications with HIPAA-compliant chatbots that handle appointment scheduling, prescription refills, and patient FAQs while maintaining strict privacy standards.
+                        </div>
+                        
+                        <ul class="industry-features">
+                            <li><span class="feature-check">✓</span> Appointment scheduling & reminders</li>
+                            <li><span class="feature-check">✓</span> Patient FAQ automation</li>
+                            <li><span class="feature-check">✓</span> Prescription refill requests</li>
+                            <li><span class="feature-check">✓</span> Insurance verification</li>
+                            <li><span class="feature-check">✓</span> After-hours patient support</li>
+                        </ul>
+
+                        <div class="industry-stats">
+                            <div class="stats-row">
+                                <span class="stat-label">Average ROI:</span>
+                                <span class="stat-value">675%</span>
+                            </div>
+                            <div class="stats-row">
+                                <span class="stat-label">Time Saved:</span>
+                                <span class="stat-value">10+ hrs/week</span>
+                            </div>
+                            <div class="stats-row">
+                                <span class="stat-label">No-Show Reduction:</span>
+                                <span class="stat-value">40%</span>
+                            </div>
+                        </div>
+
+                        <div class="industry-cta">
+                            <a href="../healthcare-landing-page.html" class="industry-button">Explore Healthcare Solutions</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legal -->
+                <div class="industry-card legal" onclick="window.location.href='../legal-landing-page.html'">
+                    <div class="industry-header">
+                        <div class="industry-icon">⚖️</div>
+                        <div class="industry-title">Legal & Professional</div>
+                        <div class="industry-subtitle">Client Intake & Case Management</div>
+                    </div>
+                    <div class="industry-content">
+                        <div class="industry-description">
+                            Automate client intake, consultation booking, and case communications while maintaining attorney-client privilege and professional standards.
+                        </div>
+                        
+                        <ul class="industry-features">
+                            <li><span class="feature-check">✓</span> Client intake & screening</li>
+                            <li><span class="feature-check">✓</span> Consultation booking</li>
+                            <li><span class="feature-check">✓</span> Document collection</li>
+                            <li><span class="feature-check">✓</span> Case status updates</li>
+                            <li><span class="feature-check">✓</span> Billing inquiries</li>
+                        </ul>
+
+                        <div class="industry-stats">
+                            <div class="stats-row">
+                                <span class="stat-label">Average ROI:</span>
+                                <span class="stat-value">545%</span>
+                            </div>
+                            <div class="stats-row">
+                                <span class="stat-label">Time Saved:</span>
+                                <span class="stat-value">8+ hrs/week</span>
+                            </div>
+                            <div class="stats-row">
+                                <span class="stat-label">Response Speed:</span>
+                                <span class="stat-value">80% faster</span>
+                            </div>
+                        </div>
+
+                        <div class="industry-cta">
+                            <a href="../legal-landing-page.html" class="industry-button">Explore Legal Solutions</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Retail -->
+                <div class="industry-card retail" onclick="window.location.href='../retail-landing-page.html'">
+                    <div class="industry-header">
+                        <div class="industry-icon">🛍️</div>
+                        <div class="industry-title">Retail & E-commerce</div>
+                        <div class="industry-subtitle">24/7 Shopping Assistant</div>
+                    </div>
+                    <div class="industry-content">
+                        <div class="industry-description">
+                            Boost sales with intelligent product recommendations, cart abandonment recovery, and instant customer support that works around the clock.
+                        </div>
+                        
+                        <ul class="industry-features">
+                            <li><span class="feature-check">✓</span> Product recommendations</li>
+                            <li><span class="feature-check">✓</span> Order tracking & support</li>
+                            <li><span class="feature-check">✓</span> Cart abandonment recovery</li>
+                            <li><span class="feature-check">✓</span> Size & fit guidance</li>
+                            <li><span class="feature-check">✓</span> Return processing</li>
+                        </ul>
+
+                        <div class="industry-stats">
+                            <div class="stats-row">
+                                <span class="stat-label">Average ROI:</span>
+                                <span class="stat-value">425%</span>
+                            </div>
+                            <div class="stats-row">
+                                <span class="stat-label">Sales Increase:</span>
+                                <span class="stat-value">25%</span>
+                            </div>
+                            <div class="stats-row">
+                                <span class="stat-label">Cart Recovery:</span>
+                                <span class="stat-value">68%</span>
+                            </div>
+                        </div>
+
+                        <div class="industry-cta">
+                            <a href="../retail-landing-page.html" class="industry-button">Explore Retail Solutions</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- General Business -->
+                <div class="industry-card general" onclick="window.location.href='../pages/contact.html'">
+                    <div class="industry-header">
+                        <div class="industry-icon">🏢</div>
+                        <div class="industry-title">General Business</div>
+                        <div class="industry-subtitle">Universal Customer Support</div>
+                    </div>
+                    <div class="industry-content">
+                        <div class="industry-description">
+                            Perfect for any business looking to automate customer support, capture leads, and provide 24/7 assistance to their customers.
+                        </div>
+                        
+                        <ul class="industry-features">
+                            <li><span class="feature-check">✓</span> Lead capture & qualification</li>
+                            <li><span class="feature-check">✓</span> FAQ automation</li>
+                            <li><span class="feature-check">✓</span> Appointment booking</li>
+                            <li><span class="feature-check">✓</span> Customer support</li>
+                            <li><span class="feature-check">✓</span> Multi-channel integration</li>
+                        </ul>
+
+                        <div class="industry-stats">
+                            <div class="stats-row">
+                                <span class="stat-label">Average ROI:</span>
+                                <span class="stat-value">500%</span>
+                            </div>
+                            <div class="stats-row">
+                                <span class="stat-label">Time Saved:</span>
+                                <span class="stat-value">12+ hrs/week</span>
+                            </div>
+                            <div class="stats-row">
+                                <span class="stat-label">Customer Satisfaction:</span>
+                                <span class="stat-value">+35%</span>
+                            </div>
+                        </div>
+
+                        <div class="industry-cta">
+                            <a href="../pages/contact.html" class="industry-button">Get Custom Solution</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Industries -->
+    <section class="more-industries">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">We Also Serve</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem;">Additional industries where our AI chatbots make a significant impact</p>
+            
+            <div class="more-grid">
+                <div class="more-industry-card">
+                    <div class="more-icon">🏠</div>
+                    <div class="more-title">Real Estate</div>
+                    <div class="more-description">Lead qualification, property inquiries, showing scheduling</div>
+                </div>
+
+                <div class="more-industry-card">
+                    <div class="more-icon">🎓</div>
+                    <div class="more-title">Education</div>
+                    <div class="more-description">Student support, enrollment assistance, course information</div>
+                </div>
+
+                <div class="more-industry-card">
+                    <div class="more-icon">🍽️</div>
+                    <div class="more-title">Food & Hospitality</div>
+                    <div class="more-description">Reservations, menu questions, order management</div>
+                </div>
+
+                <div class="more-industry-card">
+                    <div class="more-icon">💰</div>
+                    <div class="more-title">Financial Services</div>
+                    <div class="more-description">Account inquiries, loan applications, appointment booking</div>
+                </div>
+
+                <div class="more-industry-card">
+                    <div class="more-icon">🔧</div>
+                    <div class="more-title">Home Services</div>
+                    <div class="more-description">Service booking, quotes, emergency support</div>
+                </div>
+
+                <div class="more-industry-card">
+                    <div class="more-icon">🏋️</div>
+                    <div class="more-title">Fitness & Wellness</div>
+                    <div class="more-description">Class scheduling, membership questions, trainer booking</div>
+                </div>
+
+                <div class="more-industry-card">
+                    <div class="more-icon">🚗</div>
+                    <div class="more-title">Automotive</div>
+                    <div class="more-description">Service appointments, parts inquiries, test drives</div>
+                </div>
+
+                <div class="more-industry-card">
+                    <div class="more-icon">💄</div>
+                    <div class="more-title">Beauty & Wellness</div>
+                    <div class="more-description">Appointment booking, product recommendations, consultations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Comparison -->
+    <section class="roi-comparison">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">ROI Comparison by Industry</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem;">See how different industries benefit from AI chatbot automation</p>
+            
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div>Industry</div>
+                    <div>Average ROI</div>
+                    <div>Time Saved/Week</div>
+                    <div>Key Benefit</div>
+                    <div>Payback Period</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-industry">Healthcare</div>
+                    <div class="comparison-metric">675%</div>
+                    <div class="comparison-metric">10+ hours</div>
+                    <div class="comparison-metric">40% fewer no-shows</div>
+                    <div class="comparison-metric">3 weeks</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-industry">Legal</div>
+                    <div class="comparison-metric">545%</div>
+                    <div class="comparison-metric">8+ hours</div>
+                    <div class="comparison-metric">80% faster response</div>
+                    <div class="comparison-metric">4 weeks</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-industry">Retail</div>
+                    <div class="comparison-metric">425%</div>
+                    <div class="comparison-metric">15+ hours</div>
+                    <div class="comparison-metric">25% sales increase</div>
+                    <div class="comparison-metric">5 weeks</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-industry">Real Estate</div>
+                    <div class="comparison-metric">380%</div>
+                    <div class="comparison-metric">6+ hours</div>
+                    <div class="comparison-metric">50% more leads</div>
+                    <div class="comparison-metric">6 weeks</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-industry">General Business</div>
+                    <div class="comparison-metric">500%</div>
+                    <div class="comparison-metric">12+ hours</div>
+                    <div class="comparison-metric">35% satisfaction boost</div>
+                    <div class="comparison-metric">4 weeks</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="success-stories">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Success Stories Across Industries</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem;">Real results from real businesses in different sectors</p>
+            
+            <div class="stories-grid">
+                <div class="story-card healthcare">
+                    <div class="story-quote">
+                        "Our chatbot handles 73% of patient inquiries automatically. We've reduced missed appointments by 40% and our staff can focus on patient care instead of answering phones."
+                    </div>
+                    <div class="story-author">Dr. Sarah Johnson</div>
+                    <div class="story-company">Johnson Family Practice</div>
+                </div>
+
+                <div class="story-card legal">
+                    <div class="story-quote">
+                        "Client intake used to take hours. Now our AI captures all the information we need instantly and routes qualified leads to the right attorney. It's transformed our practice."
+                    </div>
+                    <div class="story-author">Michael Rodriguez, Esq.</div>
+                    <div class="story-company">Rodriguez & Associates</div>
+                </div>
+
+                <div class="story-card retail">
+                    <div class="story-quote">
+                        "The chatbot is our best salesperson. It recommends products perfectly and recovered 68% of our abandoned carts. Our online sales increased 32% in just 90 days."
+                    </div>
+                    <div class="story-author">Lisa Chen</div>
+                    <div class="story-company">Urban Style Boutique</div>
+                </div>
+
+                <div class="story-card">
+                    <div class="story-quote">
+                        "As a small business, we couldn't afford 24/7 support. Now our chatbot handles customer questions around the clock, and we never miss a potential customer."
+                    </div>
+                    <div class="story-author">David Martinez</div>
+                    <div class="story-company">Martinez Consulting</div>
+                </div>
+
+                <div class="story-card">
+                    <div class="story-quote">
+                        "The real estate chatbot qualifies leads instantly. I only talk to serious buyers now, and my conversion rate has doubled. It's like having a personal assistant that never sleeps."
+                    </div>
+                    <div class="story-author">Jennifer Park</div>
+                    <div class="story-company">Park Real Estate Group</div>
+                </div>
+
+                <div class="story-card">
+                    <div class="story-quote">
+                        "Our fitness studio's chatbot handles class bookings, membership questions, and even nutrition advice. Member satisfaction is up 45% and our front desk staff loves the reduced workload."
+                    </div>
+                    <div class="story-author">Carlos Thompson</div>
+                    <div class="story-company">Elite Fitness Studio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="industries-cta">
+        <div class="container">
+            <h2>Ready to Transform Your Industry?</h2>
+            <p>Get a custom AI chatbot solution designed specifically for your industry's unique needs and requirements</p>
+            <a href="../lead-generation-form.html" class="cta-button" style="background: var(--secondary); font-size: 1.2rem; padding: 1rem 2rem;">
+                Get Your Industry Solution
+            </a>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                ✓ Free consultation ✓ Industry-specific demo ✓ Custom implementation plan
+            </p>
+        </div>
+    </section>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Track page view and industry interests
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof trackPageView === 'function') {
+                trackPageView('industries_page');
+            }
+        });
+
+        // Track industry card clicks
+        document.querySelectorAll('.industry-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const industryClass = this.classList[1]; // Get the industry class (healthcare, legal, etc.)
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('industry_card_clicked', industryClass);
+                }
+            });
+        });
+
+        // Track more industries interest
+        document.querySelectorAll('.more-industry-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const industry = this.querySelector('.more-title').textContent;
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('more_industry_viewed', industry);
+                }
+            });
+        });
+
+        // Track success story engagement
+        document.querySelectorAll('.story-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const author = this.querySelector('.story-author').textContent;
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('success_story_viewed', author);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI chatbots for retail and e-commerce businesses. Boost sales with 24/7 shopping assistance, product recommendations, order tracking, and cart abandonment recovery.">
+    <title>Retail AI Chatbots - Boost E-commerce Sales 24/7 | AI Chatbot Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --retail-purple: #7c3aed;
+            --retail-pink: #ec4899;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Retail Hero */
+        .retail-hero {
+            background: linear-gradient(135deg, var(--retail-purple) 0%, var(--retail-pink) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            margin-top: 80px;
+        }
+
+        .retail-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .retail-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .retail-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--white);
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .hero-visual {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Retail Benefits */
+        .retail-benefits {
+            padding: 5rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+        }
+
+        .benefits-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--retail-purple);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .benefit-features {
+            list-style: none;
+        }
+
+        .benefit-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .feature-check {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Sales Boost Section */
+        .sales-boost {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .boost-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .boost-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .boost-stat {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 1rem;
+        }
+
+        .boost-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--retail-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .boost-label {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* E-commerce Features */
+        .ecommerce-features {
+            padding: 5rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-top: 4px solid var(--retail-pink);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--retail-purple) 0%, var(--retail-pink) 100%);
+            color: var(--white);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        /* Customer Success Stories */
+        .customer-stories {
+            padding: 5rem 2rem;
+            background: var(--text-dark);
+            color: var(--white);
+        }
+
+        .stories-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .story-quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .story-results {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-results h4 {
+            margin-bottom: 1rem;
+            color: var(--retail-pink);
+        }
+
+        .story-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--retail-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Platform Integrations */
+        .platform-integrations {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .platforms-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .platform-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .platform-logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .platform-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .platform-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Retail CTA */
+        .retail-cta {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--retail-purple) 0%, var(--retail-pink) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .retail-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .retail-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .retail-hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .retail-hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .boost-content {
+                grid-template-columns: 1fr;
+            }
+
+            .boost-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🤖 AI Chatbot Solutions</a>
+            <div class="nav-links">
+                <a href="pages/features.html">Features</a>
+                <a href="pages/pricing.html">Pricing</a>
+                <a href="pages/demo.html">Demo</a>
+                <a href="pages/contact.html">Contact</a>
+                <a href="#" class="cta-button">Book Retail Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Retail Hero -->
+    <section class="retail-hero">
+        <div class="retail-hero-content">
+            <div>
+                <h1>24/7 AI Shopping Assistant for Your Store</h1>
+                <p>Boost sales with intelligent product recommendations, instant customer support, and automated order management. Increase conversions by 25% on average.</p>
+                
+                <div style="margin: 2rem 0;">
+                    <a href="lead-generation-form.html" class="cta-button" style="background: var(--white); color: var(--retail-purple); margin-right: 1rem;">
+                        Get Free Retail Demo
+                    </a>
+                    <a href="pages/demo.html" class="cta-button" style="background: transparent; border: 2px solid var(--white);">
+                        See It In Action
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">425%</div>
+                        <div class="stat-label">Average ROI</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">25%</div>
+                        <div class="stat-label">Sales Increase</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">68%</div>
+                        <div class="stat-label">Cart Recovery</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <h3 style="margin-bottom: 2rem; color: var(--white);">Retail AI Assistant</h3>
+                <p style="margin-bottom: 2rem; opacity: 0.9;">Your customers get instant help with:</p>
+                <div style="text-align: left; max-width: 300px; margin: 0 auto;">
+                    <p>🛍️ Product recommendations</p>
+                    <p>📦 Order tracking & updates</p>
+                    <p>💳 Checkout assistance</p>
+                    <p>🔄 Returns & exchanges</p>
+                    <p>📱 Size & fit guidance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Retail Benefits -->
+    <section class="retail-benefits">
+        <div class="section-header">
+            <h2>Transform Your E-commerce Customer Experience</h2>
+            <p>Give every customer a personal shopping assistant that never sleeps, never gets tired, and always knows your inventory</p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🛒</div>
+                <h3>Smart Product Recommendations</h3>
+                <p>AI-powered suggestions based on customer preferences, browsing history, and purchase patterns increase average order value.</p>
+                <ul class="benefit-features">
+                    <li><span class="feature-check">✓</span> Personalized suggestions</li>
+                    <li><span class="feature-check">✓</span> Cross-sell & upsell</li>
+                    <li><span class="feature-check">✓</span> Inventory-aware recommendations</li>
+                    <li><span class="feature-check">✓</span> Seasonal & trending items</li>
+                    <li><span class="feature-check">✓</span> Style & preference matching</li>
+                </ul>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🚚</div>
+                <h3>Order Tracking & Updates</h3>
+                <p>Automatically provide order status, shipping updates, and delivery notifications to reduce support tickets.</p>
+                <ul class="benefit-features">
+                    <li><span class="feature-check">✓</span> Real-time order status</li>
+                    <li><span class="feature-check">✓</span> Shipping notifications</li>
+                    <li><span class="feature-check">✓</span> Delivery confirmations</li>
+                    <li><span class="feature-check">✓</span> Issue resolution</li>
+                    <li><span class="feature-check">✓</span> Carrier integration</li>
+                </ul>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">💸</div>
+                <h3>Cart Abandonment Recovery</h3>
+                <p>Win back lost sales with intelligent follow-up messages, discount offers, and checkout assistance.</p>
+                <ul class="benefit-features">
+                    <li><span class="feature-check">✓</span> Automatic follow-up</li>
+                    <li><span class="feature-check">✓</span> Discount incentives</li>
+                    <li><span class="feature-check">✓</span> Checkout assistance</li>
+                    <li><span class="feature-check">✓</span> Payment troubleshooting</li>
+                    <li><span class="feature-check">✓</span> Urgency messaging</li>
+                </ul>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">📱</div>
+                <h3>Multi-Channel Support</h3>
+                <p>Meet customers where they are - website, social media, SMS, or messaging apps with consistent experience.</p>
+                <ul class="benefit-features">
+                    <li><span class="feature-check">✓</span> Website widget</li>
+                    <li><span class="feature-check">✓</span> Facebook Messenger</li>
+                    <li><span class="feature-check">✓</span> Instagram DMs</li>
+                    <li><span class="feature-check">✓</span> WhatsApp Business</li>
+                    <li><span class="feature-check">✓</span> SMS integration</li>
+                </ul>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🔄</div>
+                <h3>Returns & Exchange Management</h3>
+                <p>Streamline the returns process with automated return requests, label generation, and refund processing.</p>
+                <ul class="benefit-features">
+                    <li><span class="feature-check">✓</span> Easy return initiation</li>
+                    <li><span class="feature-check">✓</span> Return label generation</li>
+                    <li><span class="feature-check">✓</span> Exchange processing</li>
+                    <li><span class="feature-check">✓</span> Refund status updates</li>
+                    <li><span class="feature-check">✓</span> Policy explanations</li>
+                </ul>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">👥</div>
+                <h3>Customer Service Automation</h3>
+                <p>Handle 80% of customer inquiries automatically while escalating complex issues to human agents.</p>
+                <ul class="benefit-features">
+                    <li><span class="feature-check">✓</span> FAQ automation</li>
+                    <li><span class="feature-check">✓</span> Size & fit guidance</li>
+                    <li><span class="feature-check">✓</span> Product information</li>
+                    <li><span class="feature-check">✓</span> Store policies</li>
+                    <li><span class="feature-check">✓</span> Human handoff</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sales Boost -->
+    <section class="sales-boost">
+        <div class="boost-content">
+            <div>
+                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Proven Sales Results</h2>
+                <p style="color: var(--text-light); margin-bottom: 2rem; font-size: 1.1rem;">
+                    Our retail clients see immediate improvements in key metrics that directly impact their bottom line.
+                </p>
+
+                <div style="background: var(--bg-light); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
+                    <h4 style="margin-bottom: 1rem; color: var(--retail-purple);">Why Retail Chatbots Work:</h4>
+                    <ul style="list-style: none; color: var(--text-light);">
+                        <li>✓ Available 24/7 when customers shop</li>
+                        <li>✓ Instant responses improve satisfaction</li>
+                        <li>✓ Personalized recommendations boost AOV</li>
+                        <li>✓ Proactive cart recovery prevents lost sales</li>
+                        <li>✓ Reduces support costs and wait times</li>
+                    </ul>
+                </div>
+
+                <a href="lead-generation-form.html" class="cta-button" style="background: var(--retail-purple);">
+                    Calculate My Sales Boost
+                </a>
+            </div>
+
+            <div class="boost-stats">
+                <div class="boost-stat">
+                    <div class="boost-number">25%</div>
+                    <div class="boost-label">Sales Increase</div>
+                </div>
+
+                <div class="boost-stat">
+                    <div class="boost-number">68%</div>
+                    <div class="boost-label">Cart Recovery Rate</div>
+                </div>
+
+                <div class="boost-stat">
+                    <div class="boost-number">40%</div>
+                    <div class="boost-label">Higher AOV</div>
+                </div>
+
+                <div class="boost-stat">
+                    <div class="boost-number">85%</div>
+                    <div class="boost-label">Customer Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-commerce Features -->
+    <section class="ecommerce-features">
+        <div class="section-header">
+            <h2>Built for Modern E-commerce</h2>
+            <p>Advanced features designed specifically for online retailers and e-commerce platforms</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Intelligent Lead Scoring</h3>
+                <p>Automatically identify high-value customers and prioritize them for personalized attention.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Real-time Analytics</h3>
+                <p>Track conversion rates, customer satisfaction, and sales metrics with detailed reporting.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Visual Product Search</h3>
+                <p>Customers can search using images to find similar products in your inventory.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💎</div>
+                <h3>VIP Customer Recognition</h3>
+                <p>Automatically recognize returning customers and provide personalized experiences.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎁</div>
+                <h3>Promotional Campaigns</h3>
+                <p>Run automated promotional campaigns and distribute discount codes intelligently.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>A/B Testing</h3>
+                <p>Test different conversation flows and optimize for maximum conversion rates.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Stories -->
+    <section class="customer-stories">
+        <div class="section-header" style="color: var(--white);">
+            <h2>Real Results from Real Retailers</h2>
+            <p style="color: rgba(255,255,255,0.8);">See how e-commerce businesses are growing with AI chatbots</p>
+        </div>
+
+        <div class="stories-grid">
+            <div class="story-card">
+                <div class="story-quote">
+                    "Our chatbot has become our top salesperson. It's available 24/7, never takes a break, and consistently drives more sales than our human team."
+                </div>
+                <div class="story-results">
+                    <h4>Results in 90 Days:</h4>
+                    <p>• 32% increase in online sales</p>
+                    <p>• 65% cart abandonment recovery</p>
+                    <p>• 50% reduction in support tickets</p>
+                </div>
+                <div class="story-author">
+                    <div class="author-avatar">👨‍💼</div>
+                    <div class="author-info">
+                        <h4>Marcus Johnson</h4>
+                        <p>CEO, Urban Style Co.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-quote">
+                    "The AI recommendations are spot-on. Customers love getting personalized suggestions, and our average order value has increased by 40%."
+                </div>
+                <div class="story-results">
+                    <h4>Key Improvements:</h4>
+                    <p>• 40% higher average order value</p>
+                    <p>• 28% increase in repeat customers</p>
+                    <p>• 90% customer satisfaction score</p>
+                </div>
+                <div class="story-author">
+                    <div class="author-avatar">👩‍💼</div>
+                    <div class="author-info">
+                        <h4>Sarah Martinez</h4>
+                        <p>Owner, Bella Beauty Boutique</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-quote">
+                    "We were losing so many sales to cart abandonment. Now our chatbot recovers 68% of abandoned carts automatically. It's incredible ROI."
+                </div>
+                <div class="story-results">
+                    <h4>Cart Recovery Success:</h4>
+                    <p>• 68% cart recovery rate</p>
+                    <p>• $47K additional monthly revenue</p>
+                    <p>• 425% ROI in first quarter</p>
+                </div>
+                <div class="story-author">
+                    <div class="author-avatar">👨‍💻</div>
+                    <div class="author-info">
+                        <h4>David Park</h4>
+                        <p>E-commerce Manager, Tech Gadgets Plus</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Integrations -->
+    <section class="platform-integrations">
+        <div class="section-header">
+            <h2>Seamless E-commerce Integrations</h2>
+            <p>Works with all major e-commerce platforms and tools you already use</p>
+        </div>
+
+        <div class="platforms-grid">
+            <div class="platform-card">
+                <div class="platform-logo">🛒</div>
+                <div class="platform-name">Shopify</div>
+                <div class="platform-description">Full product catalog and order management integration</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-logo">🌐</div>
+                <div class="platform-name">WooCommerce</div>
+                <div class="platform-description">WordPress e-commerce with real-time inventory sync</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-logo">📱</div>
+                <div class="platform-name">BigCommerce</div>
+                <div class="platform-description">Enterprise e-commerce platform integration</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-logo">💳</div>
+                <div class="platform-name">Stripe</div>
+                <div class="platform-description">Secure payment processing and order tracking</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-logo">📧</div>
+                <div class="platform-name">Mailchimp</div>
+                <div class="platform-description">Email marketing automation and customer segmentation</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-logo">📊</div>
+                <div class="platform-name">Google Analytics</div>
+                <div class="platform-description">E-commerce tracking and conversion analytics</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-logo">📦</div>
+                <div class="platform-name">ShipStation</div>
+                <div class="platform-description">Shipping and fulfillment management</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-logo">⭐</div>
+                <div class="platform-name">Klaviyo</div>
+                <div class="platform-description">Advanced email and SMS marketing automation</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Retail CTA -->
+    <section class="retail-cta">
+        <h2>Ready to Boost Your Online Sales?</h2>
+        <p>Join thousands of retailers using AI to increase sales, improve customer satisfaction, and grow their business 24/7</p>
+        
+        <div style="margin: 2rem 0;">
+            <a href="lead-generation-form.html" class="cta-button" style="background: var(--white); color: var(--retail-purple); font-size: 1.2rem; padding: 1rem 2rem; margin-right: 1rem;">
+                Start Free Retail Trial
+            </a>
+            <a href="pages/contact.html" class="cta-button" style="background: transparent; border: 2px solid var(--white);">
+                Speak with E-commerce Expert
+            </a>
+        </div>
+
+        <p style="margin-top: 1rem; opacity: 0.9;">
+            ✓ Free setup & training ✓ 30-day money-back guarantee ✓ Cancel anytime
+        </p>
+    </section>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Track page view and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof trackPageView === 'function') {
+                trackPageView('retail_landing_page');
+            }
+        });
+        
+        // Track retail-specific interactions
+        document.querySelectorAll('.benefit-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const benefit = this.querySelector('h3').textContent;
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('retail_benefit_viewed', benefit);
+                }
+            });
+        });
+
+        // Track platform integration interest
+        document.querySelectorAll('.platform-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const platform = this.querySelector('.platform-name').textContent;
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('platform_integration_viewed', platform);
+                }
+            });
+        });
+
+        // Track feature card clicks
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const feature = this.querySelector('h3').textContent;
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('retail_feature_viewed', feature);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

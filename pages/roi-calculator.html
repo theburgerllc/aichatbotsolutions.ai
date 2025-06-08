@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate your AI chatbot ROI. See potential savings, revenue increases, and payback period for your business with our interactive ROI calculator.">
+    <title>ROI Calculator - AI Chatbot Solutions | Calculate Your Returns</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .roi-hero {
+            margin-top: 80px;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .roi-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .roi-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            padding: 5rem 0;
+            background: var(--bg-light);
+        }
+
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .calculator-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .calculator-form h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 0.5rem;
+        }
+
+        .form-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .input-prefix {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .range-group {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .range-input {
+            width: 100%;
+        }
+
+        .range-value {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background: var(--white);
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: sticky;
+            top: 100px;
+        }
+
+        .results-header {
+            background: linear-gradient(135deg, var(--secondary) 0%, #059669 100%);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .results-header h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .results-header p {
+            opacity: 0.9;
+        }
+
+        .results-body {
+            padding: 2rem;
+        }
+
+        .metric-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .metric-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value.positive {
+            color: var(--secondary);
+        }
+
+        .metric-value.warning {
+            color: var(--warning);
+        }
+
+        .metric-description {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .breakdown-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .breakdown-label {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .breakdown-value {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cta-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .cta-section h4 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        /* Industry Benchmarks */
+        .benchmarks-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .benchmarks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benchmark-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .benchmark-card:hover,
+        .benchmark-card.active {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .benchmark-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benchmark-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .benchmark-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .benchmark-metric {
+            text-align: center;
+        }
+
+        .benchmark-metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .benchmark-metric-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Assumptions */
+        .assumptions-section {
+            padding: 4rem 0;
+            background: var(--bg-light);
+        }
+
+        .assumptions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .assumption-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .assumption-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .assumption-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .roi-hero h1 {
+                font-size: 2rem;
+            }
+
+            .calculator-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .results-panel {
+                position: static;
+            }
+
+            .benchmarks-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">🤖 AI Chatbot Solutions</a>
+            <div class="nav-links">
+                <a href="../pages/features.html">Features</a>
+                <a href="../pages/demo.html">Demo</a>
+                <a href="../pages/pricing.html">Pricing</a>
+                <a href="../pages/contact.html">Contact</a>
+                <a href="../lead-generation-form.html" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="roi-hero">
+        <div class="container">
+            <h1>AI Chatbot ROI Calculator</h1>
+            <p>Calculate your potential return on investment with AI chatbots. See how much you could save and earn with automated customer service and lead generation.</p>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="calculator-container">
+                <!-- Calculator Form -->
+                <div class="calculator-form">
+                    <h2>📊 Calculate Your ROI</h2>
+                    
+                    <!-- Business Information -->
+                    <div class="form-section">
+                        <h3>🏢 Business Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="industry">Industry</label>
+                            <select id="industry">
+                                <option value="general">General Business</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="legal">Legal Services</option>
+                                <option value="retail">Retail/E-commerce</option>
+                                <option value="real-estate">Real Estate</option>
+                                <option value="finance">Financial Services</option>
+                                <option value="education">Education</option>
+                                <option value="saas">SaaS/Technology</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="business-size">Business Size</label>
+                            <select id="business-size">
+                                <option value="small">Small (1-10 employees)</option>
+                                <option value="medium">Medium (11-50 employees)</option>
+                                <option value="large">Large (51-200 employees)</option>
+                                <option value="enterprise">Enterprise (200+ employees)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="monthly-customers">Monthly Customer Interactions</label>
+                            <div class="range-group">
+                                <input type="range" id="monthly-customers" class="range-input" min="100" max="10000" value="1000" step="100">
+                                <div class="range-value" id="customers-value">1,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Current Costs -->
+                    <div class="form-section">
+                        <h3>💰 Current Costs</h3>
+                        
+                        <div class="form-group">
+                            <label for="support-staff">Support Staff (FTE)</label>
+                            <div class="range-group">
+                                <input type="range" id="support-staff" class="range-input" min="0.5" max="20" value="2" step="0.5">
+                                <div class="range-value" id="staff-value">2</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hourly-rate">Average Hourly Rate ($)</label>
+                            <div class="input-group">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="hourly-rate" min="15" max="150" value="25" step="1">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hours-per-week">Support Hours per Week</label>
+                            <div class="range-group">
+                                <input type="range" id="hours-per-week" class="range-input" min="20" max="168" value="40" step="1">
+                                <div class="range-value" id="hours-value">40</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="missed-opportunities">Estimated Monthly Missed Opportunities</label>
+                            <div class="range-group">
+                                <input type="range" id="missed-opportunities" class="range-input" min="0" max="100" value="15" step="5">
+                                <div class="range-value" id="missed-value">15</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="average-deal-value">Average Customer Value ($)</label>
+                            <div class="input-group">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="average-deal-value" min="50" max="50000" value="500" step="50">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Automation Goals -->
+                    <div class="form-section">
+                        <h3>🎯 Automation Goals</h3>
+                        
+                        <div class="form-group">
+                            <label for="automation-percentage">Percentage of Inquiries to Automate (%)</label>
+                            <div class="range-group">
+                                <input type="range" id="automation-percentage" class="range-input" min="30" max="90" value="70" step="5">
+                                <div class="range-value" id="automation-value">70%</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lead-increase">Expected Lead Capture Increase (%)</label>
+                            <div class="range-group">
+                                <input type="range" id="lead-increase" class="range-input" min="10" max="100" value="40" step="5">
+                                <div class="range-value" id="lead-value">40%</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="chatbot-plan">Chatbot Plan</label>
+                            <select id="chatbot-plan">
+                                <option value="starter">Starter - $297/month</option>
+                                <option value="professional">Professional - $597/month</option>
+                                <option value="enterprise">Enterprise - $1,497/month</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="results-panel">
+                    <div class="results-header">
+                        <h2>Your ROI Results</h2>
+                        <p>Based on your inputs</p>
+                    </div>
+                    
+                    <div class="results-body">
+                        <div class="metric-card">
+                            <div class="metric-label">Monthly ROI</div>
+                            <div class="metric-value positive" id="monthly-roi">275%</div>
+                            <div class="metric-description">Return on investment per month</div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-label">Payback Period</div>
+                            <div class="metric-value" id="payback-period">6 weeks</div>
+                            <div class="metric-description">Time to break even</div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-label">Monthly Savings</div>
+                            <div class="metric-value positive" id="monthly-savings">$3,450</div>
+                            <div class="metric-description">Time and cost savings</div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-label">Additional Revenue</div>
+                            <div class="metric-value positive" id="additional-revenue">$3,000</div>
+                            <div class="metric-description">From increased lead capture</div>
+                        </div>
+
+                        <div class="breakdown-section">
+                            <h4>Monthly Breakdown</h4>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Chatbot Cost</span>
+                                <span class="breakdown-value" id="chatbot-cost">-$297</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Time Savings</span>
+                                <span class="breakdown-value" id="time-savings">+$2,800</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Reduced Missed Opportunities</span>
+                                <span class="breakdown-value" id="opportunity-savings">+$650</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Increased Lead Capture</span>
+                                <span class="breakdown-value" id="lead-revenue">+$3,000</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label"><strong>Net Monthly Benefit</strong></span>
+                                <span class="breakdown-value" id="net-benefit"><strong>+$6,153</strong></span>
+                            </div>
+                        </div>
+
+                        <div class="cta-section">
+                            <h4>Ready to Get Started?</h4>
+                            <a href="../lead-generation-form.html" class="cta-button">
+                                Get Custom Quote
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Benchmarks -->
+    <section class="benchmarks-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Industry Benchmarks</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem;">Click to apply industry-specific settings to your calculation</p>
+            
+            <div class="benchmarks-grid">
+                <div class="benchmark-card" data-industry="healthcare">
+                    <div class="benchmark-icon">🏥</div>
+                    <div class="benchmark-title">Healthcare</div>
+                    <div class="benchmark-metrics">
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">675%</div>
+                            <div class="benchmark-metric-label">Avg ROI</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">40%</div>
+                            <div class="benchmark-metric-label">No-Show Reduction</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">73%</div>
+                            <div class="benchmark-metric-label">Automation Rate</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">3 weeks</div>
+                            <div class="benchmark-metric-label">Payback</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benchmark-card" data-industry="legal">
+                    <div class="benchmark-icon">⚖️</div>
+                    <div class="benchmark-title">Legal Services</div>
+                    <div class="benchmark-metrics">
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">545%</div>
+                            <div class="benchmark-metric-label">Avg ROI</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">300%</div>
+                            <div class="benchmark-metric-label">Lead Increase</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">80%</div>
+                            <div class="benchmark-metric-label">Faster Response</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">4 weeks</div>
+                            <div class="benchmark-metric-label">Payback</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benchmark-card" data-industry="retail">
+                    <div class="benchmark-icon">🛍️</div>
+                    <div class="benchmark-title">Retail/E-commerce</div>
+                    <div class="benchmark-metrics">
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">425%</div>
+                            <div class="benchmark-metric-label">Avg ROI</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">68%</div>
+                            <div class="benchmark-metric-label">Cart Recovery</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">25%</div>
+                            <div class="benchmark-metric-label">Sales Increase</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">5 weeks</div>
+                            <div class="benchmark-metric-label">Payback</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benchmark-card" data-industry="real-estate">
+                    <div class="benchmark-icon">🏠</div>
+                    <div class="benchmark-title">Real Estate</div>
+                    <div class="benchmark-metrics">
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">380%</div>
+                            <div class="benchmark-metric-label">Avg ROI</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">180%</div>
+                            <div class="benchmark-metric-label">Lead Quality</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">50%</div>
+                            <div class="benchmark-metric-label">More Qualified</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">6 weeks</div>
+                            <div class="benchmark-metric-label">Payback</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benchmark-card" data-industry="saas">
+                    <div class="benchmark-icon">💻</div>
+                    <div class="benchmark-title">SaaS/Technology</div>
+                    <div class="benchmark-metrics">
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">350%</div>
+                            <div class="benchmark-metric-label">Avg ROI</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">70%</div>
+                            <div class="benchmark-metric-label">Ticket Reduction</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">85%</div>
+                            <div class="benchmark-metric-label">User Satisfaction</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">8 weeks</div>
+                            <div class="benchmark-metric-label">Payback</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benchmark-card" data-industry="general">
+                    <div class="benchmark-icon">🏢</div>
+                    <div class="benchmark-title">General Business</div>
+                    <div class="benchmark-metrics">
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">500%</div>
+                            <div class="benchmark-metric-label">Avg ROI</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">35%</div>
+                            <div class="benchmark-metric-label">Satisfaction Boost</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">80%</div>
+                            <div class="benchmark-metric-label">Automation Rate</div>
+                        </div>
+                        <div class="benchmark-metric">
+                            <div class="benchmark-metric-value">4 weeks</div>
+                            <div class="benchmark-metric-label">Payback</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assumptions -->
+    <section class="assumptions-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Calculation Assumptions</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem;">Our ROI calculations are based on real client data and industry averages</p>
+            
+            <div class="assumptions-grid">
+                <div class="assumption-item">
+                    <div class="assumption-title">Time Savings</div>
+                    <div class="assumption-description">Based on percentage of inquiries automated × staff hours saved per automated interaction</div>
+                </div>
+
+                <div class="assumption-item">
+                    <div class="assumption-title">Lead Capture Increase</div>
+                    <div class="assumption-description">24/7 availability captures leads outside business hours and reduces response time</div>
+                </div>
+
+                <div class="assumption-item">
+                    <div class="assumption-title">Missed Opportunities</div>
+                    <div class="assumption-description">Estimated based on after-hours inquiries and delayed response conversions</div>
+                </div>
+
+                <div class="assumption-item">
+                    <div class="assumption-title">Implementation Time</div>
+                    <div class="assumption-description">Average 2-4 weeks from signup to full deployment with optimization</div>
+                </div>
+
+                <div class="assumption-item">
+                    <div class="assumption-title">Automation Rate</div>
+                    <div class="assumption-description">Percentage of customer inquiries handled without human intervention</div>
+                </div>
+
+                <div class="assumption-item">
+                    <div class="assumption-title">Customer Satisfaction</div>
+                    <div class="assumption-description">Faster response times and 24/7 availability improve customer experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // ROI Calculator Logic
+        class ROICalculator {
+            constructor() {
+                this.bindEvents();
+                this.calculateROI();
+            }
+
+            bindEvents() {
+                // Range inputs with display updates
+                const rangeInputs = [
+                    { id: 'monthly-customers', display: 'customers-value', format: 'number' },
+                    { id: 'support-staff', display: 'staff-value', format: 'number' },
+                    { id: 'hours-per-week', display: 'hours-value', format: 'number' },
+                    { id: 'missed-opportunities', display: 'missed-value', format: 'number' },
+                    { id: 'automation-percentage', display: 'automation-value', format: 'percent' },
+                    { id: 'lead-increase', display: 'lead-value', format: 'percent' }
+                ];
+
+                rangeInputs.forEach(({ id, display, format }) => {
+                    const input = document.getElementById(id);
+                    const displayElement = document.getElementById(display);
+                    
+                    input.addEventListener('input', () => {
+                        let value = input.value;
+                        if (format === 'percent') {
+                            displayElement.textContent = value + '%';
+                        } else if (format === 'number') {
+                            displayElement.textContent = parseInt(value).toLocaleString();
+                        }
+                        this.calculateROI();
+                    });
+                });
+
+                // Regular inputs
+                const regularInputs = ['industry', 'business-size', 'hourly-rate', 'average-deal-value', 'chatbot-plan'];
+                regularInputs.forEach(id => {
+                    document.getElementById(id).addEventListener('change', () => {
+                        this.calculateROI();
+                    });
+                });
+
+                // Industry benchmark cards
+                document.querySelectorAll('.benchmark-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const industry = card.dataset.industry;
+                        this.applyIndustryBenchmark(industry);
+                        
+                        // Visual feedback
+                        document.querySelectorAll('.benchmark-card').forEach(c => c.classList.remove('active'));
+                        card.classList.add('active');
+                    });
+                });
+            }
+
+            calculateROI() {
+                // Get input values
+                const monthlyCustomers = parseInt(document.getElementById('monthly-customers').value);
+                const supportStaff = parseFloat(document.getElementById('support-staff').value);
+                const hourlyRate = parseFloat(document.getElementById('hourly-rate').value);
+                const hoursPerWeek = parseInt(document.getElementById('hours-per-week').value);
+                const missedOpportunities = parseInt(document.getElementById('missed-opportunities').value);
+                const averageDealValue = parseFloat(document.getElementById('average-deal-value').value);
+                const automationPercentage = parseInt(document.getElementById('automation-percentage').value);
+                const leadIncrease = parseInt(document.getElementById('lead-increase').value);
+                const chatbotPlan = document.getElementById('chatbot-plan').value;
+
+                // Get chatbot cost
+                const chatbotCosts = {
+                    'starter': 297,
+                    'professional': 597,
+                    'enterprise': 1497
+                };
+                const chatbotCost = chatbotCosts[chatbotPlan];
+
+                // Calculate monthly costs
+                const currentMonthlyCost = supportStaff * hourlyRate * hoursPerWeek * 4.33;
+
+                // Calculate savings from automation
+                const automatedInquiries = monthlyCustomers * (automationPercentage / 100);
+                const timePerInquiry = 0.1; // 6 minutes average
+                const hoursSaved = automatedInquiries * timePerInquiry;
+                const timeSavings = hoursSaved * hourlyRate;
+
+                // Calculate missed opportunity recovery
+                const recoveredOpportunities = missedOpportunities * 0.7; // 70% recovery rate
+                const opportunitySavings = recoveredOpportunities * averageDealValue;
+
+                // Calculate increased lead capture
+                const additionalLeads = (monthlyCustomers * 0.1) * (leadIncrease / 100); // 10% of interactions are potential leads
+                const leadRevenue = additionalLeads * averageDealValue;
+
+                // Calculate totals
+                const totalMonthlySavings = timeSavings + opportunitySavings;
+                const totalMonthlyRevenue = leadRevenue;
+                const totalMonthlyBenefit = totalMonthlySavings + totalMonthlyRevenue;
+                const netMonthlyBenefit = totalMonthlyBenefit - chatbotCost;
+
+                // Calculate ROI and payback
+                const monthlyROI = ((netMonthlyBenefit / chatbotCost) * 100);
+                const paybackWeeks = Math.ceil((chatbotCost / (netMonthlyBenefit / 4.33)));
+
+                // Update display
+                this.updateResults({
+                    monthlyROI: monthlyROI,
+                    paybackPeriod: paybackWeeks,
+                    monthlySavings: totalMonthlySavings,
+                    additionalRevenue: totalMonthlyRevenue,
+                    chatbotCost: chatbotCost,
+                    timeSavings: timeSavings,
+                    opportunitySavings: opportunitySavings,
+                    leadRevenue: leadRevenue,
+                    netBenefit: netMonthlyBenefit
+                });
+            }
+
+            updateResults(results) {
+                // Format and display results
+                document.getElementById('monthly-roi').textContent = Math.round(results.monthlyROI) + '%';
+                document.getElementById('payback-period').textContent = results.paybackPeriod + ' weeks';
+                document.getElementById('monthly-savings').textContent = '$' + Math.round(results.monthlySavings).toLocaleString();
+                document.getElementById('additional-revenue').textContent = '$' + Math.round(results.additionalRevenue).toLocaleString();
+
+                // Breakdown
+                document.getElementById('chatbot-cost').textContent = '-$' + results.chatbotCost.toLocaleString();
+                document.getElementById('time-savings').textContent = '+$' + Math.round(results.timeSavings).toLocaleString();
+                document.getElementById('opportunity-savings').textContent = '+$' + Math.round(results.opportunitySavings).toLocaleString();
+                document.getElementById('lead-revenue').textContent = '+$' + Math.round(results.leadRevenue).toLocaleString();
+                document.getElementById('net-benefit').textContent = '+$' + Math.round(results.netBenefit).toLocaleString();
+
+                // Update color classes based on ROI
+                const roiElement = document.getElementById('monthly-roi');
+                roiElement.className = 'metric-value';
+                if (results.monthlyROI > 200) {
+                    roiElement.classList.add('positive');
+                } else if (results.monthlyROI > 100) {
+                    roiElement.classList.add('warning');
+                }
+            }
+
+            applyIndustryBenchmark(industry) {
+                // Set industry
+                document.getElementById('industry').value = industry;
+
+                // Apply industry-specific defaults
+                const benchmarks = {
+                    healthcare: {
+                        automationPercentage: 73,
+                        leadIncrease: 35,
+                        hourlyRate: 28,
+                        averageDealValue: 150
+                    },
+                    legal: {
+                        automationPercentage: 65,
+                        leadIncrease: 60,
+                        hourlyRate: 45,
+                        averageDealValue: 2500
+                    },
+                    retail: {
+                        automationPercentage: 85,
+                        leadIncrease: 25,
+                        hourlyRate: 18,
+                        averageDealValue: 85
+                    },
+                    'real-estate': {
+                        automationPercentage: 60,
+                        leadIncrease: 50,
+                        hourlyRate: 22,
+                        averageDealValue: 5000
+                    },
+                    saas: {
+                        automationPercentage: 70,
+                        leadIncrease: 30,
+                        hourlyRate: 35,
+                        averageDealValue: 1200
+                    },
+                    general: {
+                        automationPercentage: 70,
+                        leadIncrease: 35,
+                        hourlyRate: 25,
+                        averageDealValue: 500
+                    }
+                };
+
+                const benchmark = benchmarks[industry] || benchmarks.general;
+
+                // Update inputs
+                document.getElementById('automation-percentage').value = benchmark.automationPercentage;
+                document.getElementById('lead-increase').value = benchmark.leadIncrease;
+                document.getElementById('hourly-rate').value = benchmark.hourlyRate;
+                document.getElementById('average-deal-value').value = benchmark.averageDealValue;
+
+                // Update displays
+                document.getElementById('automation-value').textContent = benchmark.automationPercentage + '%';
+                document.getElementById('lead-value').textContent = benchmark.leadIncrease + '%';
+
+                // Recalculate
+                this.calculateROI();
+
+                // Track benchmark selection
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('industry_benchmark_selected', industry);
+                }
+            }
+        }
+
+        // Initialize calculator when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            new ROICalculator();
+
+            // Track page view
+            if (typeof trackPageView === 'function') {
+                trackPageView('roi_calculator_page');
+            }
+
+            // Track form interactions
+            document.querySelectorAll('input, select').forEach(input => {
+                input.addEventListener('change', function() {
+                    if (typeof trackFormSubmit === 'function') {
+                        trackFormSubmit('roi_calculator_input_changed', this.id);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

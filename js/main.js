@@ -339,3 +339,11 @@ function getCalendlyUrl(industry = 'general') {
     
     return calendlyUrls[industry] || calendlyUrls.general;
 }
+
+// Mobile menu toggle function
+function toggleMobileMenu() {
+    const mobileNav = document.getElementById('mobile-nav');
+    if (mobileNav) {
+        mobileNav.classList.toggle('open');
+    }
+}

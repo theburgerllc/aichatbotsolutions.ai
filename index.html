@@ -835,7 +835,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <span>🤖</span> AI Chatbot Solutions
             </a>
             <div class="nav-links">
@@ -863,8 +863,8 @@
                 <h1>Never Miss Another Customer with 24/7 AI Support</h1>
                 <p>Transform your customer service with intelligent chatbots that work round the clock. Get started in just 24 hours.</p>
                 <div class="hero-buttons">
-                    <a href="#" class="cta-button" style="background: white; color: var(--primary);">Start Free Trial</a>
-                    <a href="#" class="secondary-button">Watch Demo</a>
+                    <a href="lead-generation-form.html" class="cta-button" style="background: white; color: var(--primary);">Start Free Trial</a>
+                    <a href="pages/demo.html" class="secondary-button">Watch Demo</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
@@ -1043,7 +1043,7 @@
                     <li>✓ Basic analytics</li>
                     <li>✓ Email support</li>
                 </ul>
-                <a href="#" class="cta-button" style="width: 100%;">Get Started</a>
+                <a href="lead-generation-form.html" class="cta-button" style="width: 100%;">Get Started</a>
             </div>
             <div class="pricing-card featured">
                 <div class="popular-badge">Most Popular</div>
@@ -1057,7 +1057,7 @@
                     <li>✓ Priority support</li>
                     <li>✓ Custom AI training</li>
                 </ul>
-                <a href="#" class="cta-button" style="width: 100%;">Get Started</a>
+                <a href="lead-generation-form.html" class="cta-button" style="width: 100%;">Get Started</a>
             </div>
             <div class="pricing-card">
                 <h3 class="plan-name">Enterprise</h3>
@@ -1070,7 +1070,7 @@
                     <li>✓ Custom integrations</li>
                     <li>✓ SLA guarantee</li>
                 </ul>
-                <a href="#" class="cta-button" style="width: 100%;">Contact Sales</a>
+                <a href="pages/contact.html" class="cta-button" style="width: 100%;">Contact Sales</a>
             </div>
         </div>
     </section>
@@ -1080,7 +1080,7 @@
         <div class="contact-container">
             <h2>Ready to Transform Your Customer Service?</h2>
             <p>Join thousands of businesses already using AI chatbots to grow</p>
-            <a href="#" class="cta-button" style="background: var(--secondary); font-size: 1.25rem; padding: 1rem 2rem;">Schedule Your Free Demo</a>
+            <a href="lead-generation-form.html" class="cta-button" style="background: var(--secondary); font-size: 1.25rem; padding: 1rem 2rem;">Schedule Your Free Demo</a>
             <div class="contact-info">
                 <div class="contact-item">
                     <span>📧</span>
@@ -1168,16 +1168,7 @@
             observer.observe(el);
         });
 
-        // Demo booking functionality
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                if (this.textContent.includes('Demo') || this.textContent.includes('Free Trial')) {
-                    e.preventDefault();
-                    // Replace with your actual Calendly link or booking system
-                    alert('Demo booking system will be integrated here. For now, email contact@aichatbotsolutions.ai');
-                }
-            });
-        });
+        // Demo booking functionality is now handled via direct links to lead-generation-form.html
 
         // Healthcare Demo Functionality
         function demoAction(action) {

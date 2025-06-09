@@ -93,8 +93,9 @@
 
         /* Navigation */
         nav {
-            background: var(--white);
-            box-shadow: var(--shadow);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
             top: 0;
@@ -110,6 +111,7 @@
 
         nav.scrolled {
             background: var(--white);
+            backdrop-filter: none;
             box-shadow: var(--shadow);
         }
 
@@ -139,17 +141,17 @@
         }
 
         .logo-image {
-            height: 50px;
+            height: 60px;
             width: auto;
-            max-width: 220px;
+            max-width: 250px;
             object-fit: contain;
             transition: all 0.3s ease;
         }
 
         @media (max-width: 768px) {
             .logo-image {
-                height: 40px;
-                max-width: 160px;
+                height: 45px;
+                max-width: 180px;
             }
         }
 
@@ -206,10 +208,11 @@
         .cta-button {
             background: var(--primary);
             color: var(--white);
-            padding: 0.75rem 1.5rem;
+            padding: 0.8rem 1.6rem;
             border-radius: 0.5rem;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.95rem;
             transition: all 0.3s;
             display: inline-block;
         }
@@ -1193,10 +1196,10 @@
             window.addEventListener('scroll', function() {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 
-                if (scrollTop > 100) {
+                if (scrollTop <= 50) {
                     navbar.classList.add('transparent');
                     navbar.classList.remove('scrolled');
-                } else if (scrollTop <= 50) {
+                } else if (scrollTop > 100) {
                     navbar.classList.remove('transparent');
                     navbar.classList.add('scrolled');
                 }

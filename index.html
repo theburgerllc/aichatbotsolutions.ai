@@ -27,8 +27,11 @@
     <meta name="twitter:image" content="https://aichatbotsolutions.ai/assets/images/logo.png">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
-    <link rel="apple-touch-icon" href="assets/images/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/images/logo.png">
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -96,6 +99,18 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.transparent {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav.scrolled {
+            background: var(--white);
+            box-shadow: var(--shadow);
         }
 
         .nav-container {
@@ -115,6 +130,26 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-image {
+            height: 45px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .logo-image {
+                height: 35px;
+                max-width: 150px;
+            }
         }
 
         .nav-links {
@@ -519,6 +554,16 @@
             opacity: 0.8;
         }
 
+        /* Enhanced mobile navbar for transparency effect */
+        nav.transparent .nav-container {
+            backdrop-filter: blur(10px);
+        }
+
+        nav.transparent .mobile-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-container {
@@ -836,7 +881,7 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <span>🤖</span> AI Chatbot Solutions
+                <img src="assets/images/logo.png" alt="AI Chatbot Solutions Logo" class="logo-image">
             </a>
             <div class="nav-links">
                 <a href="pages/features.html">Features</a>
@@ -1122,6 +1167,31 @@
             const mobileNav = document.getElementById('mobile-nav');
             mobileNav.classList.toggle('open');
         }
+
+        // Transparent navbar on scroll
+        function initializeNavbarScroll() {
+            const navbar = document.querySelector('nav');
+            let lastScrollTop = 0;
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 100) {
+                    navbar.classList.add('transparent');
+                    navbar.classList.remove('scrolled');
+                } else if (scrollTop <= 50) {
+                    navbar.classList.remove('transparent');
+                    navbar.classList.add('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
+
+        // Initialize navbar scroll effect on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeNavbarScroll();
+        });
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(e) {

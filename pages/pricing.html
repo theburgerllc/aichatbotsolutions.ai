@@ -462,8 +462,18 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="../index.html" class="logo">🤖 AI Chatbot Solutions</a>
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/nav_bar_logo.png" alt="AI Chatbot Solutions Logo" class="logo-image" style="height: 50px; width: auto;">
+            </a>
             <div class="nav-links">
+                <a href="features.html">Features</a>
+                <a href="demo.html">Demo</a>
+                <a href="industries.html">Industries</a>
+                <a href="contact.html">Contact</a>
+                <a href="../lead-generation-form.html" class="cta-button">Start Free Trial</a>
+            </div>
+            <button class="mobile-menu-button" onclick="toggleMobileMenu()">☰</button>
+            <div class="mobile-nav" id="mobile-nav">
                 <a href="features.html">Features</a>
                 <a href="demo.html">Demo</a>
                 <a href="industries.html">Industries</a>
@@ -882,6 +892,14 @@
         document.getElementById('monthly-customers').addEventListener('change', calculateROI);
         document.getElementById('hourly-rate').addEventListener('input', calculateROI);
         document.getElementById('current-plan').addEventListener('change', calculateROI);
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobile-nav');
+            if (mobileNav) {
+                mobileNav.classList.toggle('open');
+            }
+        }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {

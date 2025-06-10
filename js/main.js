@@ -154,18 +154,34 @@ window.BotPenguinReady = function() {
 // Dynamic Pricing Based on Industry
 function updatePricing(industry) {
     const pricing = {
-        healthcare: { starter: 497, pro: 997, enterprise: 1997 },
-        legal: { starter: 397, pro: 797, enterprise: 1497 },
-        retail: { starter: 297, pro: 497, enterprise: 997 },
-        general: { starter: 297, pro: 497, enterprise: 997 }
+        healthcare: { starter: 497, professional: 997, pro: 997, enterprise: 1997 },
+        legal: { starter: 397, professional: 797, pro: 797, enterprise: 1497 },
+        retail: { starter: 297, professional: 497, pro: 497, enterprise: 997 },
+        general: { starter: 297, professional: 497, pro: 497, enterprise: 997 }
     };
     
     // Update pricing display based on selected industry
     if (pricing[industry]) {
-        const plans = ['starter', 'pro', 'enterprise'];
+        // Update plan-price elements (for main pricing pages)
         document.querySelectorAll('.plan-price').forEach((el, index) => {
+            const plans = ['starter', 'professional', 'enterprise'];
             if (plans[index] && pricing[industry][plans[index]]) {
                 el.innerHTML = `$${pricing[industry][plans[index]]}<span>/month</span>`;
+            }
+        });
+        
+        // Update specific pricing elements by ID (for pricing page)
+        const priceElements = {
+            'starter-price': 'starter',
+            'professional-price': 'professional', 
+            'pro-price': 'pro',
+            'enterprise-price': 'enterprise'
+        };
+        
+        Object.entries(priceElements).forEach(([elementId, plan]) => {
+            const element = document.getElementById(elementId);
+            if (element && pricing[industry][plan]) {
+                element.innerHTML = `$${pricing[industry][plan]}<span>/month</span>`;
             }
         });
         
@@ -278,7 +294,96 @@ document.addEventListener('DOMContentLoaded', function() {
             updatePricing(e.target.value);
         });
     }
+    
+    // Initialize navbar scroll effect
+    initializeNavbar();
+    
+    // Initialize mobile menu functionality
+    initializeMobileMenu();
 });
+
+// Enhanced navbar functionality with 50px threshold
+function initializeNavbar() {
+    const navbar = document.querySelector('nav');
+    if (!navbar) return;
+    
+    let ticking = false;
+    
+    function updateNavbar() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop <= 10) {
+            // At the very top - fully solid
+            navbar.classList.remove('transparent');
+            navbar.classList.remove('scrolled');
+        } else if (scrollTop > 10 && scrollTop <= 50) {
+            // Light scroll - frosted glass effect
+            navbar.classList.add('transparent');
+            navbar.classList.remove('scrolled');
+        } else {
+            // Deep scroll (past 50px) - solid background
+            navbar.classList.remove('transparent');
+            navbar.classList.add('scrolled');
+        }
+        
+        ticking = false;
+    }
+    
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateNavbar);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestTick, { passive: true });
+    
+    // Initialize smooth scrolling for navigation links
+    initializeSmoothScrolling();
+}
+
+// Smooth scrolling for anchor links
+function initializeSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            // Close mobile menu after navigation
+            const mobileNav = document.getElementById('mobile-nav');
+            if (mobileNav) {
+                mobileNav.classList.remove('open');
+            }
+        });
+    });
+}
+
+// Enhanced mobile menu functionality
+function initializeMobileMenu() {
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileNav = document.getElementById('mobile-nav');
+    
+    if (!mobileMenuButton || !mobileNav) return;
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!mobileNav.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+            mobileNav.classList.remove('open');
+        }
+    });
+    
+    // Close mobile menu when clicking on navigation links
+    mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+            mobileNav.classList.remove('open');
+        });
+    });
+}
 
 // Utility Functions
 function getPageName() {

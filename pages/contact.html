@@ -417,8 +417,18 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="../index.html" class="logo">🤖 AI Chatbot Solutions</a>
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/nav_bar_logo.png" alt="AI Chatbot Solutions Logo" class="logo-image" style="height: 50px; width: auto;">
+            </a>
             <div class="nav-links">
+                <a href="features.html">Features</a>
+                <a href="demo.html">Demo</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="about.html">About</a>
+                <a href="../lead-generation-form.html" class="cta-button">Get Started</a>
+            </div>
+            <button class="mobile-menu-button" onclick="toggleMobileMenu()">☰</button>
+            <div class="mobile-nav" id="mobile-nav">
                 <a href="features.html">Features</a>
                 <a href="demo.html">Demo</a>
                 <a href="pricing.html">Pricing</a>
@@ -732,7 +742,7 @@
                 };
                 
                 // Submit to Formspree or your backend
-                const response = await fetch('https://formspree.io/f/YOUR_CONTACT_FORM_ID', {
+                const response = await fetch('https://formspree.io/f/xpznygko', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -812,6 +822,14 @@
                 }
             });
         });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobile-nav');
+            if (mobileNav) {
+                mobileNav.classList.toggle('open');
+            }
+        }
     </script>
 </body>
 </html>

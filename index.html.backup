@@ -524,7 +524,7 @@
             animation: fadeIn 0.8s ease-out;
         }
 
-        /* FIXED DEMO CHATBOT STYLES */
+        /* Enhanced Demo Chatbot Styles */
         .demo-container {
             background: var(--white);
             border-radius: 1rem;
@@ -577,9 +577,24 @@
             animation: pulse 2s infinite;
         }
 
+        .status-dot.processing {
+            background: #f59e0b;
+            animation: blink 0.8s infinite;
+        }
+
+        .status-dot.error {
+            background: #ef4444;
+            animation: none;
+        }
+
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.7; transform: scale(0.95); }
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
         }
 
         .chat-window {
@@ -603,24 +618,13 @@
             border-radius: 3px;
         }
 
-        /* FIXED MESSAGE LAYOUT */
         .chat-message {
             display: flex;
+            gap: 0.75rem;
             margin-bottom: 1rem;
             animation: slideIn 0.5s ease-out;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-
-        /* Bot messages - left aligned */
-        .chat-message.bot-message {
-            justify-content: flex-start;
-        }
-
-        /* User messages - right aligned */
-        .chat-message.user-message {
-            justify-content: flex-end;
-            flex-direction: row-reverse;
+            opacity: 0;
+            animation-fill-mode: forwards;
         }
 
         @keyframes slideIn {
@@ -638,6 +642,7 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
+            background: var(--trust-blue);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -646,16 +651,21 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        /* Bot avatar styling */
         .bot-message .message-avatar {
             background: #0891b2;
-            color: white;
         }
 
-        /* User avatar styling */
         .user-message .message-avatar {
             background: var(--conversion-red);
-            color: white;
+            order: 2;
+        }
+
+        .user-message {
+            flex-direction: row-reverse;
+        }
+
+        .user-message .message-content {
+            text-align: right;
         }
 
         .message-content {
@@ -663,68 +673,40 @@
             max-width: calc(100% - 48px);
         }
 
-        /* Bot message content - left aligned */
-        .bot-message .message-content {
-            text-align: left;
-        }
-
-        /* User message content - right aligned */
-        .user-message .message-content {
-            text-align: right;
-        }
-
         .message-text {
-            padding: 0.75rem 1rem;
+            background: var(--white);
+            padding: 0.75rem;
             border-radius: 1rem;
+            border: 1px solid #e2e8f0;
             margin-bottom: 0.25rem;
             line-height: 1.4;
             word-wrap: break-word;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-            max-width: 100%;
         }
 
-        /* Bot message styling */
-        .bot-message .message-text {
-            background: var(--white);
-            color: var(--text-dark);
-            border: 1px solid #e2e8f0;
-            border-radius: 1rem 1rem 1rem 0.25rem;
-        }
-
-        /* User message styling */
         .user-message .message-text {
             background: var(--conversion-red);
             color: var(--white);
-            border: 1px solid var(--conversion-red);
-            border-radius: 1rem 1rem 0.25rem 1rem;
+            border-color: var(--conversion-red);
         }
 
         .message-time {
             font-size: 0.75rem;
             color: var(--text-light);
-            margin-top: 0.25rem;
-            display: block;
+            padding: 0 0.75rem;
         }
 
-        /* Bot message time - left aligned */
-        .bot-message .message-time {
-            text-align: left;
+        .typing-indicator {
+            opacity: 0.8;
         }
 
-        /* User message time - right aligned */
-        .user-message .message-time {
-            text-align: right;
-        }
-
-        /* TYPING INDICATOR */
         .typing-indicator .message-text {
             background: #e2e8f0;
             color: var(--text-dark);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1rem;
+            gap: 0.25rem;
+            min-height: 20px;
         }
 
         .typing-dots {
@@ -748,11 +730,10 @@
             30% { transform: translateY(-10px); opacity: 1; }
         }
 
-        /* QUICK ACTIONS - FIXED SPACING */
         .quick-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
             margin-top: 1rem;
             animation: fadeIn 0.5s ease-out;
         }
@@ -760,8 +741,8 @@
         .quick-action {
             background: var(--white);
             border: 2px solid #e2e8f0;
-            border-radius: 0.75rem;
-            padding: 1rem;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
             text-align: left;
             cursor: pointer;
             transition: all 0.3s;
@@ -769,7 +750,7 @@
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
 
         .quick-action:hover:not(:disabled) {
@@ -786,80 +767,29 @@
         }
 
         .quick-action-icon {
-            font-size: 1.2rem;
-            flex-shrink: 0;
+            font-size: 1rem;
         }
 
-        .quick-action-text {
-            flex: 1;
-        }
-
-        .quick-action-title {
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.25rem;
-        }
-
-        .quick-action-desc {
-            font-size: 0.75rem;
-            color: var(--text-light);
-        }
-
-        /* FOLLOW-UP OPTIONS - FIXED SPACING */
-        .follow-up-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-            margin-top: 1rem;
-            padding-right: 3rem;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        .follow-up-options button {
-            background: #f0f9ff;
-            border: 2px solid #0891b2;
-            border-radius: 0.5rem;
-            padding: 0.75rem 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .follow-up-options button:hover:not(:disabled) {
-            background: #0891b2;
-            color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(8, 145, 178, 0.3);
-        }
-
-        .follow-up-options button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* DEMO INPUT - FIXED STYLING */
         .demo-input {
             display: flex;
             padding: 1rem;
             border-top: 1px solid #e2e8f0;
             background: var(--white);
-            gap: 0.75rem;
+            position: relative;
         }
 
         .demo-input input {
             flex: 1;
-            padding: 0.75rem 1rem;
+            padding: 0.75rem;
             border: 2px solid #e2e8f0;
-            border-radius: 0.75rem;
+            border-radius: 0.5rem;
             font-size: 0.875rem;
             background: #f8fafc;
             transition: all 0.3s;
-            outline: none;
         }
 
         .demo-input input:focus {
+            outline: none;
             border-color: #0891b2;
             background: var(--white);
             box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1);
@@ -874,15 +804,16 @@
             background: #0891b2;
             color: var(--white);
             border: none;
-            border-radius: 0.75rem;
+            border-radius: 0.5rem;
             padding: 0.75rem;
+            margin-left: 0.5rem;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
             min-width: 48px;
-            flex-shrink: 0;
+            position: relative;
         }
 
         .send-button:hover:not(:disabled) {
@@ -894,6 +825,32 @@
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
+        }
+
+        .button-loading {
+            display: none;
+        }
+
+        .send-button.loading .send-icon {
+            display: none;
+        }
+
+        .send-button.loading .button-loading {
+            display: block;
+        }
+
+        .button-spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .demo-footer {
@@ -936,49 +893,63 @@
             font-size: 0.7rem;
         }
 
-        .demo-completion {
-            margin-top: 1rem;
-            padding-right: 3rem;
-        }
-
-        .demo-completion-buttons {
+        .demo-loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
             display: flex;
-            gap: 0.75rem;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            z-index: 10;
         }
 
-        .demo-cta-button {
+        .demo-loading-spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #e2e8f0;
+            border-top: 3px solid #0891b2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .demo-loading-text {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        .follow-up-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0 3rem 0 0;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .follow-up-options button {
+            background: #f0f9ff;
+            border: 1px solid #0891b2;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .follow-up-options button:hover:not(:disabled) {
             background: #0891b2;
             color: white;
-            border: none;
-            border-radius: 0.75rem;
-            padding: 0.75rem 1rem;
-            font-size: 0.875rem;
-            cursor: pointer;
-            flex: 1;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .demo-cta-button:hover {
-            background: #0e7490;
             transform: translateY(-1px);
         }
 
-        .demo-reset-button {
-            background: transparent;
-            color: #0891b2;
-            border: 2px solid #0891b2;
-            border-radius: 0.75rem;
-            padding: 0.75rem 1rem;
-            font-size: 0.875rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .demo-reset-button:hover {
-            background: #f0f9ff;
-            transform: translateY(-1px);
+        .follow-up-options button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         @keyframes fadeIn {
@@ -999,19 +970,11 @@
             
             .follow-up-options {
                 grid-template-columns: 1fr;
-                padding-right: 0;
+                padding: 0;
             }
             
             .demo-input input {
                 font-size: 16px; /* Prevents zoom on iOS */
-            }
-            
-            .demo-completion {
-                padding-right: 0;
-            }
-            
-            .demo-completion-buttons {
-                flex-direction: column;
             }
         }
     </style>
@@ -1025,22 +988,22 @@
             </a>
             <div class="nav-links">
                 <a href="pages/features.html">Features</a>
-                <a href="interactive-demo.html">Try Demo</a>
+                <a href="pages/demo.html">Demo</a>
                 <a href="pages/industries.html">Industries</a>
                 <a href="pages/pricing.html">Pricing</a>
                 <a href="pages/contact.html">Contact</a>
             </div>
             <div class="nav-cta">
-                <a href="demo-booking.html" class="cta-button">Book Demo</a>
+                <a href="lead-generation-form.html" class="cta-button">Get Free Demo</a>
             </div>
             <button class="mobile-menu-button" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu">☰</button>
             <div class="mobile-nav" id="mobile-nav">
                 <a href="pages/features.html">Features</a>
-                <a href="interactive-demo.html">Try Demo</a>
+                <a href="pages/demo.html">Demo</a>
                 <a href="pages/industries.html">Industries</a>
                 <a href="pages/pricing.html">Pricing</a>
                 <a href="pages/contact.html">Contact</a>
-                <a href="demo-booking.html" class="cta-button">Book Demo</a>
+                <a href="lead-generation-form.html" class="cta-button">Get Free Demo</a>
             </div>
         </div>
     </nav>
@@ -1052,8 +1015,8 @@
                 <h1>Never Miss Another Customer with 24/7 AI Support</h1>
                 <p>Transform your customer service with intelligent chatbots that work round the clock. Get started in just 24 hours.</p>
                 <div class="hero-buttons">
-                    <a href="demo-booking.html" class="cta-button" style="background: white; color: var(--conversion-red);">Book Free Demo</a>
-                    <a href="interactive-demo.html" class="secondary-button">Try Demo Now</a>
+                    <a href="lead-generation-form.html" class="cta-button" style="background: white; color: var(--conversion-red);">Start Free Trial</a>
+                    <a href="pages/demo.html" class="secondary-button">Watch Demo</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
@@ -1070,6 +1033,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Enhanced Interactive Healthcare Demo -->
             <div class="hero-visual">
                 <div class="demo-container" id="demoContainer">
                     <div class="demo-header">
@@ -1084,7 +1048,7 @@
                     </div>
                     
                     <div class="chat-window" id="demoChat">
-                        <!-- Messages will be added here by JavaScript -->
+                        <!-- Welcome message will be added by JavaScript -->
                     </div>
                     
                     <div class="demo-input" id="demoInputContainer">
@@ -1095,6 +1059,9 @@
                                maxlength="200">
                         <button class="send-button" id="sendButton" type="button">
                             <span class="send-icon">📤</span>
+                            <div class="button-loading" style="display: none;">
+                                <div class="button-spinner"></div>
+                            </div>
                         </button>
                     </div>
                     
@@ -1104,6 +1071,12 @@
                             Try the demo above ↑
                         </span>
                         <span class="demo-badge">HIPAA Compliant</span>
+                    </div>
+                    
+                    <!-- Loading overlay for state transitions -->
+                    <div class="demo-loading-overlay" id="demoLoadingOverlay" style="display: none;">
+                        <div class="demo-loading-spinner"></div>
+                        <div class="demo-loading-text">Processing...</div>
                     </div>
                 </div>
             </div>
@@ -1222,7 +1195,7 @@
                     <li>✓ Basic analytics</li>
                     <li>✓ Email support</li>
                 </ul>
-                <a href="demo-booking.html" class="cta-button" style="width: 100%;">Book Demo</a>
+                <a href="lead-generation-form.html" class="cta-button" style="width: 100%;">Get Started</a>
             </div>
             <div class="pricing-card featured">
                 <div class="popular-badge">Most Popular</div>
@@ -1236,7 +1209,7 @@
                     <li>✓ Priority support</li>
                     <li>✓ Custom AI training</li>
                 </ul>
-                <a href="demo-booking.html" class="cta-button" style="width: 100%;">Book Demo</a>
+                <a href="lead-generation-form.html" class="cta-button" style="width: 100%;">Get Started</a>
             </div>
             <div class="pricing-card">
                 <h3 class="plan-name">Enterprise</h3>
@@ -1259,7 +1232,7 @@
         <div class="contact-container">
             <h2>Ready to Transform Your Customer Service?</h2>
             <p>Join thousands of businesses already using AI chatbots to grow</p>
-            <a href="demo-booking.html" class="cta-button" style="background: var(--success-green); font-size: 1.25rem; padding: 1rem 2rem; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4);">Book Your Free Demo</a>
+            <a href="lead-generation-form.html" class="cta-button" style="background: var(--success-green); font-size: 1.25rem; padding: 1rem 2rem; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4);">Schedule Your Free Demo</a>
             <div class="contact-info">
                 <div class="contact-item">
                     <span>📧</span>
@@ -1391,428 +1364,426 @@
 
         // Demo booking functionality is now handled via direct links to lead-generation-form.html
 
-        // FIXED DEMO CHATBOT JAVASCRIPT
-        class FixedDemoChatbot {
-            constructor() {
-                this.state = 'idle';
-                this.isProcessing = false;
-                this.conversationHistory = [];
-                this.timeouts = [];
+        // Enhanced Demo Chatbot Implementation
+        class DemoChatbot {
+            constructor(containerId) {
+                this.container = document.getElementById(containerId);
+                this.chatWindow = document.getElementById('demoChat');
+                this.input = document.getElementById('demoInput');
+                this.sendButton = document.getElementById('sendButton');
+                this.statusDot = document.getElementById('statusDot');
+                this.statusText = document.getElementById('statusText');
+                this.resetButton = document.getElementById('resetDemo');
+                this.loadingOverlay = document.getElementById('demoLoadingOverlay');
                 
-                this.elements = {};
+                this.state = {
+                    isProcessing: false,
+                    messageCount: 0,
+                    currentFlow: 'welcome',
+                    userProfile: null,
+                    sessionData: {}
+                };
+                
+                this.analytics = {
+                    interactions: 0,
+                    startTime: Date.now(),
+                    messagesSent: 0,
+                    flows: []
+                };
+                
                 this.init();
             }
             
             init() {
-                this.bindElements();
-                if (this.bindElements()) {
-                    this.bindEvents();
-                    this.initializeDemo();
-                }
+                this.setupEventListeners();
+                this.showWelcomeMessage();
+                this.updateStatus('online');
+                this.trackAnalytics('demo_started');
             }
             
-            bindElements() {
-                this.elements = {
-                    container: document.getElementById('demoContainer'),
-                    chatWindow: document.getElementById('demoChat'),
-                    input: document.getElementById('demoInput'),
-                    sendButton: document.getElementById('sendButton'),
-                    statusDot: document.getElementById('statusDot'),
-                    statusText: document.getElementById('statusText'),
-                    resetButton: document.getElementById('resetDemo')
-                };
-                
-                // Check if all elements exist
-                const missing = Object.entries(this.elements)
-                    .filter(([key, element]) => !element)
-                    .map(([key]) => key);
-                    
-                if (missing.length > 0) {
-                    console.error('Demo Chatbot: Missing elements:', missing);
-                    return false;
-                }
-                
-                return true;
-            }
-            
-            bindEvents() {
-                // Input events
-                this.elements.input.addEventListener('keypress', (e) => {
+            setupEventListeners() {
+                this.sendButton.addEventListener('click', () => this.handleSendMessage());
+                this.input.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
                         e.preventDefault();
-                        this.handleUserInput();
+                        this.handleSendMessage();
                     }
                 });
+                this.input.addEventListener('input', () => this.handleInputChange());
+                this.resetButton.addEventListener('click', () => this.resetDemo());
                 
-                // Send button
-                this.elements.sendButton.addEventListener('click', () => {
-                    this.handleUserInput();
-                });
-                
-                // Reset button
-                this.elements.resetButton.addEventListener('click', () => {
-                    this.resetDemo();
-                });
-                
-                // Quick actions delegation
-                this.elements.chatWindow.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('quick-action') || e.target.closest('.quick-action')) {
-                        const actionElement = e.target.classList.contains('quick-action') ? 
-                                            e.target : e.target.closest('.quick-action');
-                        const action = actionElement.dataset.action;
-                        if (action && !actionElement.disabled) {
-                            this.handleQuickAction(action);
-                        }
-                    }
-                    
-                    // Follow-up buttons
-                    if (e.target.dataset.followup) {
-                        this.handleFollowUp(e.target.dataset.followup, e.target.textContent);
-                    }
+                // Auto-resize input
+                this.input.addEventListener('input', () => {
+                    this.input.style.height = 'auto';
+                    this.input.style.height = Math.min(this.input.scrollHeight, 120) + 'px';
                 });
             }
             
-            initializeDemo() {
-                this.clearChat();
-                this.setState('idle');
-                this.addWelcomeMessage();
-                this.showQuickActions();
+            async handleSendMessage() {
+                const message = this.input.value.trim();
+                if (!message || this.state.isProcessing) return;
+                
+                this.addMessage(message, 'user');
+                this.input.value = '';
+                this.input.style.height = 'auto';
+                this.updateSendButton(true);
+                
+                this.analytics.messagesSent++;
+                this.trackAnalytics('message_sent', { message_count: this.analytics.messagesSent });
+                
+                await this.processMessage(message);
             }
             
-            addWelcomeMessage() {
-                this.addMessage({
-                    type: 'bot',
-                    text: 'Hi! I\'m your AI assistant. How can I help you today?'
-                });
+            async processMessage(message) {
+                this.setState({ isProcessing: true });
+                this.updateStatus('processing');
+                
+                // Show typing indicator
+                await this.delay(500);
+                this.showTypingIndicator();
+                
+                // Simulate processing time
+                await this.delay(1200 + Math.random() * 800);
+                
+                this.removeTypingIndicator();
+                
+                // Generate response based on message content and current flow
+                const response = await this.generateResponse(message);
+                
+                this.addMessage(response.text, 'bot');
+                
+                if (response.quickActions) {
+                    await this.delay(800);
+                    this.showQuickActions(response.quickActions);
+                }
+                
+                if (response.followUp) {
+                    await this.delay(1000);
+                    this.showFollowUpOptions(response.followUp);
+                }
+                
+                this.setState({ isProcessing: false });
+                this.updateStatus('online');
+                this.updateSendButton(false);
             }
             
-            showQuickActions() {
-                const actions = [
-                    { 
-                        id: 'appointment', 
-                        icon: '📅', 
-                        title: 'Schedule Appointment',
-                        desc: 'Book your next visit'
+            async generateResponse(message) {
+                const lowerMessage = message.toLowerCase();
+                
+                // Intent detection
+                if (lowerMessage.includes('appointment') || lowerMessage.includes('schedule')) {
+                    this.analytics.flows.push('appointment');
+                    return {
+                        text: "I'd be happy to help you schedule an appointment! I can see you're a returning patient. Let me check your available options.",
+                        followUp: ["General Checkup", "Follow-up Visit", "Urgent Care", "Specialist Referral"]
+                    };
+                }
+                
+                if (lowerMessage.includes('prescription') || lowerMessage.includes('refill') || lowerMessage.includes('medication')) {
+                    this.analytics.flows.push('prescription');
+                    return {
+                        text: "I can help with prescription refills. I found your recent prescriptions in our system. Which medication would you like to refill?",
+                        followUp: ["Blood Pressure Medication", "Diabetes Medication", "Allergy Medication", "Other Medication"]
+                    };
+                }
+                
+                if (lowerMessage.includes('insurance') || lowerMessage.includes('coverage') || lowerMessage.includes('copay')) {
+                    this.analytics.flows.push('insurance');
+                    return {
+                        text: "I can help with insurance questions. I see you have Blue Cross Blue Shield coverage. What would you like to know?",
+                        followUp: ["Coverage Details", "Claims Status", "Copay Information", "Prior Authorization"]
+                    };
+                }
+                
+                if (lowerMessage.includes('hours') || lowerMessage.includes('open') || lowerMessage.includes('closed')) {
+                    return {
+                        text: "Our clinic hours are Monday-Friday 8:00 AM to 6:00 PM, and Saturday 9:00 AM to 2:00 PM. We're closed on Sundays. For urgent matters after hours, please call our emergency line."
+                    };
+                }
+                
+                if (lowerMessage.includes('emergency') || lowerMessage.includes('urgent')) {
+                    return {
+                        text: "For medical emergencies, please call 911 immediately. For urgent but non-emergency care, you can reach our after-hours line at (555) 123-URGENT or visit our urgent care center.",
+                        quickActions: ["Call Emergency Line", "Find Urgent Care Location"]
+                    };
+                }
+                
+                // Default responses for demonstration
+                const responses = [
+                    {
+                        text: "I understand you'd like to know more about our services. Our AI assistant can help with appointments, prescriptions, insurance questions, and general medical inquiries. What would you like help with today?",
+                        quickActions: ["Schedule Appointment", "Refill Prescription", "Insurance Questions"]
                     },
-                    { 
-                        id: 'prescription', 
-                        icon: '💊', 
-                        title: 'Prescription Refill',
-                        desc: 'Refill your medications'
-                    },
-                    { 
-                        id: 'insurance', 
-                        icon: '🏥', 
-                        title: 'Insurance Question',
-                        desc: 'Check coverage details'
+                    {
+                        text: "That's a great question! Our AI system is designed to handle complex healthcare workflows. In a real implementation, I would access your patient records, insurance information, and provider schedules to give you specific answers.",
+                        followUp: ["See Live Demo", "Learn More About Features"]
                     }
                 ];
                 
-                const container = document.createElement('div');
-                container.className = 'quick-actions';
-                container.id = 'quickActions';
-                
-                actions.forEach(action => {
-                    const button = document.createElement('button');
-                    button.className = 'quick-action';
-                    button.dataset.action = action.id;
-                    button.innerHTML = `
-                        <span class="quick-action-icon">${action.icon}</span>
-                        <div class="quick-action-text">
-                            <div class="quick-action-title">${action.title}</div>
-                            <div class="quick-action-desc">${action.desc}</div>
-                        </div>
-                    `;
-                    container.appendChild(button);
-                });
-                
-                this.elements.chatWindow.appendChild(container);
-                this.scrollToBottom();
+                return responses[Math.floor(Math.random() * responses.length)];
             }
             
-            handleQuickAction(action) {
-                if (this.isProcessing) return;
-                
-                this.setProcessing(true);
-                this.removeQuickActions();
-                
-                const userMessages = {
-                    appointment: "I'd like to schedule an appointment",
-                    prescription: "I need a prescription refill",
-                    insurance: "I have a question about my insurance"
-                };
-                
-                this.addMessage({
-                    type: 'user',
-                    text: userMessages[action] || "I need help"
-                });
-                
-                this.processFlow(action);
-            }
-            
-            handleUserInput() {
-                const input = this.elements.input.value.trim();
-                
-                if (!input || this.isProcessing) {
-                    return;
-                }
-                
-                this.setProcessing(true);
-                this.addMessage({
-                    type: 'user',
-                    text: input
-                });
-                this.elements.input.value = '';
-                
-                // Simple keyword detection
-                let detectedFlow = 'general';
-                const keywords = {
-                    appointment: ['appointment', 'schedule', 'book'],
-                    prescription: ['prescription', 'refill', 'medication'],
-                    insurance: ['insurance', 'coverage', 'claim']
-                };
-                
-                Object.entries(keywords).forEach(([flow, words]) => {
-                    if (words.some(word => input.toLowerCase().includes(word))) {
-                        detectedFlow = flow;
-                    }
-                });
-                
-                this.processFlow(detectedFlow);
-            }
-            
-            processFlow(flowType) {
-                this.showTypingIndicator();
-                
-                const responses = {
-                    appointment: {
-                        text: "I'd be happy to help you schedule an appointment! I can see you're a returning patient. What type of appointment do you need?",
-                        options: ['General Checkup', 'Follow-up Visit', 'Urgent Care', 'Specialist Referral']
-                    },
-                    prescription: {
-                        text: "I can help with prescription refills. I found your recent prescriptions in our system. Which medication would you like to refill?",
-                        options: ['Blood Pressure Medication', 'Diabetes Medication', 'Allergy Medication', 'Other']
-                    },
-                    insurance: {
-                        text: "I can help with insurance questions. I see you have Blue Cross Blue Shield coverage. What would you like to know?",
-                        options: ['Coverage Details', 'Claims Status', 'Copay Information', 'Prior Authorization']
-                    },
-                    general: {
-                        text: "I'm here to help! I can assist with appointments, prescriptions, insurance questions, and more. What would you like to know?",
-                        options: ['📅 Schedule Appointment', '💊 Prescription Refill', '🏥 Insurance Questions']
-                    }
-                };
-                
-                const response = responses[flowType] || responses.general;
-                
-                setTimeout(() => {
-                    this.hideTypingIndicator();
-                    this.addMessage({
-                        type: 'bot',
-                        text: response.text
-                    });
-                    
-                    setTimeout(() => {
-                        this.showFollowUpOptions(response.options);
-                        this.setProcessing(false);
-                    }, 800);
-                }, 1200);
-            }
-            
-            showFollowUpOptions(options) {
-                const container = document.createElement('div');
-                container.className = 'follow-up-options';
-                container.id = 'followUpOptions';
-                
-                options.forEach((option, index) => {
-                    const button = document.createElement('button');
-                    button.textContent = option;
-                    button.dataset.followup = `option_${index}`;
-                    container.appendChild(button);
-                });
-                
-                this.elements.chatWindow.appendChild(container);
-                this.scrollToBottom();
-            }
-            
-            handleFollowUp(optionId, optionText) {
-                if (this.isProcessing) return;
-                
-                this.setProcessing(true);
-                this.disableFollowUpOptions();
-                
-                this.addMessage({
-                    type: 'user',
-                    text: optionText
-                });
-                
-                setTimeout(() => {
-                    this.showTypingIndicator();
-                    
-                    setTimeout(() => {
-                        this.hideTypingIndicator();
-                        this.addMessage({
-                            type: 'bot',
-                            text: "Perfect! I've started processing that for you. In a real scenario, I would handle this complete workflow automatically. Would you like to see how this works for your practice?"
-                        });
-                        
-                        setTimeout(() => {
-                            this.showDemoCompletion();
-                            this.setProcessing(false);
-                        }, 1000);
-                    }, 1200);
-                }, 500);
-            }
-            
-            showDemoCompletion() {
-                const container = document.createElement('div');
-                container.className = 'demo-completion';
-                container.innerHTML = `
-                    <div class="demo-completion-buttons">
-                        <button class="demo-cta-button" onclick="window.location.href='demo-booking.html'">
-                            Book Personal Demo
-                        </button>
-                        <button class="demo-reset-button" onclick="fixedDemoBot.resetDemo()">
-                            Try Again
-                        </button>
-                    </div>
-                `;
-                
-                this.elements.chatWindow.appendChild(container);
-                this.scrollToBottom();
-                this.setState('completed');
-            }
-            
-            // Message handling
-            addMessage(message) {
+            addMessage(text, sender, timestamp = null) {
                 const messageDiv = document.createElement('div');
-                messageDiv.className = `chat-message ${message.type}-message`;
+                messageDiv.className = `chat-message ${sender}-message`;
                 
-                const avatar = message.type === 'user' ? '👤' : '🤖';
-                const time = new Date().toLocaleTimeString([], {
-                    hour: '2-digit', 
-                    minute: '2-digit'
-                });
+                const time = timestamp || new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                const avatar = sender === 'user' ? '👤' : '🤖';
                 
                 messageDiv.innerHTML = `
                     <div class="message-avatar">${avatar}</div>
                     <div class="message-content">
-                        <div class="message-text">${this.escapeHtml(message.text)}</div>
+                        <div class="message-text">${text}</div>
                         <div class="message-time">${time}</div>
                     </div>
                 `;
                 
-                this.elements.chatWindow.appendChild(messageDiv);
+                this.chatWindow.appendChild(messageDiv);
                 this.scrollToBottom();
-                this.conversationHistory.push(message);
+                this.state.messageCount++;
             }
             
             showTypingIndicator() {
-                this.hideTypingIndicator();
-                
                 const typingDiv = document.createElement('div');
                 typingDiv.className = 'chat-message bot-message typing-indicator';
-                typingDiv.id = 'typingIndicator';
                 typingDiv.innerHTML = `
                     <div class="message-avatar">🤖</div>
                     <div class="message-content">
                         <div class="message-text">
                             <div class="typing-dots">
-                                <span class="typing-dot"></span>
-                                <span class="typing-dot"></span>
-                                <span class="typing-dot"></span>
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
                             </div>
                         </div>
                     </div>
                 `;
                 
-                this.elements.chatWindow.appendChild(typingDiv);
+                this.chatWindow.appendChild(typingDiv);
                 this.scrollToBottom();
             }
             
-            hideTypingIndicator() {
-                const indicator = document.getElementById('typingIndicator');
-                if (indicator) {
-                    indicator.remove();
+            removeTypingIndicator() {
+                const typingIndicator = this.chatWindow.querySelector('.typing-indicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
                 }
             }
             
-            // Utility methods
-            scrollToBottom() {
+            showQuickActions(actions) {
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'quick-actions';
+                
+                actions.forEach(action => {
+                    const button = document.createElement('button');
+                    button.className = 'quick-action';
+                    button.innerHTML = `<span class="quick-action-icon">⚡</span>${action}`;
+                    button.onclick = () => this.handleQuickAction(action);
+                    actionsDiv.appendChild(button);
+                });
+                
+                this.chatWindow.appendChild(actionsDiv);
+                this.scrollToBottom();
+            }
+            
+            showFollowUpOptions(options) {
+                const followUpDiv = document.createElement('div');
+                followUpDiv.className = 'follow-up-options';
+                
+                options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.textContent = option;
+                    button.onclick = () => this.handleFollowUp(option);
+                    followUpDiv.appendChild(button);
+                });
+                
+                this.chatWindow.appendChild(followUpDiv);
+                this.scrollToBottom();
+            }
+            
+            async handleQuickAction(action) {
+                this.disableQuickActions();
+                this.addMessage(action, 'user');
+                
+                if (action === 'Call Emergency Line') {
+                    await this.delay(800);
+                    this.addMessage("I've initiated a call to our emergency line. In a real implementation, this would connect you directly or provide the emergency contact information.", 'bot');
+                } else {
+                    await this.processMessage(action);
+                }
+            }
+            
+            async handleFollowUp(option) {
+                this.disableFollowUpButtons();
+                this.addMessage(option, 'user');
+                
+                await this.delay(1000);
+                this.showTypingIndicator();
+                await this.delay(1500);
+                this.removeTypingIndicator();
+                
+                if (option.includes('Demo') || option.includes('Learn More')) {
+                    this.addMessage("Perfect! I'd love to show you how our AI assistant can transform your practice. Our live demo will show you real patient scenarios and workflow automation.", 'bot');
+                    
+                    await this.delay(1000);
+                    const ctaDiv = document.createElement('div');
+                    ctaDiv.className = 'demo-cta';
+                    ctaDiv.innerHTML = `
+                        <button onclick="window.location.href='lead-generation-form.html'" style="
+                            background: var(--conversion-red);
+                            color: white;
+                            border: none;
+                            border-radius: 0.5rem;
+                            padding: 1rem 2rem;
+                            font-size: 1rem;
+                            font-weight: 600;
+                            cursor: pointer;
+                            width: 100%;
+                            margin-top: 1rem;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.background='var(--conversion-red-dark)'" onmouseout="this.style.background='var(--conversion-red)'">
+                            🚀 Get Your Free Live Demo
+                        </button>
+                    `;
+                    this.chatWindow.appendChild(ctaDiv);
+                    this.trackAnalytics('cta_shown');
+                } else {
+                    this.addMessage("Excellent choice! I've started processing that for you. In a real implementation, I would now access our scheduling system, update your patient records, and send confirmations. This demonstrates the power of automated healthcare workflows.", 'bot');
+                }
+                
+                this.scrollToBottom();
+            }
+            
+            disableQuickActions() {
+                this.chatWindow.querySelectorAll('.quick-action').forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.6';
+                    btn.style.cursor = 'not-allowed';
+                });
+            }
+            
+            disableFollowUpButtons() {
+                this.chatWindow.querySelectorAll('.follow-up-options button').forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.6';
+                    btn.style.cursor = 'not-allowed';
+                });
+            }
+            
+            showWelcomeMessage() {
                 setTimeout(() => {
-                    this.elements.chatWindow.scrollTop = this.elements.chatWindow.scrollHeight;
-                }, 100);
-            }
-            
-            clearChat() {
-                this.elements.chatWindow.innerHTML = '';
-                this.conversationHistory = [];
-            }
-            
-            removeQuickActions() {
-                const actions = document.getElementById('quickActions');
-                if (actions) actions.remove();
-            }
-            
-            disableFollowUpOptions() {
-                const options = document.getElementById('followUpOptions');
-                if (options) {
-                    options.querySelectorAll('button').forEach(btn => {
-                        btn.disabled = true;
-                        btn.style.opacity = '0.5';
-                    });
-                }
-            }
-            
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
-            
-            // State management
-            setState(newState) {
-                this.state = newState;
-                this.updateUI();
-            }
-            
-            setProcessing(processing) {
-                this.isProcessing = processing;
-                this.elements.input.disabled = processing;
-                this.elements.sendButton.disabled = processing;
-            }
-            
-            updateUI() {
-                const hasInput = this.elements.input.value.trim().length > 0;
-                this.elements.sendButton.disabled = this.isProcessing || !hasInput;
+                    this.addMessage("Hi! Welcome to Sunshine Medical Center. I'm your AI assistant, and I can help you with appointments, prescriptions, insurance questions, and more. How can I assist you today?", 'bot');
+                    
+                    setTimeout(() => {
+                        this.showQuickActions(["Schedule Appointment", "Refill Prescription", "Insurance Questions"]);
+                    }, 1000);
+                }, 500);
             }
             
             resetDemo() {
-                this.clearAllTimeouts();
-                this.initializeDemo();
+                this.showLoadingOverlay("Resetting demo...");
+                
+                setTimeout(() => {
+                    this.chatWindow.innerHTML = '';
+                    this.input.value = '';
+                    this.input.style.height = 'auto';
+                    this.state = {
+                        isProcessing: false,
+                        messageCount: 0,
+                        currentFlow: 'welcome',
+                        userProfile: null,
+                        sessionData: {}
+                    };
+                    
+                    this.hideLoadingOverlay();
+                    this.updateStatus('online');
+                    this.showWelcomeMessage();
+                    this.trackAnalytics('demo_reset');
+                }, 1000);
             }
             
-            clearAllTimeouts() {
-                this.timeouts.forEach(timeout => clearTimeout(timeout));
-                this.timeouts = [];
+            showLoadingOverlay(text = "Processing...") {
+                this.loadingOverlay.querySelector('.demo-loading-text').textContent = text;
+                this.loadingOverlay.style.display = 'flex';
+            }
+            
+            hideLoadingOverlay() {
+                this.loadingOverlay.style.display = 'none';
+            }
+            
+            updateStatus(status) {
+                const statusMap = {
+                    online: { text: 'AI Assistant Online', class: '' },
+                    processing: { text: 'Processing...', class: 'processing' },
+                    error: { text: 'Connection Error', class: 'error' }
+                };
+                
+                const statusInfo = statusMap[status] || statusMap.online;
+                this.statusText.textContent = statusInfo.text;
+                this.statusDot.className = `status-dot ${statusInfo.class}`;
+            }
+            
+            updateSendButton(isLoading) {
+                if (isLoading) {
+                    this.sendButton.classList.add('loading');
+                    this.sendButton.disabled = true;
+                    this.input.disabled = true;
+                } else {
+                    this.sendButton.classList.remove('loading');
+                    this.sendButton.disabled = false;
+                    this.input.disabled = false;
+                    this.input.focus();
+                }
+            }
+            
+            handleInputChange() {
+                const hasText = this.input.value.trim().length > 0;
+                this.sendButton.style.opacity = hasText ? '1' : '0.6';
+            }
+            
+            scrollToBottom() {
+                this.chatWindow.scrollTop = this.chatWindow.scrollHeight;
+            }
+            
+            setState(newState) {
+                this.state = { ...this.state, ...newState };
+            }
+            
+            delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            
+            trackAnalytics(event, data = {}) {
+                this.analytics.interactions++;
+                const eventData = {
+                    event,
+                    timestamp: Date.now(),
+                    sessionDuration: Date.now() - this.analytics.startTime,
+                    messageCount: this.state.messageCount,
+                    ...data
+                };
+                
+                // Track in console for demo purposes
+                console.log('Demo Analytics:', eventData);
+                
+                // In production, this would send to your analytics service
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'demo_interaction', {
+                        event_category: 'demo',
+                        event_label: event,
+                        value: this.analytics.interactions
+                    });
+                }
             }
         }
-
-        // Initialize the fixed demo chatbot
-        let fixedDemoBot;
-
+        
+        // Initialize the demo chatbot
+        let demoChatbot;
         document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                fixedDemoBot = new FixedDemoChatbot();
-            }, 500);
-        });
-
-        // Legacy function for compatibility
-        function demoAction(action) {
-            if (fixedDemoBot) {
-                fixedDemoBot.handleQuickAction(action);
+            if (document.getElementById('demoContainer')) {
+                demoChatbot = new DemoChatbot('demoContainer');
             }
-        }
+        });
     </script>
 </body>
 </html>

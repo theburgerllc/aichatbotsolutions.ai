@@ -9,16 +9,29 @@
     <link rel="stylesheet" href="../css/styles.css">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --secondary: #10b981;
-            --text-dark: #1f2937;
+            /* Conversion-Optimized Color Palette */
+            --conversion-red: #dc2626;
+            --conversion-red-dark: #b91c1c;
+            --action-orange: #c2410c;
+            --action-orange-dark: #c2410c;
+            --trust-blue: #1e40af;
+            --trust-blue-dark: #1d4ed8;
+            --success-green: #047857;
+            --success-green-dark: #065f46;
+            --professional-gray: #1e293b;
+            --clean-white: #f8fafc;
             --text-light: #6b7280;
-            --bg-light: #f9fafb;
+            
+            /* Legacy variable mapping for compatibility */
+            --primary: var(--trust-blue);
+            --primary-dark: var(--trust-blue-dark);
+            --secondary: var(--success-green);
+            --text-dark: var(--professional-gray);
+            --bg-light: var(--clean-white);
             --white: #ffffff;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --error: #ef4444;
-            --success: #10b981;
+            --success: var(--success-green);
         }
 
         body {
@@ -125,7 +138,7 @@
 
         .methods-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -367,7 +380,7 @@
 
         .response-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -410,6 +423,10 @@
             .methods-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .response-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -418,22 +435,26 @@
     <nav>
         <div class="nav-container">
             <a href="../index.html" class="logo">
-                <img src="../assets/images/nav_bar_logo.png" alt="AI Chatbot Solutions Logo" class="logo-image" style="height: 50px; width: auto;">
+                <img src="../assets/images/nav_bar_logo.png" alt="AI Chatbot Solutions Logo" class="logo-image">
             </a>
             <div class="nav-links">
                 <a href="features.html">Features</a>
-                <a href="demo.html">Demo</a>
+                <a href="../interactive-demo.html">Demo</a>
+                <a href="industries.html">Industries</a>
                 <a href="pricing.html">Pricing</a>
-                <a href="about.html">About</a>
-                <a href="../lead-generation-form.html" class="cta-button">Get Started</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-cta">
+                <a href="../demo-booking.html" class="cta-button">Book Demo</a>
             </div>
             <button class="mobile-menu-button" onclick="toggleMobileMenu()">☰</button>
             <div class="mobile-nav" id="mobile-nav">
                 <a href="features.html">Features</a>
-                <a href="demo.html">Demo</a>
+                <a href="../interactive-demo.html">Demo</a>
+                <a href="industries.html">Industries</a>
                 <a href="pricing.html">Pricing</a>
-                <a href="about.html">About</a>
-                <a href="../lead-generation-form.html" class="cta-button">Get Started</a>
+                <a href="contact.html">Contact</a>
+                <a href="../demo-booking.html" class="cta-button">Book Demo</a>
             </div>
         </div>
     </nav>

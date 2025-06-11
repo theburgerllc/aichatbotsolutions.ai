@@ -108,6 +108,8 @@
         }
 
 
+        /* Page-specific styles */
+        
         /* Hero Section */
         .hero {
             margin-top: 80px;
@@ -209,7 +211,7 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
 
@@ -257,7 +259,7 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
 
@@ -327,7 +329,7 @@
             max-width: 1000px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
 
@@ -453,6 +455,21 @@
         }
 
 
+        /* Tablet Responsive */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .industries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
 
@@ -482,6 +499,11 @@
             }
 
             .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .industries-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
@@ -1025,7 +1047,7 @@
             </a>
             <div class="nav-links">
                 <a href="pages/features.html">Features</a>
-                <a href="interactive-demo.html">Try Demo</a>
+                <a href="interactive-demo.html">Demo</a>
                 <a href="pages/industries.html">Industries</a>
                 <a href="pages/pricing.html">Pricing</a>
                 <a href="pages/contact.html">Contact</a>
@@ -1036,7 +1058,7 @@
             <button class="mobile-menu-button" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu">☰</button>
             <div class="mobile-nav" id="mobile-nav">
                 <a href="pages/features.html">Features</a>
-                <a href="interactive-demo.html">Try Demo</a>
+                <a href="interactive-demo.html">Demo</a>
                 <a href="pages/industries.html">Industries</a>
                 <a href="pages/pricing.html">Pricing</a>
                 <a href="pages/contact.html">Contact</a>
@@ -1285,12 +1307,19 @@
     <!-- BotPenguin Chat Widget -->
     <script>
         (function() {
-            var script = document.createElement('script');
-            script.src = 'https://cdn.botpenguin.com/botpenguin.js';
-            script.setAttribute('bot-id', 'ai-chatbot-solutions-demo');
-            script.setAttribute('bot-name', 'AI Solutions Assistant');
-            script.setAttribute('welcome-message', 'Hi! I can help you learn about our AI chatbot solutions. What industry are you in?');
-            document.body.appendChild(script);
+            try {
+                var script = document.createElement('script');
+                script.src = 'https://cdn.botpenguin.com/botpenguin.js';
+                script.setAttribute('bot-id', 'ai-chatbot-solutions-demo');
+                script.setAttribute('bot-name', 'AI Solutions Assistant');
+                script.setAttribute('welcome-message', 'Hi! I can help you learn about our AI chatbot solutions. What industry are you in?');
+                script.onerror = function() {
+                    console.warn('BotPenguin chat widget failed to load');
+                };
+                document.body.appendChild(script);
+            } catch (error) {
+                console.error('Error loading BotPenguin widget:', error);
+            }
         })();
     </script>
 

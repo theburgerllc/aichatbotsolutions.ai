@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize tracking and interactive components
     initializeTracking();
     initializeDemoBooking();
+    initializeNavigation();
+    initializeGlobalFunctions();
 });
 
 // Google Analytics Configuration
@@ -465,10 +467,117 @@ function getCalendlyUrl(industry = 'general') {
     return calendlyUrls[industry] || calendlyUrls.general;
 }
 
-// Mobile menu toggle function
+// Global navigation initialization
+function initializeNavigation() {
+    initializeTransparentNavbar();
+    initializeMobileMenu();
+    initializeSmoothScrolling();
+}
+
+// Global functions initialization
+function initializeGlobalFunctions() {
+    // Ensure all global functions are available
+    window.toggleMobileMenu = toggleMobileMenu;
+    
+    // Initialize any page-specific functionality
+    if (typeof initializePageSpecific === 'function') {
+        initializePageSpecific();
+    }
+}
+
+// Mobile menu toggle function - Global
 function toggleMobileMenu() {
-    const mobileNav = document.getElementById('mobile-nav');
-    if (mobileNav) {
-        mobileNav.classList.toggle('open');
+    try {
+        const mobileNav = document.getElementById('mobile-nav');
+        if (mobileNav) {
+            mobileNav.classList.toggle('open');
+        }
+    } catch (error) {
+        console.error('Error toggling mobile menu:', error);
+    }
+}
+
+// Enhanced error handling for all async functions
+function safeAsync(asyncFunction) {
+    return async function(...args) {
+        try {
+            return await asyncFunction.apply(this, args);
+        } catch (error) {
+            console.error('Async function error:', error);
+            return null;
+        }
+    };
+}
+
+// Global form validation helper
+function validateFormField(field, validationType = 'required') {
+    if (!field) return false;
+    
+    const value = field.value ? field.value.trim() : '';
+    
+    switch (validationType) {
+        case 'email':
+            const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+            return emailRegex.test(value);
+        case 'phone':
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            return phoneRegex.test(value.replace(/[\s\-\(\)]/g, ''));
+        case 'required':
+            return value.length > 0;
+        case 'name':
+            return value.length >= 2 && /^[a-zA-Z\s'-]+$/.test(value);
+        default:
+            return value.length > 0;
+    }
+}
+
+// Global error display function
+function showErrorMessage(container, message) {
+    try {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message-global';
+        errorDiv.textContent = message;
+        errorDiv.style.cssText = 'color: #ef4444; padding: 1rem; background: #fee; border: 1px solid #fca5a5; border-radius: 0.5rem; margin: 1rem 0;';
+        
+        // Remove any existing error messages
+        const existingErrors = container.querySelectorAll('.error-message-global');
+        existingErrors.forEach(error => error.remove());
+        
+        container.appendChild(errorDiv);
+        
+        // Remove error message after 5 seconds
+        setTimeout(() => {
+            if (errorDiv.parentNode) {
+                errorDiv.remove();
+            }
+        }, 5000);
+    } catch (error) {
+        console.error('Error displaying error message:', error);
+        alert(message); // Fallback to alert
+    }
+}
+
+// Global success message function
+function showSuccessMessage(container, message) {
+    try {
+        const successDiv = document.createElement('div');
+        successDiv.className = 'success-message-global';
+        successDiv.textContent = message;
+        successDiv.style.cssText = 'color: #047857; padding: 1rem; background: #ecfdf5; border: 1px solid #6ee7b7; border-radius: 0.5rem; margin: 1rem 0;';
+        
+        // Remove any existing success messages
+        const existingSuccess = container.querySelectorAll('.success-message-global');
+        existingSuccess.forEach(success => success.remove());
+        
+        container.appendChild(successDiv);
+        
+        // Remove success message after 3 seconds
+        setTimeout(() => {
+            if (successDiv.parentNode) {
+                successDiv.remove();
+            }
+        }, 3000);
+    } catch (error) {
+        console.error('Error displaying success message:', error);
     }
 }

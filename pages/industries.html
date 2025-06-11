@@ -126,9 +126,12 @@
 
         .industries-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             margin-top: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .industry-card {
@@ -278,9 +281,12 @@
 
         .more-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .more-industry-card {
@@ -369,7 +375,7 @@
 
         .stories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -430,12 +436,34 @@
             opacity: 0.9;
         }
 
+        @media (max-width: 1024px) {
+            .industries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .more-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .industries-hero h1 {
                 font-size: 2rem;
             }
 
             .industries-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .more-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stories-grid {
                 grid-template-columns: 1fr;
             }
 

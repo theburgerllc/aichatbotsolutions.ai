@@ -56,6 +56,15 @@ nav {
     -webkit-backdrop-filter: none;
 }
 
+/* Transparent state for overlay effect */
+nav.transparent {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
 /* Scrolled state - subtle background */
 nav.scrolled {
     background: rgba(255, 255, 255, 0.1);
@@ -330,19 +339,210 @@ nav.scrolled .logo-image {
     gap: 2rem;
 }
 
+/* ============================================= */
+/* UNIVERSAL CARD LAYOUT FIX */
+/* Apply these CSS rules to fix all card layout issues */
+/* ============================================= */
+
+/* FEATURES GRID - 6 cards in 3x2 layout */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* INDUSTRY SOLUTIONS GRID - 4 cards in 2x2 layout */
+.industries-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* SECURITY FEATURES GRID - 6 cards in 3x2 layout */
+.security-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* PRICING GRID - Always 3 cards horizontally */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start; /* Prevent stretching */
+}
+
+/* CONTACT METHODS GRID - 4 cards in 2x2 layout */
+.methods-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* INTEGRATIONS GRID - Flexible grid for many items */
+.integrations-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* SPECIFICATIONS GRID - 6 cards in 3x2 layout */
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Legacy Grid System - Fixed Column Approach */
 .grid-2 {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .grid-3 {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .grid-4 {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Utilities */
+/* ============================================= */
+/* TABLET RESPONSIVE (768px - 1024px) */
+/* ============================================= */
+@media (max-width: 1024px) and (min-width: 769px) {
+    /* Features: 6 cards become 2x3 */
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Industries: 4 cards stay 2x2 */
+    .industries-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Security: 6 cards become 2x3 */
+    .security-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Pricing: 3 cards become 1x3 (stack vertically) */
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+    
+    /* Contact: 4 cards become 2x2 */
+    .methods-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Integrations: 5 cards become 3+2 */
+    .integrations-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* Specs: 6 cards become 2x3 */
+    .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Legacy grids */
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================================= */
+/* MOBILE RESPONSIVE (≤768px) */
+/* ============================================= */
+@media (max-width: 768px) {
+    /* ALL grids become single column on mobile */
+    .features-grid,
+    .industries-grid,
+    .security-grid,
+    .pricing-grid,
+    .methods-grid,
+    .integrations-grid,
+    .specs-grid,
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* ============================================= */
+/* CARD STANDARDIZATION */
+/* ============================================= */
+
+/* Ensure all cards have consistent height and styling */
+.feature-card,
+.industry-card,
+.pricing-card,
+.method-card,
+.integration-card,
+.benchmark-card,
+.spec-card,
+.security-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--white);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover,
+.industry-card:hover,
+.method-card:hover,
+.benchmark-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Pricing cards should maintain equal height */
+.pricing-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ============================================= */
+/* UTILITIES */
+/* ============================================= */
 .text-center {
     text-align: center;
 }

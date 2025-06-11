@@ -6,12 +6,25 @@
 }
 
 :root {
-    --primary: #2563eb;
-    --primary-dark: #1e40af;
-    --secondary: #10b981;
-    --text-dark: #1f2937;
+    /* Conversion-Optimized Color Palette */
+    --conversion-red: #dc2626;
+    --conversion-red-dark: #b91c1c;
+    --action-orange: #c2410c;
+    --action-orange-dark: #c2410c;
+    --trust-blue: #1e40af;
+    --trust-blue-dark: #1d4ed8;
+    --success-green: #047857;
+    --success-green-dark: #065f46;
+    --professional-gray: #1e293b;
+    --clean-white: #f8fafc;
     --text-light: #6b7280;
-    --bg-light: #f9fafb;
+    
+    /* Legacy variable mapping for compatibility */
+    --primary: var(--conversion-red);
+    --primary-dark: var(--conversion-red-dark);
+    --secondary: var(--success-green);
+    --text-dark: var(--professional-gray);
+    --bg-light: var(--clean-white);
     --white: #ffffff;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
@@ -126,7 +139,7 @@ nav.transparent::before {
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--primary);
+    color: var(--trust-blue);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -160,25 +173,28 @@ nav.transparent .logo-image {
 }
 
 .nav-links a:hover {
-    color: var(--primary);
+    color: var(--trust-blue);
 }
 
 .cta-button {
-    background: var(--primary);
+    background: var(--conversion-red);
     color: var(--white);
     padding: 0.8rem 1.6rem;
     border-radius: 0.5rem;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     display: inline-block;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+    border: none;
+    cursor: pointer;
 }
 
 .cta-button:hover {
-    background: var(--primary-dark);
+    background: var(--conversion-red-dark);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
 }
 
 /* Mobile Navigation */
@@ -231,24 +247,28 @@ nav.transparent .mobile-nav {
 }
 
 .btn-primary {
-    background: var(--primary);
+    background: var(--conversion-red);
     color: var(--white);
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
 }
 
 .btn-primary:hover {
-    background: var(--primary-dark);
+    background: var(--conversion-red-dark);
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
 }
 
 .btn-secondary {
-    background: transparent;
-    color: var(--primary);
-    border: 2px solid var(--primary);
+    background: var(--action-orange);
+    color: var(--white);
+    border: none;
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4);
 }
 
 .btn-secondary:hover {
-    background: var(--primary);
-    color: var(--white);
+    background: var(--action-orange-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5);
 }
 
 /* Section Styles */
@@ -310,11 +330,11 @@ nav.transparent .mobile-nav {
 }
 
 .text-primary {
-    color: var(--primary);
+    color: var(--trust-blue);
 }
 
 .text-secondary {
-    color: var(--secondary);
+    color: var(--success-green);
 }
 
 .text-light {
@@ -326,7 +346,7 @@ nav.transparent .mobile-nav {
 }
 
 .bg-primary {
-    background: var(--primary);
+    background: var(--trust-blue);
     color: var(--white);
 }
 

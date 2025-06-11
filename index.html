@@ -75,12 +75,25 @@
         }
 
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --secondary: #10b981;
-            --text-dark: #1f2937;
+            /* Conversion-Optimized Color Palette */
+            --conversion-red: #dc2626;
+            --conversion-red-dark: #b91c1c;
+            --action-orange: #c2410c;
+            --action-orange-dark: #c2410c;
+            --trust-blue: #1e40af;
+            --trust-blue-dark: #1d4ed8;
+            --success-green: #047857;
+            --success-green-dark: #065f46;
+            --professional-gray: #1e293b;
+            --clean-white: #f8fafc;
             --text-light: #6b7280;
-            --bg-light: #f9fafb;
+            
+            /* Legacy variable mapping for compatibility */
+            --primary: var(--conversion-red);
+            --primary-dark: var(--conversion-red-dark);
+            --secondary: var(--success-green);
+            --text-dark: var(--professional-gray);
+            --bg-light: var(--clean-white);
             --white: #ffffff;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
@@ -131,7 +144,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: var(--primary);
+            color: var(--trust-blue);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -211,35 +224,38 @@
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--trust-blue);
         }
 
         .cta-button {
-            background: var(--primary);
+            background: var(--conversion-red);
             color: var(--white);
             padding: 0.8rem 1.6rem;
             border-radius: 0.5rem;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             display: inline-block;
+            box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+            border: none;
+            cursor: pointer;
         }
 
         .cta-button:hover {
-            background: var(--primary-dark);
+            background: var(--conversion-red-dark);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
         }
 
         /* Enhanced CTA button visibility on frosted glass */
         nav.transparent .cta-button {
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
             backdrop-filter: blur(10px);
         }
 
         nav.transparent .cta-button:hover {
-            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 8px 30px rgba(220, 38, 38, 0.4);
             transform: translateY(-3px);
         }
 
@@ -280,20 +296,22 @@
         }
 
         .secondary-button {
-            background: transparent;
+            background: var(--action-orange);
             color: var(--white);
-            border: 2px solid var(--white);
+            border: none;
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             display: inline-block;
+            box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4);
         }
 
         .secondary-button:hover {
-            background: var(--white);
-            color: var(--primary);
+            background: var(--action-orange-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5);
         }
 
         .hero-stats {
@@ -361,7 +379,7 @@
         .feature-icon {
             width: 60px;
             height: 60px;
-            background: var(--primary);
+            background: var(--trust-blue);
             border-radius: 0.75rem;
             display: flex;
             align-items: center;
@@ -404,7 +422,7 @@
         }
 
         .industry-card:hover {
-            border-color: var(--primary);
+            border-color: var(--trust-blue);
             box-shadow: var(--shadow);
         }
 
@@ -446,7 +464,7 @@
             content: "✓";
             position: absolute;
             left: 0;
-            color: var(--secondary);
+            color: var(--success-green);
             font-weight: bold;
         }
 
@@ -475,7 +493,7 @@
         }
 
         .pricing-card.featured {
-            border: 2px solid var(--primary);
+            border: 2px solid var(--conversion-red);
             transform: scale(1.05);
         }
 
@@ -491,7 +509,7 @@
             position: absolute;
             top: -15px;
             right: 20px;
-            background: var(--secondary);
+            background: var(--success-green);
             color: var(--white);
             padding: 0.25rem 1rem;
             border-radius: 1rem;
@@ -508,7 +526,7 @@
         .plan-price {
             font-size: 3rem;
             font-weight: bold;
-            color: var(--primary);
+            color: var(--trust-blue);
         }
 
         .plan-price span {
@@ -802,7 +820,7 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: var(--primary);
+            background: var(--trust-blue);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -815,7 +833,7 @@
         }
 
         .user-message .message-avatar {
-            background: var(--primary);
+            background: var(--conversion-red);
             order: 2;
         }
 
@@ -841,9 +859,9 @@
         }
 
         .user-message .message-text {
-            background: var(--primary);
+            background: var(--conversion-red);
             color: var(--white);
-            border-color: var(--primary);
+            border-color: var(--conversion-red);
         }
 
         .message-time {
@@ -979,7 +997,7 @@
                 <h1>Never Miss Another Customer with 24/7 AI Support</h1>
                 <p>Transform your customer service with intelligent chatbots that work round the clock. Get started in just 24 hours.</p>
                 <div class="hero-buttons">
-                    <a href="lead-generation-form.html" class="cta-button" style="background: white; color: var(--primary);">Start Free Trial</a>
+                    <a href="lead-generation-form.html" class="cta-button" style="background: white; color: var(--conversion-red);">Start Free Trial</a>
                     <a href="pages/demo.html" class="secondary-button">Watch Demo</a>
                 </div>
                 <div class="hero-stats">
@@ -1107,7 +1125,7 @@
                     <li>Insurance verification</li>
                     <li>After-hours patient support</li>
                 </ul>
-                <p style="margin-top: 1rem; font-weight: 600; color: var(--primary);">Average ROI: 675% in 90 days</p>
+                <p style="margin-top: 1rem; font-weight: 600; color: var(--trust-blue);">Average ROI: 675% in 90 days</p>
             </div>
             <div class="industry-card">
                 <div class="industry-header">
@@ -1122,7 +1140,7 @@
                     <li>Billing inquiries</li>
                     <li>Initial client intake</li>
                 </ul>
-                <p style="margin-top: 1rem; font-weight: 600; color: var(--primary);">Save 10+ hours per week</p>
+                <p style="margin-top: 1rem; font-weight: 600; color: var(--trust-blue);">Save 10+ hours per week</p>
             </div>
             <div class="industry-card">
                 <div class="industry-header">
@@ -1137,7 +1155,7 @@
                     <li>Return processing</li>
                     <li>Cart abandonment recovery</li>
                 </ul>
-                <p style="margin-top: 1rem; font-weight: 600; color: var(--primary);">25% increase in conversions</p>
+                <p style="margin-top: 1rem; font-weight: 600; color: var(--trust-blue);">25% increase in conversions</p>
             </div>
         </div>
     </section>
@@ -1196,7 +1214,7 @@
         <div class="contact-container">
             <h2>Ready to Transform Your Customer Service?</h2>
             <p>Join thousands of businesses already using AI chatbots to grow</p>
-            <a href="lead-generation-form.html" class="cta-button" style="background: var(--secondary); font-size: 1.25rem; padding: 1rem 2rem;">Schedule Your Free Demo</a>
+            <a href="lead-generation-form.html" class="cta-button" style="background: var(--success-green); font-size: 1.25rem; padding: 1rem 2rem; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4);">Schedule Your Free Demo</a>
             <div class="contact-info">
                 <div class="contact-item">
                     <span>📧</span>

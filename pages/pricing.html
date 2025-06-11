@@ -23,16 +23,29 @@
     <link rel="stylesheet" href="../css/styles.css">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --secondary: #10b981;
-            --text-dark: #1f2937;
+            /* Conversion-Optimized Color Palette */
+            --conversion-red: #dc2626;
+            --conversion-red-dark: #b91c1c;
+            --action-orange: #c2410c;
+            --action-orange-dark: #c2410c;
+            --trust-blue: #1e40af;
+            --trust-blue-dark: #1d4ed8;
+            --success-green: #047857;
+            --success-green-dark: #065f46;
+            --professional-gray: #1e293b;
+            --clean-white: #f8fafc;
             --text-light: #6b7280;
-            --bg-light: #f9fafb;
+            
+            /* Legacy variable mapping for compatibility */
+            --primary: var(--conversion-red);
+            --primary-dark: var(--conversion-red-dark);
+            --secondary: var(--success-green);
+            --text-dark: var(--professional-gray);
+            --bg-light: var(--clean-white);
             --white: #ffffff;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --success: #10b981;
-            --warning: #f59e0b;
+            --success: var(--success-green);
+            --warning: var(--action-orange);
         }
 
         body {

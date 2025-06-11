@@ -308,7 +308,6 @@ function initializeTransparentNavbar() {
     if (!navbar) return;
     
     let ticking = false;
-    let lastScrollTop = 0;
     
     function updateNavbar() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -316,15 +315,12 @@ function initializeTransparentNavbar() {
         // Completely transparent when at top
         if (scrollTop <= 5) {
             navbar.classList.remove('scrolled');
-            navbar.classList.remove('transparent');
         }
         // Subtle background when scrolling
         else if (scrollTop > 5) {
             navbar.classList.add('scrolled');
-            navbar.classList.remove('transparent');
         }
         
-        lastScrollTop = scrollTop;
         ticking = false;
     }
     
@@ -349,18 +345,22 @@ function initializeNavbar() {
     initializeSmoothScrolling();
 }
 
-// Smooth scrolling for anchor links
+// Smooth scrolling for navigation links
 function initializeSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = target.offsetTop - navHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
+            
             // Close mobile menu after navigation
             const mobileNav = document.getElementById('mobile-nav');
             if (mobileNav) {
@@ -370,12 +370,18 @@ function initializeSmoothScrolling() {
     });
 }
 
-// Enhanced mobile menu functionality
+// Mobile menu functionality
 function initializeMobileMenu() {
     const mobileMenuButton = document.querySelector('.mobile-menu-button');
     const mobileNav = document.getElementById('mobile-nav');
     
     if (!mobileMenuButton || !mobileNav) return;
+    
+    // Toggle mobile menu
+    mobileMenuButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileNav.classList.toggle('open');
+    });
     
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {

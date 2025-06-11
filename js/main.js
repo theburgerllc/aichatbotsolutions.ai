@@ -302,30 +302,29 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeMobileMenu();
 });
 
-// Enhanced navbar functionality with 50px threshold
-function initializeNavbar() {
+// Enhanced Transparent Navbar JavaScript
+function initializeTransparentNavbar() {
     const navbar = document.querySelector('nav');
     if (!navbar) return;
     
     let ticking = false;
+    let lastScrollTop = 0;
     
     function updateNavbar() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        if (scrollTop <= 10) {
-            // At the very top - fully solid
-            navbar.classList.remove('transparent');
+        // Completely transparent when at top
+        if (scrollTop <= 5) {
             navbar.classList.remove('scrolled');
-        } else if (scrollTop > 10 && scrollTop <= 50) {
-            // Light scroll - frosted glass effect
-            navbar.classList.add('transparent');
-            navbar.classList.remove('scrolled');
-        } else {
-            // Deep scroll (past 50px) - solid background
             navbar.classList.remove('transparent');
+        }
+        // Subtle background when scrolling
+        else if (scrollTop > 5) {
             navbar.classList.add('scrolled');
+            navbar.classList.remove('transparent');
         }
         
+        lastScrollTop = scrollTop;
         ticking = false;
     }
     
@@ -336,9 +335,17 @@ function initializeNavbar() {
         }
     }
     
+    // Listen for scroll events
     window.addEventListener('scroll', requestTick, { passive: true });
     
-    // Initialize smooth scrolling for navigation links
+    // Initial state
+    updateNavbar();
+}
+
+// Update the main initialization function
+function initializeNavbar() {
+    initializeTransparentNavbar();
+    initializeMobileMenu();
     initializeSmoothScrolling();
 }
 
@@ -382,6 +389,13 @@ function initializeMobileMenu() {
         link.addEventListener('click', function() {
             mobileNav.classList.remove('open');
         });
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+            mobileNav.classList.remove('open');
+        }
     });
 }
 

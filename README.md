@@ -240,6 +240,7 @@ npm run export
 
 ## 🧪 Testing & Quality Assurance
 
+
 ### Browser Compatibility
 - Chrome 90+ (Primary target)
 - Firefox 88+

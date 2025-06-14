@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about AI Chatbot Solutions - our mission to help businesses automate customer support with intelligent AI chatbots. Meet our team and partners.">
+    <title>About Us - AI Chatbot Solutions | Our Mission & Team</title>
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .about-hero {
+            margin-top: 80px;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .about-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .mission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .mission-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .mission-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .mission-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .mission-visual {
+            background: var(--bg-light);
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 5rem 0;
+            background: var(--bg-light);
+        }
+
+        .story-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            width: 45%;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 10%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 10%;
+        }
+
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            width: 16px;
+            height: 16px;
+            background: var(--primary);
+            border: 4px solid var(--white);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .value-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 5rem 0;
+            background: var(--bg-light);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-avatar {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--white);
+        }
+
+        .team-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .team-role {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .team-bio {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Partners Section */
+        .partners-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .partner-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+        }
+
+        .partner-logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .partner-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .partner-description {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        /* CTA Section */
+        .about-cta {
+            padding: 5rem 0;
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .about-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 1024px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+
+            .mission-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .mission-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: center;
+            }
+
+            .timeline-content {
+                width: 90% !important;
+                margin: 0 !important;
+            }
+
+            .timeline-line {
+                display: none;
+            }
+
+            .timeline-dot {
+                position: relative;
+                left: auto;
+                transform: none;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/nav_bar_logo.png" alt="AI Chatbot Solutions Logo" class="logo-image" style="height: 50px; width: auto;">
+            </a>
+            <div class="nav-links">
+                <a href="features.html">Features</a>
+                <a href="demo.html">Demo</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+                <a href="../lead-generation-form.html" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>Transforming Customer Service with AI</h1>
+            <p>We're on a mission to help businesses provide exceptional 24/7 customer support through intelligent chatbot automation. Founded by customer service experts, built for real-world business needs.</p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-content">
+                <div class="mission-text">
+                    <h2>Our Mission</h2>
+                    <p>Every business deserves to provide outstanding customer service, regardless of their size or resources. We believe AI chatbots should be accessible, effective, and easy to implement.</p>
+                    
+                    <p>That's why we've partnered with industry leaders like BotPenguin to deliver enterprise-grade chatbot solutions that small and medium businesses can actually afford and use.</p>
+
+                    <div class="mission-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Businesses Served</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Uptime Guarantee</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24hrs</div>
+                            <div class="stat-label">Average Setup Time</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">675%</div>
+                            <div class="stat-label">Average Client ROI</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mission-visual">
+                    <h3 style="margin-bottom: 2rem; color: var(--primary);">What Drives Us</h3>
+                    <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem;">We've seen too many businesses lose customers to poor support experiences. Missing calls, delayed responses, and overwhelmed staff shouldn't be the norm.</p>
+                    <div style="background: var(--white); padding: 2rem; border-radius: 0.5rem; margin-top: 1rem;">
+                        <strong style="color: var(--primary);">Our Promise:</strong><br>
+                        <span style="color: var(--text-light);">Every customer interaction should feel personal, immediate, and helpful - even at 3 AM.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Our Journey</h2>
+            
+            <div class="story-timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <h3>The Problem</h3>
+                        <p>Our founder, a small business owner, was losing customers due to missed calls and delayed responses. Traditional solutions were too expensive and complex for small businesses.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h3>Partnership with BotPenguin</h3>
+                        <p>We partnered with BotPenguin to leverage their powerful AI platform, focusing on making enterprise-grade chatbots accessible to businesses of all sizes.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h3>First 100 Clients</h3>
+                        <p>Within 6 months, we helped 100+ businesses automate their customer support, with an average ROI of 675% and 40% reduction in missed opportunities.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025</div>
+                        <h3>Industry Specialization</h3>
+                        <p>Launched specialized solutions for healthcare, legal, and retail industries, with HIPAA-compliant options and industry-specific workflows.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Our Values</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">These principles guide everything we do, from product development to customer support.</p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Simplicity First</h3>
+                    <p>Complex technology should have simple solutions. We make AI chatbots that anyone can set up and manage, without technical expertise.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Speed & Reliability</h3>
+                    <p>Your customers expect instant responses. Our chatbots deliver 24/7 availability with 99.9% uptime and lightning-fast response times.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">💝</div>
+                    <h3>Customer Success</h3>
+                    <p>We succeed when you succeed. Our team works closely with every client to ensure measurable improvements in customer satisfaction and ROI.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🔒</div>
+                    <h3>Privacy & Security</h3>
+                    <p>Customer data is sacred. We maintain the highest security standards with SOC 2 compliance and HIPAA options for healthcare clients.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">📈</div>
+                    <h3>Measurable Results</h3>
+                    <p>Every implementation includes clear metrics and ROI tracking. We provide detailed analytics so you can see exactly how chatbots improve your business.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Partnership Approach</h3>
+                    <p>We're not just a vendor - we're your AI automation partner. Our success team provides ongoing support, optimization, and strategic guidance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Meet Our Team</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Experienced professionals from customer service, AI, and business automation backgrounds.</p>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">👨‍💼</div>
+                    <div class="team-info">
+                        <div class="team-name">Alex Rodriguez</div>
+                        <div class="team-role">Founder & CEO</div>
+                        <div class="team-bio">Former small business owner who experienced firsthand the challenges of providing 24/7 customer support. 10+ years in customer service operations.</div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">👩‍💻</div>
+                    <div class="team-info">
+                        <div class="team-name">Sarah Chen</div>
+                        <div class="team-role">Head of Implementation</div>
+                        <div class="team-bio">AI automation specialist with expertise in chatbot design and workflow optimization. Ensures every client sees results within 90 days.</div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">👨‍⚕️</div>
+                    <div class="team-info">
+                        <div class="team-name">Dr. Michael Park</div>
+                        <div class="team-role">Healthcare Solutions Lead</div>
+                        <div class="team-bio">Former healthcare administrator specializing in HIPAA-compliant automation. Leads our healthcare industry initiatives.</div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">👩‍🎓</div>
+                    <div class="team-info">
+                        <div class="team-name">Jennifer Walsh</div>
+                        <div class="team-role">Customer Success Manager</div>
+                        <div class="team-bio">Dedicated to ensuring every client achieves their automation goals. Background in business process optimization and client relations.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Our Technology Partners</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">We work with industry leaders to deliver the most advanced and reliable chatbot solutions.</p>
+            
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-logo">🐧</div>
+                    <div class="partner-name">BotPenguin</div>
+                    <div class="partner-description">AI chatbot platform powering our core technology</div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo">📊</div>
+                    <div class="partner-name">Google Analytics</div>
+                    <div class="partner-description">Comprehensive tracking and ROI measurement</div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo">💳</div>
+                    <div class="partner-name">Stripe</div>
+                    <div class="partner-description">Secure payment processing and billing</div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo">📅</div>
+                    <div class="partner-name">Calendly</div>
+                    <div class="partner-description">Seamless appointment scheduling integration</div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo">🔗</div>
+                    <div class="partner-name">Zapier</div>
+                    <div class="partner-description">Connecting chatbots to 3,000+ business apps</div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-logo">☁️</div>
+                    <div class="partner-name">AWS</div>
+                    <div class="partner-description">Reliable cloud infrastructure and security</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="about-cta">
+        <div class="container">
+            <h2>Ready to Join Our Success Stories?</h2>
+            <p>Let's work together to transform your customer service with AI automation</p>
+            <a href="../lead-generation-form.html" class="cta-button" style="background: var(--secondary); font-size: 1.2rem; padding: 1rem 2rem;">
+                Start Your Transformation
+            </a>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                Free consultation • Custom ROI analysis • 30-day money-back guarantee
+            </p>
+        </div>
+    </section>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Track page views and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof trackPageView === 'function') {
+                trackPageView('about_page');
+            }
+        });
+
+        // Track team member interest
+        document.querySelectorAll('.team-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const name = this.querySelector('.team-name').textContent;
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('team_member_viewed', name);
+                }
+            });
+        });
+
+        // Track partner interest
+        document.querySelectorAll('.partner-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const partner = this.querySelector('.partner-name').textContent;
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('partner_viewed', partner);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

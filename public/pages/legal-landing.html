@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI chatbots for law firms and legal practices. Automate client intake, consultation booking, case status updates, and document collection with secure, professional chatbots.">
+    <title>Legal AI Chatbots - Streamline Law Firm Operations | AI Chatbot Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --legal-gold: #d97706;
+            --legal-dark: #1c1917;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Legal Hero */
+        .legal-hero {
+            background: linear-gradient(135deg, var(--legal-dark) 0%, var(--legal-gold) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            margin-top: 80px;
+        }
+
+        .legal-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .legal-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .legal-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--legal-gold);
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .hero-visual {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        /* Legal Use Cases */
+        .legal-use-cases {
+            padding: 5rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+        }
+
+        .use-cases-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .use-case-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border-left: 4px solid var(--legal-gold);
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .use-case-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .use-case-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .use-case-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .use-case-benefits {
+            list-style: none;
+        }
+
+        .use-case-benefits li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .benefit-check {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Legal ROI Section */
+        .legal-roi {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .roi-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .roi-calculator {
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 1rem;
+        }
+
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-group select,
+        .form-group input {
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .roi-results {
+            background: linear-gradient(135deg, var(--secondary) 0%, #059669 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .roi-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Client Testimonials */
+        .legal-testimonials {
+            padding: 5rem 2rem;
+            background: var(--legal-dark);
+            color: var(--white);
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--legal-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Legal Compliance */
+        .legal-compliance {
+            padding: 5rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .compliance-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .compliance-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .compliance-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .compliance-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        /* Legal CTA */
+        .legal-cta {
+            padding: 5rem 2rem;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .legal-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .legal-cta p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .legal-hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .legal-hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .roi-content {
+                grid-template-columns: 1fr;
+            }
+
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🤖 AI Chatbot Solutions</a>
+            <div class="nav-links">
+                <a href="pages/features.html">Features</a>
+                <a href="pages/pricing.html">Pricing</a>
+                <a href="pages/demo.html">Demo</a>
+                <a href="pages/contact.html">Contact</a>
+                <a href="../lead-generation-form.html" class="cta-button">Book Legal Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Legal Hero -->
+    <section class="legal-hero">
+        <div class="legal-hero-content">
+            <div>
+                <h1>AI Chatbots Built for Law Firms</h1>
+                <p>Automate client intake, consultation booking, and case communications. Save 8+ hours per week while never missing a potential client again.</p>
+                
+                <div style="margin: 2rem 0;">
+                    <a href="lead-generation-form.html" class="cta-button" style="background: var(--legal-gold); margin-right: 1rem;">
+                        Get Free Legal Demo
+                    </a>
+                    <a href="pages/demo.html" class="cta-button" style="background: transparent; border: 2px solid var(--white);">
+                        Watch Demo
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">545%</div>
+                        <div class="stat-label">Average ROI</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">8hrs</div>
+                        <div class="stat-label">Saved Weekly</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">80%</div>
+                        <div class="stat-label">Faster Response</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <h3 style="margin-bottom: 2rem; color: var(--legal-gold);">Legal Chatbot Demo</h3>
+                <p style="margin-bottom: 2rem; opacity: 0.9;">See how our AI handles:</p>
+                <div style="text-align: left; max-width: 300px; margin: 0 auto;">
+                    <p>✓ Client intake and screening</p>
+                    <p>✓ Consultation scheduling</p>
+                    <p>✓ Document collection</p>
+                    <p>✓ Case status updates</p>
+                    <p>✓ Billing inquiries</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Use Cases -->
+    <section class="legal-use-cases">
+        <div class="section-header">
+            <h2>Automate Your Most Time-Consuming Legal Tasks</h2>
+            <p>Our AI chatbots handle routine client communications so your team can focus on practicing law</p>
+        </div>
+
+        <div class="use-cases-grid">
+            <div class="use-case-card">
+                <div class="use-case-icon">📝</div>
+                <h3>Client Intake & Screening</h3>
+                <p>Automatically collect client information, assess case viability, and route qualified leads to the right attorney.</p>
+                <ul class="use-case-benefits">
+                    <li><span class="benefit-check">✓</span> 24/7 client capture</li>
+                    <li><span class="benefit-check">✓</span> Conflict checking</li>
+                    <li><span class="benefit-check">✓</span> Practice area routing</li>
+                    <li><span class="benefit-check">✓</span> Lead qualification</li>
+                    <li><span class="benefit-check">✓</span> CRM integration</li>
+                </ul>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">📅</div>
+                <h3>Consultation Scheduling</h3>
+                <p>Let potential clients book consultations instantly with real-time calendar integration and automated confirmations.</p>
+                <ul class="use-case-benefits">
+                    <li><span class="benefit-check">✓</span> Real-time availability</li>
+                    <li><span class="benefit-check">✓</span> Attorney-specific booking</li>
+                    <li><span class="benefit-check">✓</span> Automated reminders</li>
+                    <li><span class="benefit-check">✓</span> Intake forms</li>
+                    <li><span class="benefit-check">✓</span> Zoom/calendar sync</li>
+                </ul>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">📄</div>
+                <h3>Document Collection</h3>
+                <p>Streamline document gathering with automated requests, secure upload links, and completion tracking.</p>
+                <ul class="use-case-benefits">
+                    <li><span class="benefit-check">✓</span> Secure file sharing</li>
+                    <li><span class="benefit-check">✓</span> Document checklists</li>
+                    <li><span class="benefit-check">✓</span> Completion tracking</li>
+                    <li><span class="benefit-check">✓</span> Automatic follow-ups</li>
+                    <li><span class="benefit-check">✓</span> Client portal integration</li>
+                </ul>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">📞</div>
+                <h3>Case Status Updates</h3>
+                <p>Reduce "Where's my case?" calls with automated status updates and milestone notifications.</p>
+                <ul class="use-case-benefits">
+                    <li><span class="benefit-check">✓</span> Automated updates</li>
+                    <li><span class="benefit-check">✓</span> Milestone notifications</li>
+                    <li><span class="benefit-check">✓</span> Client portal access</li>
+                    <li><span class="benefit-check">✓</span> Custom messaging</li>
+                    <li><span class="benefit-check">✓</span> Multi-channel delivery</li>
+                </ul>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">💰</div>
+                <h3>Billing & Payment Inquiries</h3>
+                <p>Handle billing questions, payment processing, and invoice delivery automatically through secure channels.</p>
+                <ul class="use-case-benefits">
+                    <li><span class="benefit-check">✓</span> Invoice delivery</li>
+                    <li><span class="benefit-check">✓</span> Payment processing</li>
+                    <li><span class="benefit-check">✓</span> Payment plans</li>
+                    <li><span class="benefit-check">✓</span> Balance inquiries</li>
+                    <li><span class="benefit-check">✓</span> Receipt generation</li>
+                </ul>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">⚖️</div>
+                <h3>Legal FAQ Automation</h3>
+                <p>Answer common legal questions instantly while ensuring compliance and providing appropriate disclaimers.</p>
+                <ul class="use-case-benefits">
+                    <li><span class="benefit-check">✓</span> Practice area FAQs</li>
+                    <li><span class="benefit-check">✓</span> Process explanations</li>
+                    <li><span class="benefit-check">✓</span> Fee information</li>
+                    <li><span class="benefit-check">✓</span> Legal disclaimers</li>
+                    <li><span class="benefit-check">✓</span> Attorney referrals</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal ROI Calculator -->
+    <section class="legal-roi">
+        <div class="roi-content">
+            <div>
+                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Calculate Your Law Firm's ROI</h2>
+                <p style="color: var(--text-light); margin-bottom: 2rem; font-size: 1.1rem;">
+                    See how much time and money your firm can save with AI automation. Most legal practices see 545% ROI within 90 days.
+                </p>
+
+                <div style="background: var(--bg-light); padding: 2rem; border-radius: 1rem; margin-bottom: 2rem;">
+                    <h4 style="margin-bottom: 1rem; color: var(--legal-gold);">Typical Legal Firm Saves:</h4>
+                    <ul style="list-style: none; color: var(--text-light);">
+                        <li>✓ 8+ hours per week on client intake</li>
+                        <li>✓ 65% reduction in missed calls</li>
+                        <li>✓ 80% faster client response times</li>
+                        <li>✓ 30% increase in consultation bookings</li>
+                        <li>✓ $2,400/month in staff time savings</li>
+                    </ul>
+                </div>
+
+                <a href="lead-generation-form.html" class="cta-button" style="background: var(--legal-gold);">
+                    Get Custom ROI Analysis
+                </a>
+            </div>
+
+            <div class="roi-calculator">
+                <h3 style="margin-bottom: 1.5rem; text-align: center;">Quick ROI Estimate</h3>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="legal-size">Firm Size</label>
+                        <select id="legal-size">
+                            <option value="solo">Solo Practice</option>
+                            <option value="small">2-5 Attorneys</option>
+                            <option value="medium" selected>6-20 Attorneys</option>
+                            <option value="large">20+ Attorneys</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="legal-clients">New Clients/Month</label>
+                        <select id="legal-clients">
+                            <option value="10">1-10</option>
+                            <option value="25">11-25</option>
+                            <option value="50" selected>26-50</option>
+                            <option value="100">50+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="legal-rate">Average Hourly Rate</label>
+                        <input type="number" id="legal-rate" value="350" min="100" max="1000">
+                    </div>
+                </div>
+
+                <div class="roi-results">
+                    <h4>Your Estimated Monthly Savings</h4>
+                    <div class="roi-number" id="legal-savings">$2,800</div>
+                    <p>Based on 8 hours saved weekly</p>
+                    <div style="margin-top: 1rem; font-size: 0.9rem;">
+                        <strong>Annual ROI: 545%</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Testimonials -->
+    <section class="legal-testimonials">
+        <div class="section-header" style="color: var(--white);">
+            <h2>Trusted by Leading Law Firms</h2>
+            <p style="color: rgba(255,255,255,0.8);">See how legal professionals are transforming their practices with AI</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "The chatbot captures clients 24/7 that we would have lost before. Our intake process went from hours to minutes, and client satisfaction increased dramatically."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👨‍💼</div>
+                    <div class="author-info">
+                        <h4>Michael Rodriguez</h4>
+                        <p>Managing Partner, Rodriguez & Associates</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "We save 8 hours per week on client intake alone. The AI handles initial screening perfectly and routes qualified leads to the right attorney immediately."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👩‍💼</div>
+                    <div class="author-info">
+                        <h4>Sarah Chen, Esq.</h4>
+                        <p>Partner, Chen Family Law</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "The ROI was immediate. Within 30 days, we captured 40% more qualified leads and reduced administrative overhead significantly."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👨‍⚖️</div>
+                    <div class="author-info">
+                        <h4>David Thompson</h4>
+                        <p>Senior Partner, Thompson Legal Group</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Compliance -->
+    <section class="legal-compliance">
+        <div class="section-header">
+            <h2>Built for Legal Compliance & Security</h2>
+            <p>Professional-grade security and compliance features designed specifically for legal practices</p>
+        </div>
+
+        <div class="compliance-grid">
+            <div class="compliance-card">
+                <div class="compliance-icon">🔒</div>
+                <h3>Attorney-Client Privilege Protection</h3>
+                <p>Secure, encrypted communications that maintain privilege protection with proper disclaimers and data handling.</p>
+            </div>
+
+            <div class="compliance-card">
+                <div class="compliance-icon">⚖️</div>
+                <h3>Legal Ethics Compliance</h3>
+                <p>Built-in safeguards ensure compliance with ABA Model Rules and state bar requirements for advertising and client communications.</p>
+            </div>
+
+            <div class="compliance-card">
+                <div class="compliance-icon">📋</div>
+                <h3>Audit Trail & Records</h3>
+                <p>Complete conversation logs and audit trails for compliance monitoring and client file documentation requirements.</p>
+            </div>
+
+            <div class="compliance-card">
+                <div class="compliance-icon">🛡️</div>
+                <h3>Data Security & Privacy</h3>
+                <p>SOC 2 Type II certified with 256-bit encryption, ensuring client data remains secure and confidential at all times.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal CTA -->
+    <section class="legal-cta">
+        <h2>Ready to Modernize Your Legal Practice?</h2>
+        <p>Join hundreds of law firms using AI to capture more clients, save time, and improve client satisfaction</p>
+        
+        <div style="margin: 2rem 0;">
+            <a href="lead-generation-form.html" class="cta-button" style="background: var(--legal-gold); font-size: 1.2rem; padding: 1rem 2rem; margin-right: 1rem;">
+                Schedule Legal Demo
+            </a>
+            <a href="pages/contact.html" class="cta-button" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">
+                Contact Legal Expert
+            </a>
+        </div>
+
+        <p style="margin-top: 1rem; color: var(--text-light);">
+            ✓ Free consultation ✓ Custom legal workflows ✓ 30-day money-back guarantee
+        </p>
+    </section>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Legal ROI Calculator
+        function calculateLegalROI() {
+            const firmSize = document.getElementById('legal-size').value;
+            const clients = parseInt(document.getElementById('legal-clients').value);
+            const rate = parseInt(document.getElementById('legal-rate').value);
+            
+            // Base hours saved per week based on firm size and client volume
+            let hoursSaved;
+            if (firmSize === 'solo') hoursSaved = 6;
+            else if (firmSize === 'small') hoursSaved = 8;
+            else if (firmSize === 'medium') hoursSaved = 12;
+            else hoursSaved = 20;
+            
+            // Adjust for client volume
+            const clientMultiplier = clients / 25;
+            hoursSaved = hoursSaved * clientMultiplier;
+            
+            const weeklySavings = hoursSaved * rate;
+            const monthlySavings = weeklySavings * 4.33;
+            
+            document.getElementById('legal-savings').textContent = '$' + Math.round(monthlySavings).toLocaleString();
+        }
+        
+        // Auto-calculate when inputs change
+        document.getElementById('legal-size').addEventListener('change', calculateLegalROI);
+        document.getElementById('legal-clients').addEventListener('change', calculateLegalROI);
+        document.getElementById('legal-rate').addEventListener('input', calculateLegalROI);
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateLegalROI();
+            
+            // Track page view
+            if (typeof trackPageView === 'function') {
+                trackPageView('legal_landing_page');
+            }
+        });
+        
+        // Track legal-specific interactions
+        document.querySelectorAll('.use-case-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const useCase = this.querySelector('h3').textContent;
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('legal_use_case_viewed', useCase);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

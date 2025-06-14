@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover all AI Chatbot Solutions features: multi-channel support, AI-powered responses, analytics, integrations, and industry-specific capabilities.">
+    <title>Features - AI Chatbot Solutions | Complete Feature Overview</title>
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        :root {
+            /* Conversion-Optimized Color Palette */
+            --conversion-red: #dc2626;
+            --conversion-red-dark: #b91c1c;
+            --action-orange: #c2410c;
+            --action-orange-dark: #c2410c;
+            --trust-blue: #1e40af;
+            --trust-blue-dark: #1d4ed8;
+            --success-green: #047857;
+            --success-green-dark: #065f46;
+            --professional-gray: #1e293b;
+            --clean-white: #f8fafc;
+            --text-light: #6b7280;
+            
+            /* Legacy variable mapping for compatibility */
+            --primary: var(--trust-blue);
+            --primary-dark: var(--trust-blue-dark);
+            --secondary: var(--success-green);
+            --text-dark: var(--professional-gray);
+            --bg-light: var(--clean-white);
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --accent: var(--action-orange);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mobile-nav.open {
+            display: flex;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .features-hero {
+            margin-top: 80px;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .features-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .features-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Feature Categories */
+        .feature-categories {
+            padding: 3rem 0;
+            background: var(--bg-light);
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 1rem 2rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background: var(--white);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .category-tab.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .category-tab:hover:not(.active) {
+            border-color: var(--primary);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .feature-benefits {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-benefits li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .benefit-check {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .feature-cta {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .feature-cta:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Technical Specs */
+        .tech-specs {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .spec-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        .spec-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .spec-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Integrations Section */
+        .integrations-section {
+            padding: 5rem 0;
+            background: var(--bg-light);
+        }
+
+        .integrations-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .integration-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .integration-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .integration-logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .integration-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .integration-type {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* Security Section */
+        .security-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .security-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .security-card:hover {
+            border-color: var(--secondary);
+        }
+
+        .security-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .security-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        /* Feature Comparison */
+        .feature-comparison {
+            padding: 5rem 0;
+            background: var(--bg-light);
+        }
+
+        .comparison-table {
+            background: var(--white);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-top: 3rem;
+        }
+
+        .comparison-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+            font-weight: 600;
+        }
+
+        .comparison-row {
+            padding: 1rem 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            align-items: center;
+        }
+
+        .comparison-row:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .comparison-feature {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .comparison-check {
+            text-align: center;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .comparison-x {
+            text-align: center;
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* CTA Section */
+        .features-cta {
+            padding: 5rem 0;
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .features-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .features-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 1024px) {
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .integrations-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .security-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+                position: relative;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .features-hero h1 {
+                font-size: 2rem;
+            }
+
+            .category-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .integrations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .security-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .comparison-header,
+            .comparison-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/nav_bar_logo.png" alt="AI Chatbot Solutions Logo" class="logo-image">
+            </a>
+            <div class="nav-links">
+                <a href="features.html">Features</a>
+                <a href="../interactive-demo.html">Demo</a>
+                <a href="industries.html">Industries</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-cta">
+                <a href="../demo-booking.html" class="cta-button">Book Demo</a>
+            </div>
+            <button class="mobile-menu-button" onclick="toggleMobileMenu()">☰</button>
+            <div class="mobile-nav" id="mobile-nav">
+                <a href="features.html">Features</a>
+                <a href="../interactive-demo.html">Demo</a>
+                <a href="industries.html">Industries</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+                <a href="../demo-booking.html" class="cta-button">Book Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="features-hero">
+        <div class="container">
+            <h1>Powerful AI Features for Modern Businesses</h1>
+            <p>Everything you need to automate customer support, capture leads, and grow your business with intelligent chatbots powered by the latest AI technology.</p>
+        </div>
+    </section>
+
+    <!-- Feature Categories -->
+    <section class="feature-categories">
+        <div class="container">
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="core">🚀 Core Features</div>
+                <div class="category-tab" data-category="ai">🧠 AI Capabilities</div>
+                <div class="category-tab" data-category="integrations">🔗 Integrations</div>
+                <div class="category-tab" data-category="analytics">📊 Analytics</div>
+                <div class="category-tab" data-category="security">🔒 Security</div>
+            </div>
+
+            <!-- Core Features -->
+            <div class="feature-content" id="core-features">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3>Multi-Channel Support</h3>
+                        <div class="feature-description">Deploy your chatbot across all major communication channels from a single dashboard.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> WhatsApp Business API</li>
+                            <li><span class="benefit-check">✓</span> Facebook Messenger</li>
+                            <li><span class="benefit-check">✓</span> Instagram Direct Messages</li>
+                            <li><span class="benefit-check">✓</span> Website Widget</li>
+                            <li><span class="benefit-check">✓</span> SMS Integration</li>
+                        </ul>
+                        <a href="demo.html" class="feature-cta">See Demo</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>24/7 Availability</h3>
+                        <div class="feature-description">Never miss a customer inquiry with round-the-clock automated support.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> 99.9% uptime guarantee</li>
+                            <li><span class="benefit-check">✓</span> Instant response times</li>
+                            <li><span class="benefit-check">✓</span> Global timezone support</li>
+                            <li><span class="benefit-check">✓</span> Holiday coverage</li>
+                            <li><span class="benefit-check">✓</span> Weekend availability</li>
+                        </ul>
+                        <a href="pricing.html" class="feature-cta">View Plans</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Lead Capture</h3>
+                        <div class="feature-description">Automatically collect and qualify leads through intelligent conversations.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> Smart lead qualification</li>
+                            <li><span class="benefit-check">✓</span> Contact information collection</li>
+                            <li><span class="benefit-check">✓</span> CRM integration</li>
+                            <li><span class="benefit-check">✓</span> Follow-up automation</li>
+                            <li><span class="benefit-check">✓</span> Lead scoring</li>
+                        </ul>
+                        <a href="../lead-generation-form.html" class="feature-cta">Try Now</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📅</div>
+                        <h3>Appointment Scheduling</h3>
+                        <div class="feature-description">Let customers book appointments directly through chat with calendar integration.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> Real-time availability</li>
+                            <li><span class="benefit-check">✓</span> Calendar sync</li>
+                            <li><span class="benefit-check">✓</span> Automatic reminders</li>
+                            <li><span class="benefit-check">✓</span> Rescheduling options</li>
+                            <li><span class="benefit-check">✓</span> Timezone handling</li>
+                        </ul>
+                        <a href="contact.html" class="feature-cta">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Capabilities (hidden by default) -->
+            <div class="feature-content" id="ai-features" style="display: none;">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Natural Language Processing</h3>
+                        <div class="feature-description">Advanced AI understands customer intent and context for human-like conversations.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> Intent recognition</li>
+                            <li><span class="benefit-check">✓</span> Context awareness</li>
+                            <li><span class="benefit-check">✓</span> Sentiment analysis</li>
+                            <li><span class="benefit-check">✓</span> Multi-language support</li>
+                            <li><span class="benefit-check">✓</span> Continuous learning</li>
+                        </ul>
+                        <a href="demo.html" class="feature-cta">See AI Demo</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>GPT-4 Integration</h3>
+                        <div class="feature-description">Powered by the latest OpenAI GPT-4 technology for intelligent responses.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> Human-like responses</li>
+                            <li><span class="benefit-check">✓</span> Creative problem solving</li>
+                            <li><span class="benefit-check">✓</span> Complex query handling</li>
+                            <li><span class="benefit-check">✓</span> Contextual understanding</li>
+                            <li><span class="benefit-check">✓</span> Multilingual capabilities</li>
+                        </ul>
+                        <a href="about.html" class="feature-cta">Our Technology</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>Knowledge Base Training</h3>
+                        <div class="feature-description">Train your chatbot on your specific business knowledge and processes.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> Custom training data</li>
+                            <li><span class="benefit-check">✓</span> FAQ integration</li>
+                            <li><span class="benefit-check">✓</span> Document processing</li>
+                            <li><span class="benefit-check">✓</span> Regular updates</li>
+                            <li><span class="benefit-check">✓</span> Performance optimization</li>
+                        </ul>
+                        <a href="contact.html" class="feature-cta">Custom Training</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Conversation Flows</h3>
+                        <div class="feature-description">Design custom conversation paths for different scenarios and outcomes.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> Visual flow builder</li>
+                            <li><span class="benefit-check">✓</span> Conditional logic</li>
+                            <li><span class="benefit-check">✓</span> A/B testing</li>
+                            <li><span class="benefit-check">✓</span> Template library</li>
+                            <li><span class="benefit-check">✓</span> Industry presets</li>
+                        </ul>
+                        <a href="demo.html" class="feature-cta">Build Flows</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integrations Features -->
+            <div class="feature-content" id="integrations-features" style="display: none;">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <h3>CRM Integration</h3>
+                        <div class="feature-description">Seamlessly connect with your existing CRM system for unified customer data.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> Salesforce integration</li>
+                            <li><span class="benefit-check">✓</span> HubSpot connectivity</li>
+                            <li><span class="benefit-check">✓</span> Pipedrive sync</li>
+                            <li><span class="benefit-check">✓</span> Custom API connections</li>
+                        </ul>
+                        <a href="contact.html" class="feature-cta">Setup Integration</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📅</div>
+                        <h3>Calendar & Scheduling</h3>
+                        <div class="feature-description">Connect with popular scheduling tools for automated appointment booking.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> Calendly integration</li>
+                            <li><span class="benefit-check">✓</span> Google Calendar sync</li>
+                            <li><span class="benefit-check">✓</span> Outlook integration</li>
+                            <li><span class="benefit-check">✓</span> Real-time availability</li>
+                        </ul>
+                        <a href="demo.html" class="feature-cta">See Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Features -->
+            <div class="feature-content" id="analytics-features" style="display: none;">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Conversation Analytics</h3>
+                        <div class="feature-description">Get detailed insights into customer interactions and chatbot performance.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> Conversation volume tracking</li>
+                            <li><span class="benefit-check">✓</span> Response time metrics</li>
+                            <li><span class="benefit-check">✓</span> User satisfaction scores</li>
+                            <li><span class="benefit-check">✓</span> Custom reporting</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>ROI Tracking</h3>
+                        <div class="feature-description">Measure the financial impact of your chatbot automation.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> Time savings calculations</li>
+                            <li><span class="benefit-check">✓</span> Cost reduction metrics</li>
+                            <li><span class="benefit-check">✓</span> Lead generation tracking</li>
+                            <li><span class="benefit-check">✓</span> Revenue attribution</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Features -->
+            <div class="feature-content" id="security-features" style="display: none;">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Data Encryption</h3>
+                        <div class="feature-description">Military-grade encryption protects all customer data and conversations.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> 256-bit SSL encryption</li>
+                            <li><span class="benefit-check">✓</span> End-to-end security</li>
+                            <li><span class="benefit-check">✓</span> Data at rest protection</li>
+                            <li><span class="benefit-check">✓</span> Secure API endpoints</li>
+                        </ul>
+                        <a href="contact.html" class="feature-cta">Learn More</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🏥</div>
+                        <h3>HIPAA Compliance</h3>
+                        <div class="feature-description">Healthcare-ready with full HIPAA compliance and audit trails.</div>
+                        <ul class="feature-benefits">
+                            <li><span class="benefit-check">✓</span> BAA agreements</li>
+                            <li><span class="benefit-check">✓</span> Audit logging</li>
+                            <li><span class="benefit-check">✓</span> Access controls</li>
+                            <li><span class="benefit-check">✓</span> Data retention policies</li>
+                        </ul>
+                        <a href="contact.html" class="feature-cta">Get HIPAA Setup</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="tech-specs">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Technical Specifications</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem;">Enterprise-grade performance and reliability</p>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <div class="spec-number">99.9%</div>
+                    <div class="spec-label">Uptime SLA</div>
+                    <div class="spec-description">Guaranteed availability with redundant infrastructure</div>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-number">&lt;500ms</div>
+                    <div class="spec-label">Response Time</div>
+                    <div class="spec-description">Lightning-fast AI responses for real-time conversations</div>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-number">100K+</div>
+                    <div class="spec-label">Messages/Day</div>
+                    <div class="spec-description">Handle high-volume conversations without limits</div>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-number">60+</div>
+                    <div class="spec-label">Integrations</div>
+                    <div class="spec-description">Connect with your favorite business tools</div>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-number">50+</div>
+                    <div class="spec-label">Languages</div>
+                    <div class="spec-description">Serve customers worldwide in their native language</div>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-number">24/7</div>
+                    <div class="spec-label">Support</div>
+                    <div class="spec-description">Round-the-clock technical support and monitoring</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations -->
+    <section class="integrations-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">60+ Integrations</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem;">Connect your chatbot to the tools you already use</p>
+            
+            <div class="integrations-grid">
+                <div class="integration-card">
+                    <div class="integration-logo">💼</div>
+                    <div class="integration-name">Salesforce</div>
+                    <div class="integration-type">CRM</div>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-logo">🎯</div>
+                    <div class="integration-name">HubSpot</div>
+                    <div class="integration-type">Marketing</div>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-logo">📅</div>
+                    <div class="integration-name">Calendly</div>
+                    <div class="integration-type">Scheduling</div>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-logo">💳</div>
+                    <div class="integration-name">Stripe</div>
+                    <div class="integration-type">Payments</div>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-logo">📊</div>
+                    <div class="integration-name">Google Analytics</div>
+                    <div class="integration-type">Analytics</div>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-logo">📧</div>
+                    <div class="integration-name">Mailchimp</div>
+                    <div class="integration-type">Email Marketing</div>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-logo">💬</div>
+                    <div class="integration-name">Slack</div>
+                    <div class="integration-type">Team Communication</div>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-logo">🛒</div>
+                    <div class="integration-name">Shopify</div>
+                    <div class="integration-type">E-commerce</div>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-logo">⚡</div>
+                    <div class="integration-name">Zapier</div>
+                    <div class="integration-type">Automation</div>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-logo">🗂️</div>
+                    <div class="integration-name">Airtable</div>
+                    <div class="integration-type">Database</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Features -->
+    <section class="security-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Enterprise Security</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem;">Your data is protected with industry-leading security measures</p>
+            
+            <div class="security-grid">
+                <div class="security-card">
+                    <div class="security-icon">🔒</div>
+                    <h3>256-bit Encryption</h3>
+                    <p>All data encrypted in transit and at rest using military-grade encryption standards.</p>
+                </div>
+
+                <div class="security-card">
+                    <div class="security-icon">🏥</div>
+                    <h3>HIPAA Compliant</h3>
+                    <p>Healthcare-ready with HIPAA compliance and Business Associate Agreements available.</p>
+                </div>
+
+                <div class="security-card">
+                    <div class="security-icon">✅</div>
+                    <h3>SOC 2 Type II</h3>
+                    <p>Independently audited and certified for security, availability, and confidentiality.</p>
+                </div>
+
+                <div class="security-card">
+                    <div class="security-icon">🌍</div>
+                    <h3>GDPR Ready</h3>
+                    <p>Full compliance with European data protection regulations and user privacy rights.</p>
+                </div>
+
+                <div class="security-card">
+                    <div class="security-icon">🛡️</div>
+                    <h3>Access Controls</h3>
+                    <p>Role-based permissions and multi-factor authentication for team access management.</p>
+                </div>
+
+                <div class="security-card">
+                    <div class="security-icon">📋</div>
+                    <h3>Audit Logs</h3>
+                    <p>Complete activity tracking and detailed audit trails for compliance and monitoring.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison -->
+    <section class="feature-comparison">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Feature Comparison</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem;">See what's included in each plan</p>
+            
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div>Feature</div>
+                    <div>Starter</div>
+                    <div>Professional</div>
+                    <div>Enterprise</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">Number of Chatbots</div>
+                    <div>1</div>
+                    <div>3</div>
+                    <div>Unlimited</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">Monthly Conversations</div>
+                    <div>1,000</div>
+                    <div>5,000</div>
+                    <div>Unlimited</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">Channel Integrations</div>
+                    <div>3</div>
+                    <div>Unlimited</div>
+                    <div>Unlimited</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">AI Training</div>
+                    <div class="comparison-check">✓</div>
+                    <div class="comparison-check">✓</div>
+                    <div class="comparison-check">✓</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">Analytics Dashboard</div>
+                    <div class="comparison-check">✓</div>
+                    <div class="comparison-check">✓</div>
+                    <div class="comparison-check">✓</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">CRM Integration</div>
+                    <div class="comparison-x">✗</div>
+                    <div class="comparison-check">✓</div>
+                    <div class="comparison-check">✓</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">Priority Support</div>
+                    <div class="comparison-x">✗</div>
+                    <div class="comparison-check">✓</div>
+                    <div class="comparison-check">✓</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">White Label</div>
+                    <div class="comparison-x">✗</div>
+                    <div class="comparison-x">✗</div>
+                    <div class="comparison-check">✓</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="comparison-feature">Dedicated Manager</div>
+                    <div class="comparison-x">✗</div>
+                    <div class="comparison-x">✗</div>
+                    <div class="comparison-check">✓</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="features-cta">
+        <div class="container">
+            <h2>Ready to Experience These Features?</h2>
+            <p>Start your free trial today and see how AI chatbots can transform your business</p>
+            <a href="../lead-generation-form.html" class="cta-button" style="background: var(--secondary); font-size: 1.2rem; padding: 1rem 2rem;">
+                Start Free Trial
+            </a>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                No credit card required • Full features included • Setup in 24 hours
+            </p>
+        </div>
+    </section>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Feature category switching
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.category-tab');
+            const contents = document.querySelectorAll('.feature-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all content
+                    contents.forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    
+                    // Show selected content
+                    const category = this.dataset.category;
+                    const targetContent = document.getElementById(category + '-features');
+                    if (targetContent) {
+                        targetContent.style.display = 'block';
+                    }
+                    
+                    // Track category view
+                    if (typeof trackFormSubmit === 'function') {
+                        trackFormSubmit('feature_category_viewed', category);
+                    }
+                });
+            });
+
+            // Track page view
+            if (typeof trackPageView === 'function') {
+                trackPageView('features_page');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileNav.classList.toggle('open');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const mobileNav = document.getElementById('mobile-nav');
+            const menuButton = document.querySelector('.mobile-menu-button');
+            
+            if (!mobileNav.contains(e.target) && !menuButton.contains(e.target)) {
+                mobileNav.classList.remove('open');
+            }
+        });
+
+        // Track feature card interactions
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const featureName = this.querySelector('h3').textContent;
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('feature_card_clicked', featureName);
+                }
+            });
+        });
+
+        // Track integration clicks
+        document.querySelectorAll('.integration-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const integrationName = this.querySelector('.integration-name').textContent;
+                if (typeof trackFormSubmit === 'function') {
+                    trackFormSubmit('integration_viewed', integrationName);
+                }
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer style="background: #111827; color: #ffffff; padding: 2rem; text-align: center; margin-top: 3rem;">
+        <p style="opacity: 0.8;">&copy; 2025 AI Chatbot Solutions. Powered by BotPenguin. All rights reserved.</p>
+    </footer>
+</body>
+</html>

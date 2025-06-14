@@ -373,6 +373,7 @@ export default function ChatDemo({ persona, onDemoComplete }: ChatDemoProps) {
               onChange={(e) => setCurrentInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
               placeholder="Type your message..."
+              aria-label="Type your message to the chatbot"
               className="flex-1 p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
             <motion.button

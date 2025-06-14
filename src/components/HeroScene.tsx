@@ -149,15 +149,11 @@ function Particles() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          array={positions}
-          count={particleCount}
-          itemSize={3}
+          args={[positions, 3]}
         />
         <bufferAttribute
           attach="attributes-color"
-          array={colors}
-          count={particleCount}
-          itemSize={3}
+          args={[colors, 3]}
         />
       </bufferGeometry>
       <pointsMaterial size={0.05} vertexColors transparent opacity={0.6} />
@@ -166,9 +162,18 @@ function Particles() {
 }
 
 export default function HeroScene() {
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   const messages = [
     "How can I help you today?",
-    "Available 24/7 for support",
+    "Available 24/7 for support", 
     "Reduce costs by 80%",
     "Instant accurate responses",
     "Seamless integration",
@@ -177,42 +182,60 @@ export default function HeroScene() {
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900">
-      <Canvas
-        camera={{ position: [0, 0, 10], fov: 75 }}
-        className="absolute inset-0"
-        gl={{ antialias: true, alpha: true }}
-      >
-        <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} color="#60a5fa" />
-        <spotLight position={[0, 10, 0]} angle={0.15} penumbra={1} intensity={0.8} />
-        
-        <Particles />
-        
-        <ChatbotCharacter />
-        
-        {messages.map((message, index) => (
-          <FloatingBubble
-            key={index}
-            position={[
-              Math.cos((index / messages.length) * Math.PI * 2) * 4,
-              Math.sin((index / messages.length) * Math.PI * 2) * 3,
-              Math.random() * 2 - 1
-            ]}
-            text={message}
-            delay={index * 0.5}
+      {!isMobile ? (
+        <Canvas
+          camera={{ position: [0, 0, 10], fov: 75 }}
+          className="absolute inset-0"
+          gl={{ antialias: isMobile ? false : true, alpha: true, powerPreference: "high-performance" }}
+        >
+          <ambientLight intensity={0.4} />
+          <pointLight position={[10, 10, 10]} intensity={1} />
+          <pointLight position={[-10, -10, -10]} intensity={0.5} color="#60a5fa" />
+          <spotLight position={[0, 10, 0]} angle={0.15} penumbra={1} intensity={0.8} />
+          
+          <Particles />
+          
+          <ChatbotCharacter />
+          
+          {messages.map((message, index) => (
+            <FloatingBubble
+              key={index}
+              position={[
+                Math.cos((index / messages.length) * Math.PI * 2) * 4,
+                Math.sin((index / messages.length) * Math.PI * 2) * 3,
+                Math.random() * 2 - 1
+              ]}
+              text={message}
+              delay={index * 0.5}
+            />
+          ))}
+          
+          <OrbitControls 
+            enableZoom={false} 
+            enablePan={false}
+            autoRotate
+            autoRotateSpeed={0.5}
+            maxPolarAngle={Math.PI / 2}
+            minPolarAngle={Math.PI / 2}
           />
-        ))}
-        
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false}
-          autoRotate
-          autoRotateSpeed={0.5}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}
-        />
-      </Canvas>
+        </Canvas>
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="grid grid-cols-2 gap-4 p-8 text-center">
+            {messages.map((message, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-white text-sm"
+              >
+                {message}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      )}
       
       <motion.div
         initial={{ opacity: 0, y: 50 }}

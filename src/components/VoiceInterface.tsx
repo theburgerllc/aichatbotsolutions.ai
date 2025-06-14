@@ -49,13 +49,13 @@ export default function VoiceInterface({
           }
         }
         
-        recognition.onerror = (event) => {
+        recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
           setError(event.error)
           setIsListening(false)
           trackInteraction('voice_recognition_error', { error: event.error })
         }
         
-        recognition.onresult = (event) => {
+        recognition.onresult = (event: SpeechRecognitionEvent) => {
           let finalTranscript = ''
           let interimTranscript = ''
           
@@ -144,11 +144,14 @@ export default function VoiceInterface({
     <div className="relative">
       <motion.button
         onClick={toggleListening}
+        aria-label={isListening ? `Stop listening for "${triggerPhrase}"` : `Start listening for "${triggerPhrase}"`}
+        aria-pressed={isListening}
         className={`
           relative p-4 rounded-full transition-all duration-300 shadow-lg
+          focus:outline-none focus:ring-2 focus:ring-offset-2
           ${isListening 
-            ? 'bg-red-500 hover:bg-red-600 text-white' 
-            : 'bg-blue-500 hover:bg-blue-600 text-white'
+            ? 'bg-red-500 hover:bg-red-600 text-white focus:ring-red-500' 
+            : 'bg-blue-500 hover:bg-blue-600 text-white focus:ring-blue-500'
           }
         `}
         whileHover={{ scale: 1.05 }}
@@ -254,8 +257,8 @@ export default function VoiceInterface({
 // Global type declarations for Web Speech API
 declare global {
   interface Window {
-    SpeechRecognition: typeof SpeechRecognition
-    webkitSpeechRecognition: typeof SpeechRecognition
+    SpeechRecognition: new () => SpeechRecognition
+    webkitSpeechRecognition: new () => SpeechRecognition
   }
 }
 

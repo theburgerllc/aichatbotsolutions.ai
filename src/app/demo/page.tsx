@@ -158,7 +158,7 @@ export default function DemoPage() {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <ROICalculator persona={selectedPersona} onCalculationComplete={handleROIComplete} />
+              <ROICalculator industry="healthcare" />
             </motion.div>
           )}
 

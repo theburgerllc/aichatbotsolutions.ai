@@ -9,16 +9,47 @@ interface InteractionData {
   url?: string
 }
 
+// Input sanitization helper
+function sanitizeString(input: string): string {
+  if (typeof input !== 'string') return 'invalid'
+  return input.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+             .replace(/[<>\"']/g, '')
+             .substring(0, 500) // Limit length
+}
+
+function sanitizeObject(obj: Record<string, any>): Record<string, any> {
+  const sanitized: Record<string, any> = {}
+  for (const [key, value] of Object.entries(obj)) {
+    if (typeof value === 'string') {
+      sanitized[sanitizeString(key)] = sanitizeString(value)
+    } else if (typeof value === 'number' && !isNaN(value)) {
+      sanitized[sanitizeString(key)] = value
+    } else if (typeof value === 'boolean') {
+      sanitized[sanitizeString(key)] = value
+    }
+  }
+  return sanitized
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body: InteractionData = await request.json()
     
+    // Validate and sanitize input
+    if (!body.event || typeof body.event !== 'string') {
+      return NextResponse.json(
+        { error: 'Invalid event type' },
+        { status: 400 }
+      )
+    }
+    
     const interaction = {
-      ...body,
+      event: sanitizeString(body.event),
+      data: body.data ? sanitizeObject(body.data) : {},
       timestamp: body.timestamp || new Date().toISOString(),
       ip: request.ip || request.headers.get('x-forwarded-for') || 'unknown',
-      userAgent: body.userAgent || request.headers.get('user-agent') || 'unknown',
-      url: body.url || request.headers.get('referer') || 'unknown'
+      userAgent: sanitizeString(body.userAgent || request.headers.get('user-agent') || 'unknown'),
+      url: sanitizeString(body.url || request.headers.get('referer') || 'unknown')
     }
 
     // In a production environment, you would:

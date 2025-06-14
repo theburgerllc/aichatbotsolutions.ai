@@ -14,7 +14,7 @@ import { Industry } from '@/types'
 export default function PersonaDemoPage() {
   const params = useParams()
   const router = useRouter()
-  const persona = params.persona as string
+  const persona = params?.persona as string
   
   const [selectedIndustry, setSelectedIndustry] = useState<Industry>('healthcare')
   const [showChatbot, setShowChatbot] = useState(false)

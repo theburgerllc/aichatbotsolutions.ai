@@ -1038,11 +1038,19 @@
                     this.addMessage('bot', responses[action]);
                     
                     setTimeout(() => {
-                        this.addMessage('bot', "This is just a preview of our AI capabilities. In a real conversation, I would continue the full workflow and complete your request automatically.");
+                        this.addMessage('bot', "Perfect! I've found an available appointment slot for you next Tuesday at 2:00 PM with Dr. Smith. I'm booking this for you now.");
                         
                         setTimeout(() => {
-                            this.showDemoCompletion();
-                        }, 1500);
+                            this.addMessage('bot', "Appointment confirmed for Tuesday, January 16th at 2:00 PM with Dr. Smith. I'll send you a confirmation email with all the details and a calendar invite.");
+                            
+                            setTimeout(() => {
+                                this.addMessage('bot', "Is there anything else I can help you with today? I can also answer questions about your insurance coverage or upcoming appointments.");
+                                
+                                setTimeout(() => {
+                                    this.showDemoCompletion();
+                                }, 1500);
+                            }, 2000);
+                        }, 2000);
                     }, 2000);
                 }, 1500);
             }
@@ -1103,5 +1111,10 @@
             }
         });
     </script>
+
+    <!-- Footer -->
+    <footer style="background: #111827; color: #ffffff; padding: 2rem; text-align: center; margin-top: 3rem;">
+        <p style="opacity: 0.8;">&copy; 2025 AI Chatbot Solutions. Powered by BotPenguin. All rights reserved.</p>
+    </footer>
 </body>
 </html>

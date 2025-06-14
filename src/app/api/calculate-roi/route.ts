@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { industryData } from '@/data/industry'
 import { calculateROI } from '@/lib/utils'
 
+// Runtime configuration for Vercel
+export const runtime = 'nodejs'
+export const maxDuration = 10
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()

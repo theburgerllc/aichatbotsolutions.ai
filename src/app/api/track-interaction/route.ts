@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+// Runtime configuration for Vercel
+export const runtime = 'nodejs'
+export const maxDuration = 10
+
 interface InteractionData {
   event: string
   data?: Record<string, any>

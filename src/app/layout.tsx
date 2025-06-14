@@ -5,14 +5,15 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://aichatbotsolutions.io'),
   title: 'AI Chatbot Solutions - 24/7 Customer Support Automation',
   description: 'Transform your customer service with AI-powered chatbots. Reduce costs by 80% while providing instant, accurate support for healthcare, legal, and retail businesses.',
   keywords: 'AI chatbot, customer support automation, healthcare chatbot, legal chatbot, retail chatbot, customer service AI',
-  authors: [{ name: 'AI Chatbot Solutions', url: 'https://aichatbotsolutions.tech' }],
+  authors: [{ name: 'AI Chatbot Solutions', url: 'https://aichatbotsolutions.io' }],
   openGraph: {
     title: 'AI Chatbot Solutions - 24/7 Customer Support Automation',
     description: 'Transform your customer service with AI-powered chatbots. Reduce costs by 80% while providing instant, accurate support.',
-    url: 'https://aichatbotsolutions.tech',
+    url: 'https://aichatbotsolutions.io',
     siteName: 'AI Chatbot Solutions',
     images: [
       {

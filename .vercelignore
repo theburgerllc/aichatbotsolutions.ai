@@ -1,0 +1,18 @@
+# Static HTML files that might conflict with Next.js routes
+public/pages/
+public/demo-booking.html
+public/interactive-demo.html
+public/lead-generation-form.html
+
+# Development files
+.next/
+node_modules/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build files
+*.tsbuildinfo
+.DS_Store
+*.log

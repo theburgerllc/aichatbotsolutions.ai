@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       event: sanitizeString(body.event),
       data: body.data ? sanitizeObject(body.data) : {},
       timestamp: body.timestamp || new Date().toISOString(),
-      ip: request.ip || request.headers.get('x-forwarded-for') || 'unknown',
+      ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown',
       userAgent: sanitizeString(body.userAgent || request.headers.get('user-agent') || 'unknown'),
       url: sanitizeString(body.url || request.headers.get('referer') || 'unknown')
     }

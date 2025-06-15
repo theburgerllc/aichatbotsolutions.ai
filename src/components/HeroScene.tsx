@@ -33,7 +33,7 @@ function FloatingBubble({ position, text, delay }: FloatingBubbleProps) {
           onPointerOut={() => setHovered(false)}
           scale={hovered ? 1.1 : 1}
         >
-          <sphereGeometry args={[0.6, 32, 32]} />
+          <sphereGeometry args={[0.6, 16, 16]} />
           <meshStandardMaterial
             color={hovered ? '#60a5fa' : '#3b82f6'}
             transparent
@@ -120,9 +120,9 @@ function ChatbotCharacter() {
   )
 }
 
-function Particles() {
+function Particles({ isMobile = false }: { isMobile?: boolean }) {
   const particlesRef = useRef<THREE.Points>(null!)
-  const particleCount = 100
+  const particleCount = isMobile ? 50 : 100 // Reduce particles on mobile
   
   const positions = new Float32Array(particleCount * 3)
   const colors = new Float32Array(particleCount * 3)
@@ -186,14 +186,21 @@ export default function HeroScene() {
         <Canvas
           camera={{ position: [0, 0, 10], fov: 75 }}
           className="absolute inset-0"
-          gl={{ antialias: isMobile ? false : true, alpha: true, powerPreference: "high-performance" }}
+          gl={{ 
+            antialias: false, // Disable for better performance
+            alpha: true, 
+            powerPreference: "high-performance",
+            pixelRatio: Math.min(window.devicePixelRatio, 2) // Limit pixel ratio
+          }}
+          frameloop="demand" // Only render when needed
+          performance={{ min: 0.5 }} // Reduce quality when needed
         >
           <ambientLight intensity={0.4} />
           <pointLight position={[10, 10, 10]} intensity={1} />
           <pointLight position={[-10, -10, -10]} intensity={0.5} color="#60a5fa" />
           <spotLight position={[0, 10, 0]} angle={0.15} penumbra={1} intensity={0.8} />
           
-          <Particles />
+          <Particles isMobile={isMobile} />
           
           <ChatbotCharacter />
           

@@ -68,14 +68,34 @@ export default function LeadCapture({
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    try {
+      const response = await fetch('/api/submit-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          source: 'lead_capture_form'
+        })
+      })
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+      if (!response.ok) {
+        throw new Error('Failed to submit lead')
+      }
 
-    if (onSubmit) {
-      onSubmit(formData)
+      const result = await response.json()
+      
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+
+      if (onSubmit) {
+        onSubmit(formData)
+      }
+    } catch (error) {
+      console.error('Error submitting lead:', error)
+      setIsSubmitting(false)
+      // You might want to show an error message to the user here
     }
   }
 

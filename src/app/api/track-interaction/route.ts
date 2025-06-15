@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { trackInteraction } from '@/lib/supabase'
 
 // Runtime configuration for Vercel
 export const runtime = 'nodejs'
@@ -56,25 +57,24 @@ export async function POST(request: NextRequest) {
       url: sanitizeString(body.url || request.headers.get('referer') || 'unknown')
     }
 
-    // In a production environment, you would:
-    // 1. Send to analytics service (Google Analytics, Mixpanel, etc.)
-    // 2. Store in database for later analysis
-    // 3. Send to marketing automation tools
-    // 4. Trigger conversion tracking pixels
+    // Store in database
+    const success = await trackInteraction({
+      session_id: body.sessionId || 'anonymous',
+      event_type: interaction.event,
+      event_data: interaction.data,
+      page_url: interaction.url,
+      user_agent: interaction.userAgent,
+      ip_address: interaction.ip,
+    })
+
+    if (!success) {
+      console.error('Failed to store interaction in database')
+    }
     
-    // For demo purposes, we'll just log and return success
-    console.log('Interaction tracked:', interaction)
-    
-    // Simulate sending to external services
+    // Send to analytics services
     if (process.env.NODE_ENV === 'production') {
-      // Example: Send to Google Analytics
-      // await sendToGoogleAnalytics(interaction)
-      
-      // Example: Send to Mixpanel
-      // await sendToMixpanel(interaction)
-      
-      // Example: Store in database
-      // await storeInDatabase(interaction)
+      await sendToGoogleAnalytics(interaction)
+      await sendToMixpanel(interaction)
     }
 
     return NextResponse.json({

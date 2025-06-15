@@ -106,7 +106,7 @@ export default function VoiceInterface({
         clearTimeout(timeoutRef.current)
       }
     }
-  }, [onTrigger, triggerPhrase])
+  }, [onTrigger, triggerPhrase, confidence])
 
   const startListening = () => {
     if (recognitionRef.current && !isListening) {

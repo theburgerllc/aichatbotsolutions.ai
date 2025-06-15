@@ -162,7 +162,7 @@ const chatbot = {
 
       return () => clearTimeout(timer)
     }
-  }, [isBuilding, currentStep, buildSteps, industry, persona, onComplete])
+  }, [isBuilding, currentStep, buildSteps, industry, persona, onComplete, codeSnippets])
 
   const startBuild = () => {
     setIsBuilding(true)

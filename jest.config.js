@@ -13,7 +13,7 @@ const customJestConfig = {
     '!src/**/*.d.ts',
     '!src/**/index.ts',
   ],
-  moduleNameMapping: {
+  moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/', '<rootDir>/.next/standalone/'],

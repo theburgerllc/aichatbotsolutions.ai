@@ -78,7 +78,6 @@ git clone https://github.com/your-username/aichatbotsolutions.ai.git
 cd aichatbotsolutions.ai
 
 # Install dependencies (use legacy peer deps for Three.js compatibility)
-npm install --legacy-peer-deps
 
 # Start development server
 npm run dev

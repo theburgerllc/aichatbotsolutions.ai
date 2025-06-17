@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Bot, Code, MessageSquare, Settings, CheckCircle, Loader } from 'lucide-react'
 
@@ -60,7 +60,7 @@ export default function ChatbotBuilder({ persona, industry, onComplete }: Chatbo
   const [isBuilding, setIsBuilding] = useState(false)
   const [buildComplete, setBuildComplete] = useState(false)
 
-  const codeSnippets = {
+  const codeSnippets = useMemo(() => ({
     healthcare: `
 // Healthcare AI Chatbot Configuration
 const chatbot = {
@@ -118,7 +118,7 @@ const chatbot = {
     loyaltyProgram: true
   }
 }`
-  }
+  }), [])
 
   const typewriterEffect = (text: string, callback: () => void) => {
     let index = 0

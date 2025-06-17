@@ -190,8 +190,8 @@ export default function HeroScene() {
             antialias: false, // Disable for better performance
             alpha: true, 
             powerPreference: "high-performance",
-            pixelRatio: Math.min(window.devicePixelRatio, 2) // Limit pixel ratio
           }}
+          dpr={Math.min(window.devicePixelRatio, 2)}
           frameloop="demand" // Only render when needed
           performance={{ min: 0.5 }} // Reduce quality when needed
         >

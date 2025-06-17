@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
       company: sanitizeString(body.company),
       phone: body.phone ? sanitizeString(body.phone) : undefined,
       industry: sanitizeString(body.industry || 'Not specified'),
-      persona: body.persona ? sanitizeString(body.persona) : undefined,
+      persona: sanitizeString(body.persona || 'General Business User'),
       message: body.message ? sanitizeString(body.message) : undefined,
       roi_calculation: body.roiCalculation || null,
       source: body.source || 'website_lead_form',

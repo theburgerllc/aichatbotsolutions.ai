@@ -42,7 +42,7 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 flex items-center justify-center pt-24">
+      <section className="relative min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 flex items-center justify-center pt-32">
         <div className="absolute inset-0 bg-black bg-opacity-20"></div>
         
         <motion.div

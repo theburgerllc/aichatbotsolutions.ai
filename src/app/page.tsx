@@ -25,24 +25,24 @@ export default function HomePage() {
               <h1 className="text-xl font-bold text-gray-900">AI Chatbot Solutions</h1>
             </div>
             <div className="hidden md:flex items-center space-x-6">
-              <a href="/pages/features.html" className="text-gray-600 hover:text-gray-900 transition-colors">Features</a>
-              <a href="/interactive-demo.html" className="text-gray-600 hover:text-gray-900 transition-colors">Interactive Demo</a>
+              <Link href="/features" className="text-gray-600 hover:text-gray-900 transition-colors">Features</Link>
+              <Link href="/interactive-demo" className="text-gray-600 hover:text-gray-900 transition-colors">Interactive Demo</Link>
               <Link href="/demo" className="text-gray-600 hover:text-gray-900 transition-colors">Personalized Demo</Link>
-              <a href="/pages/industries.html" className="text-gray-600 hover:text-gray-900 transition-colors">Industries</a>
-              <a href="/pages/pricing.html" className="text-gray-600 hover:text-gray-900 transition-colors">Pricing</a>
-              <a href="/pages/contact.html" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
+              <Link href="/industries" className="text-gray-600 hover:text-gray-900 transition-colors">Industries</Link>
+              <Link href="/pricing" className="text-gray-600 hover:text-gray-900 transition-colors">Pricing</Link>
+              <Link href="/contact" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</Link>
             </div>
             <div className="flex items-center space-x-4">
-              <a href="/demo-booking.html" className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
+              <Link href="/demo-booking" className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
                 Book Demo
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 flex items-center justify-center pt-16">
+      <section className="relative h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 flex items-center justify-center pt-24">
         <div className="absolute inset-0 bg-black bg-opacity-20"></div>
         
         <motion.div
@@ -80,18 +80,18 @@ export default function HomePage() {
             transition={{ duration: 0.8, delay: 1.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
           >
-            <a 
-              href="/demo-booking.html" 
+            <Link 
+              href="/demo-booking" 
               className="bg-white text-red-600 font-semibold py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors shadow-lg"
             >
               Book Free Demo
-            </a>
-            <a 
-              href="/interactive-demo.html" 
+            </Link>
+            <Link 
+              href="/interactive-demo" 
               className="bg-orange-600 text-white font-semibold py-4 px-8 rounded-xl hover:bg-orange-700 transition-colors shadow-lg"
             >
               Try Demo Now
-            </a>
+            </Link>
             <Link 
               href="/demo" 
               className="bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl hover:bg-blue-800 border border-blue-500 transition-colors shadow-lg"
@@ -136,16 +136,6 @@ export default function HomePage() {
           </motion.div>
         </motion.div>
         
-        {/* Skip to Advanced Demo Button */}
-        <motion.button
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 2 }}
-          className="absolute bottom-8 right-8 z-20 bg-white text-blue-600 px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-semibold"
-          onClick={() => setShowPersonas(true)}
-        >
-          Advanced Demo →
-        </motion.button>
       </section>
 
       {/* Persona Selection - Shows after voice trigger or skip */}
@@ -196,12 +186,12 @@ export default function HomePage() {
                 <li>✓ Healthcare scenarios</li>
                 <li>✓ Quick 5-minute experience</li>
               </ul>
-              <a 
-                href="/interactive-demo.html"
+              <Link 
+                href="/interactive-demo"
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-block"
               >
                 Try Interactive Demo
-              </a>
+              </Link>
             </motion.div>
 
             {/* Personalized Demo */}
@@ -254,12 +244,12 @@ export default function HomePage() {
                 <li>✓ Custom business analysis</li>
                 <li>✓ Implementation roadmap</li>
               </ul>
-              <a 
-                href="/demo-booking.html"
+              <Link 
+                href="/demo-booking"
                 className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-block"
               >
                 Book Live Demo
-              </a>
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -368,14 +358,14 @@ export default function HomePage() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <motion.a
-                href="/demo-booking.html"
-                className="bg-white hover:bg-gray-100 text-blue-600 font-semibold py-4 px-8 rounded-xl transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Book Free Demo →
-              </motion.a>
+              <motion.div>
+                <Link
+                  href="/demo-booking"
+                  className="bg-white hover:bg-gray-100 text-blue-600 font-semibold py-4 px-8 rounded-xl transition-colors inline-block"
+                >
+                  Book Free Demo →
+                </Link>
+              </motion.div>
               <motion.button
                 className="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-4 px-8 rounded-xl border border-blue-500 transition-colors"
                 whileHover={{ scale: 1.05 }}

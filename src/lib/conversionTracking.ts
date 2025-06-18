@@ -96,11 +96,11 @@ export class ConversionTracker {
 
     // Trigger personalization based on score
     if (this.engagementScore > 70 && !this.hasTriggeredHighIntent) {
-      this.triggerHighIntentExperience()
       this.hasTriggeredHighIntent = true
+      this.triggerHighIntentExperience()
     } else if (this.engagementScore > 40 && !this.hasTriggeredMediumIntent) {
-      this.triggerMediumIntentExperience()
       this.hasTriggeredMediumIntent = true
+      this.triggerMediumIntentExperience()
     }
 
     // Dispatch custom event for other components to listen

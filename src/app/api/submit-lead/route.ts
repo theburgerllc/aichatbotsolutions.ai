@@ -37,7 +37,7 @@ function validateEmail(email: string): boolean {
 export async function POST(request: NextRequest) {
   try {
     const body: LeadFormData = await request.json()
-    
+
     // Validate required fields
     if (!body.name || !body.email || !body.company) {
       return NextResponse.json(
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
-    
+
     // Sanitize input data
     const leadData = {
       name: sanitizeString(body.name),
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
 
     // Save lead to database
     const savedLead = await saveLead(leadData)
-    
+
     if (!savedLead) {
       return NextResponse.json(
         { error: 'Failed to save lead' },
@@ -102,9 +102,9 @@ export async function POST(request: NextRequest) {
 async function sendEmailNotification(leadData: any) {
   // Implement email notification using your preferred service
   // Examples: SendGrid, AWS SES, Resend, etc.
-  
+
   const emailService = process.env.EMAIL_SERVICE || 'resend'
-  
+
   try {
     if (emailService === 'resend' && process.env.RESEND_API_KEY) {
       // Example Resend implementation
@@ -144,7 +144,7 @@ async function sendEmailNotification(leadData: any) {
 // Helper function to send to CRM
 async function sendToCRM(leadData: any) {
   // Implement CRM integration (HubSpot, Salesforce, etc.)
-  
+
   try {
     if (process.env.HUBSPOT_API_KEY) {
       // Example HubSpot implementation

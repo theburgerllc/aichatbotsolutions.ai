@@ -31,10 +31,10 @@ interface FieldConfig {
   options?: string[]
 }
 
-export default function SmartProgressForm({ 
-  onSubmit, 
+export default function SmartProgressForm({
+  onSubmit,
   variant = 'full',
-  className = '' 
+  className = ''
 }: SmartProgressFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -44,7 +44,7 @@ export default function SmartProgressForm({
     phone: '',
     role: ''
   })
-  
+
   const [completionScore, setCompletionScore] = useState(0)
   const [showIncentive, setShowIncentive] = useState(false)
   const [currentField, setCurrentField] = useState(0)
@@ -52,56 +52,56 @@ export default function SmartProgressForm({
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const fields: FieldConfig[] = [
-    { 
-      key: 'name', 
-      label: 'Full Name', 
-      type: 'text', 
+    {
+      key: 'name',
+      label: 'Full Name',
+      type: 'text',
       placeholder: 'John Smith',
       icon: User,
       points: 15,
       required: true
     },
-    { 
-      key: 'email', 
-      label: 'Work Email', 
-      type: 'email', 
+    {
+      key: 'email',
+      label: 'Work Email',
+      type: 'email',
       placeholder: 'john@company.com',
       icon: Mail,
       points: 25,
       required: true
     },
-    { 
-      key: 'company', 
-      label: 'Company Name', 
-      type: 'text', 
+    {
+      key: 'company',
+      label: 'Company Name',
+      type: 'text',
       placeholder: 'Your Company Inc.',
       icon: Building,
       points: 20,
       required: true
     },
-    { 
-      key: 'industry', 
-      label: 'Industry', 
-      type: 'select', 
+    {
+      key: 'industry',
+      label: 'Industry',
+      type: 'select',
       placeholder: 'Select your industry',
       icon: Briefcase,
       points: 15,
       required: true,
       options: ['Healthcare', 'Legal', 'Retail', 'Real Estate', 'Technology', 'Manufacturing', 'Finance', 'Education', 'Other']
     },
-    { 
-      key: 'phone', 
-      label: 'Phone Number', 
-      type: 'tel', 
+    {
+      key: 'phone',
+      label: 'Phone Number',
+      type: 'tel',
       placeholder: '+1 (555) 123-4567',
       icon: Phone,
       points: 10,
       required: false
     },
-    { 
-      key: 'role', 
-      label: 'Your Role', 
-      type: 'select', 
+    {
+      key: 'role',
+      label: 'Your Role',
+      type: 'select',
       placeholder: 'Select your role',
       icon: User,
       points: 15,
@@ -115,7 +115,7 @@ export default function SmartProgressForm({
   const handleFieldChange = (key: keyof FormData, value: string) => {
     const prevValue = formData[key]
     setFormData(prev => ({ ...prev, [key]: value }))
-    
+
     // Track field completion
     if (value && !prevValue) {
       const field = fields.find(f => f.key === key)
@@ -123,21 +123,21 @@ export default function SmartProgressForm({
         const newCompletedFields = new Set(completedFields)
         newCompletedFields.add(key)
         setCompletedFields(newCompletedFields)
-        
+
         const newScore = completionScore + field.points
         setCompletionScore(newScore)
-        
-        trackConversion('form_field_complete', 1, { 
-          field: key, 
+
+        trackConversion('form_field_complete', 1, {
+          field: key,
           value: value.length,
           completionScore: newScore,
           completionPercentage: (newScore / maxScore) * 100
         })
-        
+
         // Show incentive at 50% completion
         if (newScore >= maxScore * 0.5 && !showIncentive) {
           setShowIncentive(true)
-          trackConversion('form_incentive_triggered', 1, { 
+          trackConversion('form_incentive_triggered', 1, {
             completionScore: newScore,
             completionPercentage: (newScore / maxScore) * 100
           })
@@ -149,8 +149,8 @@ export default function SmartProgressForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    trackConversion('form_submit_attempted', 1, { 
+
+    trackConversion('form_submit_attempted', 1, {
       formData: Object.keys(formData).reduce((acc, key) => {
         acc[key] = formData[key as keyof FormData] ? 'filled' : 'empty'
         return acc
@@ -158,7 +158,7 @@ export default function SmartProgressForm({
       completionScore,
       completionPercentage: (completionScore / maxScore) * 100
     })
-    
+
     try {
       await onSubmit?.(formData)
       trackConversion('form_submit_success', 1, { completionScore })
@@ -178,7 +178,7 @@ export default function SmartProgressForm({
 
   if (variant === 'compact') {
     return (
-      <motion.form 
+      <motion.form
         onSubmit={handleSubmit}
         className={`bg-white rounded-xl shadow-lg p-6 ${className}`}
         initial={{ opacity: 0, y: 20 }}
@@ -214,7 +214,7 @@ export default function SmartProgressForm({
   }
 
   return (
-    <motion.div 
+    <motion.div
       className={`bg-white rounded-2xl shadow-xl p-8 ${className}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -225,9 +225,9 @@ export default function SmartProgressForm({
           <span className="font-medium">Progress to Free Demo</span>
           <span className="font-bold text-blue-600">{Math.round(completionPercentage)}%</span>
         </div>
-        
+
         <div className="relative w-full bg-gray-200 rounded-full h-4 overflow-hidden">
-          <motion.div 
+          <motion.div
             className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 rounded-full relative"
             style={{ width: `${Math.min(completionPercentage, 100)}%` }}
             animate={{ width: `${Math.min(completionPercentage, 100)}%` }}
@@ -240,18 +240,18 @@ export default function SmartProgressForm({
               style={{ width: "30%" }}
             />
           </motion.div>
-          
+
           {/* Progress milestones */}
           <div className="absolute inset-0 flex items-center justify-between px-2">
             {[25, 50, 75, 100].map((milestone) => (
               <motion.div
                 key={milestone}
                 className={`w-2 h-2 rounded-full ${
-                  completionPercentage >= milestone 
-                    ? 'bg-white shadow-md' 
+                  completionPercentage >= milestone
+                    ? 'bg-white shadow-md'
                     : 'bg-gray-400'
                 }`}
-                animate={{ 
+                animate={{
                   scale: completionPercentage >= milestone ? [1, 1.2, 1] : 1,
                   backgroundColor: completionPercentage >= milestone ? '#ffffff' : '#9ca3af'
                 }}
@@ -260,18 +260,18 @@ export default function SmartProgressForm({
             ))}
           </div>
         </div>
-        
+
         <div className="flex justify-between text-xs text-gray-500 mt-1">
           <span>Start</span>
           <span>50%</span>
           <span>Demo Ready!</span>
         </div>
       </div>
-      
+
       {/* Dynamic incentive */}
       <AnimatePresence>
         {showIncentive && (
-          <motion.div 
+          <motion.div
             initial={{ scale: 0, y: -20 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0, y: -20 }}
@@ -283,7 +283,7 @@ export default function SmartProgressForm({
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               style={{ width: "50%" }}
             />
-            
+
             <div className="flex items-center relative z-10">
               <motion.div
                 animate={{ rotate: [0, 10, -10, 0] }}
@@ -307,14 +307,14 @@ export default function SmartProgressForm({
           </motion.div>
         )}
       </AnimatePresence>
-      
+
       {/* Form fields */}
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid md:grid-cols-2 gap-6">
           {fields.map((field, index) => {
             const isCompleted = completedFields.has(field.key)
             const IconComponent = field.icon
-            
+
             return (
               <motion.div
                 key={field.key}
@@ -330,21 +330,21 @@ export default function SmartProgressForm({
                     +{field.points} pts
                   </span>
                 </label>
-                
+
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <IconComponent className={`w-5 h-5 ${
                       isCompleted ? 'text-green-500' : 'text-gray-400'
                     }`} />
                   </div>
-                  
+
                   {field.type === 'select' ? (
                     <select
                       value={formData[field.key]}
                       onChange={(e) => handleFieldChange(field.key, e.target.value)}
                       className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all ${
-                        isCompleted 
-                          ? 'border-green-500 focus:ring-green-500 bg-green-50' 
+                        isCompleted
+                          ? 'border-green-500 focus:ring-green-500 bg-green-50'
                           : 'border-gray-300 focus:ring-blue-500'
                       }`}
                       required={field.required}
@@ -361,14 +361,14 @@ export default function SmartProgressForm({
                       value={formData[field.key]}
                       onChange={(e) => handleFieldChange(field.key, e.target.value)}
                       className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all ${
-                        isCompleted 
-                          ? 'border-green-500 focus:ring-green-500 bg-green-50' 
+                        isCompleted
+                          ? 'border-green-500 focus:ring-green-500 bg-green-50'
                           : 'border-gray-300 focus:ring-blue-500'
                       }`}
                       required={field.required}
                     />
                   )}
-                  
+
                   {isCompleted && (
                     <motion.div
                       className="absolute inset-y-0 right-0 pr-3 flex items-center"
@@ -384,7 +384,7 @@ export default function SmartProgressForm({
             )
           })}
         </div>
-        
+
         {/* Submit button */}
         <motion.button
           type="submit"
@@ -410,7 +410,7 @@ export default function SmartProgressForm({
             `🎯 Get My Free Demo${completionPercentage >= 75 ? ' + ROI Report' : ''}`
           )}
         </motion.button>
-        
+
         {/* Trust indicators */}
         <motion.div
           className="flex items-center justify-center space-x-6 text-sm text-gray-600 pt-4 border-t border-gray-100"

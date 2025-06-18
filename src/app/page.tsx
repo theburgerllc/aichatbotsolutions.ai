@@ -17,11 +17,11 @@ export default function HomePage() {
   const [showPersonas, setShowPersonas] = useState(false)
   const [showHeroSequence, setShowHeroSequence] = useState(true)
   const [showMainContent, setShowMainContent] = useState(false)
-  
+
   useEffect(() => {
     trackConversion('page_view', 1, { page: 'homepage' })
   }, [])
-  
+
   const handleVoiceTrigger = () => {
     trackInteraction('voice_trigger_activated')
     trackConversion('voice_trigger_activated', 1)
@@ -57,7 +57,7 @@ export default function HomePage() {
       <LiveActivityFeed />
       <ExitIntentPopup />
       <UrgencyTimer variant="banner" className="fixed top-0 left-0 right-0 z-40" />
-      
+
       {/* Navigation */}
       <nav className="bg-white shadow-sm border-b fixed w-full top-12 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,7 +85,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 flex items-center justify-center pt-40">
         <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -104,30 +104,30 @@ export default function HomePage() {
               24/7 AI Support
             </span>
           </motion.h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
             className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto"
           >
-            Transform your customer service with intelligent chatbots that work round the clock. 
+            Transform your customer service with intelligent chatbots that work round the clock.
             Get started in just 24 hours.
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
           >
-            <motion.div 
+            <motion.div
               className="relative"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link 
-                href="/demo-booking" 
+              <Link
+                href="/demo-booking"
                 className="bg-gradient-to-r from-red-600 to-red-700 text-white font-bold py-5 px-10 rounded-xl hover:from-red-700 hover:to-red-800 transition-all shadow-2xl"
                 onClick={() => trackConversion('cta_click', 1, { type: 'book_demo', location: 'hero' })}
               >
@@ -137,17 +137,17 @@ export default function HomePage() {
                 HOT
               </div>
             </motion.div>
-            
-            <Link 
-              href="/interactive-demo" 
+
+            <Link
+              href="/interactive-demo"
               className="bg-orange-600 text-white font-semibold py-4 px-8 rounded-xl hover:bg-orange-700 transition-colors shadow-lg"
               onClick={() => trackConversion('cta_click', 1, { type: 'interactive_demo', location: 'hero' })}
             >
               ⚡ Try Demo Now
             </Link>
-            
-            <Link 
-              href="/demo" 
+
+            <Link
+              href="/demo"
               className="bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl hover:bg-blue-800 border border-blue-500 transition-colors shadow-lg"
               onClick={() => trackConversion('cta_click', 1, { type: 'personalized_demo', location: 'hero' })}
             >
@@ -190,7 +190,7 @@ export default function HomePage() {
             </div>
           </motion.div>
         </motion.div>
-        
+
       </section>
 
       {/* Persona Selection - Shows after voice trigger or skip */}
@@ -203,7 +203,7 @@ export default function HomePage() {
           <PersonaSelector />
         </motion.div>
       )}
-      
+
       {/* Demo Options Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -220,7 +220,7 @@ export default function HomePage() {
               Choose the demo experience that best fits your needs and see how AI can transform your business
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {/* Interactive Demo */}
             <motion.div
@@ -241,7 +241,7 @@ export default function HomePage() {
                 <li>✓ Healthcare scenarios</li>
                 <li>✓ Quick 5-minute experience</li>
               </ul>
-              <Link 
+              <Link
                 href="/interactive-demo"
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-block"
               >
@@ -272,7 +272,7 @@ export default function HomePage() {
                 <li>✓ ROI calculator</li>
                 <li>✓ AI chatbot builder</li>
               </ul>
-              <Link 
+              <Link
                 href="/demo"
                 className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-block"
               >
@@ -299,7 +299,7 @@ export default function HomePage() {
                 <li>✓ Custom business analysis</li>
                 <li>✓ Implementation roadmap</li>
               </ul>
-              <Link 
+              <Link
                 href="/demo-booking"
                 className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-block"
               >
@@ -326,7 +326,7 @@ export default function HomePage() {
               Watch how AI transforms your customer service from overwhelming to effortless
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Before - Chaos */}
             <motion.div
@@ -360,7 +360,7 @@ export default function HomePage() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-red-200 rounded-full opacity-20 -mr-16 -mt-16"></div>
               </div>
             </motion.div>
-            
+
             {/* After - Organized */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -396,7 +396,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      
+
       {/* Social Proof and CTA */}
       <section className="py-20 bg-blue-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -411,7 +411,7 @@ export default function HomePage() {
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Join 2,500+ businesses already saving 80% on customer service costs while providing better support.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <motion.div>
                 <Link
@@ -449,7 +449,7 @@ export default function HomePage() {
               Get your free demo and custom ROI report in less than 60 seconds
             </p>
           </div>
-          
+
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <UrgencyTimer className="mb-8" />
@@ -475,7 +475,7 @@ export default function HomePage() {
                 </ul>
               </div>
             </div>
-            
+
             <div>
               <SmartProgressForm onSubmit={handleFormSubmit} />
             </div>
@@ -489,7 +489,7 @@ export default function HomePage() {
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">AI Chatbot Solutions</h3>
             <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-              Transforming customer service with AI-powered automation. 
+              Transforming customer service with AI-powered automation.
               Powered by BotPenguin for healthcare, legal, retail, and service businesses.
             </p>
             <div className="border-t border-gray-800 pt-6">

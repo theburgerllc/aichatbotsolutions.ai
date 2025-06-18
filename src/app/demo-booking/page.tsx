@@ -39,10 +39,10 @@ export default function DemoBookingPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     // Simulate booking submission
     await new Promise(resolve => setTimeout(resolve, 2000))
-    
+
     setIsSubmitting(false)
     setIsBooked(true)
   }
@@ -55,10 +55,10 @@ export default function DemoBookingPage() {
   }
 
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-US', { 
-      weekday: 'long', 
-      month: 'long', 
-      day: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric'
     })
   }
 
@@ -148,7 +148,7 @@ export default function DemoBookingPage() {
                 AI Demo Call
               </span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -192,9 +192,9 @@ export default function DemoBookingPage() {
             </h2>
             <span className="text-sm text-gray-500">Step {currentStep} of 3</span>
           </div>
-          
+
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
+            <div
               className="bg-blue-600 h-2 rounded-full transition-all duration-500"
               style={{ width: `${(currentStep / 3) * 100}%` }}
             />
@@ -215,7 +215,7 @@ export default function DemoBookingPage() {
                   className="p-8"
                 >
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">Choose Your Preferred Date & Time</h3>
-                  
+
                   <div className="grid lg:grid-cols-2 gap-8">
                     {/* Date Selection */}
                     <div>
@@ -278,7 +278,7 @@ export default function DemoBookingPage() {
                   className="p-8"
                 >
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
-                  
+
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -293,7 +293,7 @@ export default function DemoBookingPage() {
                         className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Last Name *
@@ -307,7 +307,7 @@ export default function DemoBookingPage() {
                         className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Email Address *
@@ -321,7 +321,7 @@ export default function DemoBookingPage() {
                         className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Phone Number
@@ -334,7 +334,7 @@ export default function DemoBookingPage() {
                         className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Company Name *
@@ -348,7 +348,7 @@ export default function DemoBookingPage() {
                         className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Job Title
@@ -373,7 +373,7 @@ export default function DemoBookingPage() {
                   className="p-8"
                 >
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">About Your Business</h3>
-                  
+
                   <div className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
@@ -397,7 +397,7 @@ export default function DemoBookingPage() {
                           <option value="other">Other</option>
                         </select>
                       </div>
-                      
+
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Company Size *
@@ -418,7 +418,7 @@ export default function DemoBookingPage() {
                         </select>
                       </div>
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Current Customer Service Solution
@@ -432,7 +432,7 @@ export default function DemoBookingPage() {
                         className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         What are your main goals? *
@@ -447,7 +447,7 @@ export default function DemoBookingPage() {
                         className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Implementation Timeframe
@@ -483,7 +483,7 @@ export default function DemoBookingPage() {
                     </button>
                   )}
                 </div>
-                
+
                 <div>
                   {currentStep < 3 ? (
                     <button
@@ -526,7 +526,7 @@ export default function DemoBookingPage() {
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">AI Chatbot Solutions</h3>
             <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-              Transforming customer service with AI-powered automation. 
+              Transforming customer service with AI-powered automation.
               Powered by BotPenguin for healthcare, legal, retail, and service businesses.
             </p>
             <div className="border-t border-gray-800 pt-6">

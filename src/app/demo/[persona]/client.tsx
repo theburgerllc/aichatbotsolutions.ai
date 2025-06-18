@@ -17,7 +17,7 @@ interface PersonaDemoClientProps {
 
 export default function PersonaDemoClient({ persona }: PersonaDemoClientProps) {
   const router = useRouter()
-  
+
   const [selectedIndustry, setSelectedIndustry] = useState<Industry>('healthcare')
   const [showChatbot, setShowChatbot] = useState(false)
   const [chatbotConfig, setChatbotConfig] = useState<any>(null)
@@ -37,7 +37,7 @@ export default function PersonaDemoClient({ persona }: PersonaDemoClientProps) {
   const generateChatbot = async () => {
     setIsGenerating(true)
     trackInteraction('chatbot_generation_started', { persona, industry: selectedIndustry })
-    
+
     try {
       const response = await fetch('/api/generate-chatbot', {
         method: 'POST',
@@ -48,7 +48,7 @@ export default function PersonaDemoClient({ persona }: PersonaDemoClientProps) {
           primaryGoals: personaConfig.solutions
         })
       })
-      
+
       const result = await response.json()
       if (result.success) {
         setChatbotConfig(result.chatbot)
@@ -99,7 +99,7 @@ export default function PersonaDemoClient({ persona }: PersonaDemoClientProps) {
               <p className="text-xl text-gray-600 mb-6">
                 {personaConfig.subtitle}
               </p>
-              
+
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-900">Your Pain Points:</h3>
                 {personaConfig.painPoints.map((point, index) => (
@@ -116,7 +116,7 @@ export default function PersonaDemoClient({ persona }: PersonaDemoClientProps) {
                 ))}
               </div>
             </div>
-            
+
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-4">AI Solutions:</h3>
               <div className="space-y-4">
@@ -185,7 +185,7 @@ export default function PersonaDemoClient({ persona }: PersonaDemoClientProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <ChatbotBuilder 
+          <ChatbotBuilder
             persona={persona}
             industry={selectedIndustry}
             onComplete={(config) => {
@@ -246,7 +246,7 @@ export default function PersonaDemoClient({ persona }: PersonaDemoClientProps) {
                   <h4 className="text-lg font-semibold text-gray-900 mb-4">
                     {chatbotConfig?.name}
                   </h4>
-                  
+
                   <div className="bg-white rounded-lg shadow-sm border border-gray-200 max-w-md">
                     {/* Chat Header */}
                     <div className="bg-blue-600 text-white p-4 rounded-t-lg flex items-center justify-between">
@@ -261,7 +261,7 @@ export default function PersonaDemoClient({ persona }: PersonaDemoClientProps) {
                         <span className="text-sm">Online</span>
                       </div>
                     </div>
-                    
+
                     {/* Chat Messages */}
                     <div className="p-4 space-y-4 h-64 overflow-y-auto">
                       <div className="flex items-start space-x-3">
@@ -272,13 +272,13 @@ export default function PersonaDemoClient({ persona }: PersonaDemoClientProps) {
                           <p className="text-sm">{chatbotConfig?.greeting}</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex justify-end">
                         <div className="bg-blue-600 text-white rounded-lg p-3 max-w-xs">
                           <p className="text-sm">I need help with scheduling</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-start space-x-3">
                         <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">
                           🤖
@@ -290,13 +290,13 @@ export default function PersonaDemoClient({ persona }: PersonaDemoClientProps) {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Configuration Details */}
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900 mb-4">
                     Chatbot Configuration
                   </h4>
-                  
+
                   <div className="space-y-4">
                     <div>
                       <h5 className="font-medium text-gray-900 mb-2">Key Capabilities:</h5>
@@ -309,7 +309,7 @@ export default function PersonaDemoClient({ persona }: PersonaDemoClientProps) {
                         ))}
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h5 className="font-medium text-gray-900 mb-2">Compliance:</h5>
                       <div className="flex flex-wrap gap-2">
@@ -323,13 +323,13 @@ export default function PersonaDemoClient({ persona }: PersonaDemoClientProps) {
                         ))}
                       </div>
                     </div>
-                    
+
                     <div>
                       <h5 className="font-medium text-gray-900 mb-2">Setup Time:</h5>
                       <p className="text-sm text-gray-600">{chatbotConfig?.estimatedSetupTime}</p>
                     </div>
                   </div>
-                  
+
                   <motion.button
                     className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
                     whileHover={{ scale: 1.02 }}

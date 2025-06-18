@@ -39,7 +39,7 @@ function sanitizeObject(obj: Record<string, any>): Record<string, any> {
 export async function POST(request: NextRequest) {
   try {
     const body: InteractionData = await request.json()
-    
+
     // Validate and sanitize input
     if (!body.event || typeof body.event !== 'string') {
       return NextResponse.json(
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
-    
+
     const interaction = {
       event: sanitizeString(body.event),
       data: body.data ? sanitizeObject(body.data) : {},
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
     if (!success) {
       console.error('Failed to store interaction in database')
     }
-    
+
     // Send to analytics services
     if (process.env.NODE_ENV === 'production') {
       await sendToGoogleAnalytics(interaction)

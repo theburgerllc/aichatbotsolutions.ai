@@ -22,8 +22,8 @@ interface FormData {
   mainChallenge: string
 }
 
-export default function LeadCapture({ 
-  onSubmit, 
+export default function LeadCapture({
+  onSubmit,
   title = "Get Your Custom AI Chatbot Quote",
   subtitle = "See exactly how much you could save with a personalized solution",
   ctaText = "Get My Custom Quote"
@@ -85,7 +85,7 @@ export default function LeadCapture({
       }
 
       const result = await response.json()
-      
+
       setIsSubmitting(false)
       setIsSubmitted(true)
 
@@ -124,7 +124,7 @@ export default function LeadCapture({
         </div>
         <h2 className="text-3xl font-bold text-gray-900 mb-4">Quote Request Submitted!</h2>
         <p className="text-lg text-gray-600 mb-6">
-          Thank you for your interest! Our team will analyze your requirements and send you a 
+          Thank you for your interest! Our team will analyze your requirements and send you a
           personalized quote within 2 hours.
         </p>
         <div className="bg-gray-50 rounded-xl p-6 mb-6">
@@ -165,7 +165,7 @@ export default function LeadCapture({
           <span className="text-sm text-gray-500">{Math.round((currentStep / totalSteps) * 100)}% Complete</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
-          <motion.div 
+          <motion.div
             className="bg-blue-600 h-2 rounded-full"
             style={{ width: `${(currentStep / totalSteps) * 100}%` }}
             transition={{ duration: 0.3 }}
@@ -184,7 +184,7 @@ export default function LeadCapture({
             className="space-y-6"
           >
             <h3 className="text-xl font-semibold text-gray-900 mb-4">Contact Information</h3>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -268,7 +268,7 @@ export default function LeadCapture({
             className="space-y-6"
           >
             <h3 className="text-xl font-semibold text-gray-900 mb-4">Business Information</h3>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Industry *
@@ -322,7 +322,7 @@ export default function LeadCapture({
             className="space-y-6"
           >
             <h3 className="text-xl font-semibold text-gray-900 mb-4">Current Situation</h3>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Current Customer Service Solution *
@@ -365,8 +365,8 @@ export default function LeadCapture({
             type="button"
             onClick={handlePrevious}
             className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-              currentStep === 1 
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+              currentStep === 1
+                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
             disabled={currentStep === 1}

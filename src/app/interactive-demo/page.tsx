@@ -78,9 +78,9 @@ export default function InteractiveDemoPage() {
     // Simulate AI response
     setTimeout(() => {
       const scenario = demoScenarios[currentDemo]
-      const response = scenario.responses[userMessage as keyof typeof scenario.responses] || 
+      const response = scenario.responses[userMessage as keyof typeof scenario.responses] ||
         "I understand your question. In a real implementation, our AI would provide a comprehensive response based on your specific inquiry and our trained knowledge base. Would you like to try another question from the examples above?"
-      
+
       setChatHistory(prev => [...prev, { role: 'bot', message: response }])
     }, 1000)
 
@@ -140,7 +140,7 @@ export default function InteractiveDemoPage() {
                 Live Interactive Demo
               </span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -160,7 +160,7 @@ export default function InteractiveDemoPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Choose Your Industry Demo</h2>
             <p className="text-gray-600">Select an industry to see how our AI handles specific scenarios</p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-4">
             {Object.entries(demoScenarios).map(([key, scenario]) => (
               <button
@@ -170,8 +170,8 @@ export default function InteractiveDemoPage() {
                   resetDemo()
                 }}
                 className={`p-6 rounded-xl border-2 transition-all ${
-                  currentDemo === key 
-                    ? 'border-blue-500 bg-blue-50' 
+                  currentDemo === key
+                    ? 'border-blue-500 bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300 bg-white'
                 }`}
               >
@@ -206,7 +206,7 @@ export default function InteractiveDemoPage() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="h-96 overflow-y-auto p-6 space-y-4">
                 {chatHistory.length === 0 && (
                   <div className="text-center text-gray-500 py-8">
@@ -214,7 +214,7 @@ export default function InteractiveDemoPage() {
                     <p>Start a conversation by typing a message or clicking a sample question</p>
                   </div>
                 )}
-                
+
                 <AnimatePresence>
                   {chatHistory.map((chat, index) => (
                     <motion.div
@@ -224,8 +224,8 @@ export default function InteractiveDemoPage() {
                       className={`flex ${chat.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
-                        chat.role === 'user' 
-                          ? 'bg-blue-600 text-white' 
+                        chat.role === 'user'
+                          ? 'bg-blue-600 text-white'
                           : 'bg-gray-100 text-gray-900'
                       }`}>
                         {chat.message}
@@ -234,7 +234,7 @@ export default function InteractiveDemoPage() {
                   ))}
                 </AnimatePresence>
               </div>
-              
+
               <div className="p-6 border-t">
                 <div className="flex space-x-2">
                   <input
@@ -324,7 +324,7 @@ export default function InteractiveDemoPage() {
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               This was just a taste of what our AI can do. Get your custom chatbot built for your specific business needs.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/demo-booking"
@@ -350,7 +350,7 @@ export default function InteractiveDemoPage() {
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">AI Chatbot Solutions</h3>
             <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-              Transforming customer service with AI-powered automation. 
+              Transforming customer service with AI-powered automation.
               Powered by BotPenguin for healthcare, legal, retail, and service businesses.
             </p>
             <div className="border-t border-gray-800 pt-6">

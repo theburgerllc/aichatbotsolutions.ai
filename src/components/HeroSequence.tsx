@@ -74,7 +74,7 @@ export default function HeroSequence({ onComplete, className = '' }: HeroSequenc
               <div className="text-xl font-bold">AI ACTIVATED</div>
             </div>
           </motion.div>
-          
+
           {/* Floating AI features */}
           {[
             { text: "24/7 Support", position: "top-2 left-2" },
@@ -127,7 +127,7 @@ export default function HeroSequence({ onComplete, className = '' }: HeroSequenc
               </motion.div>
             ))}
           </motion.div>
-          
+
           <motion.div
             className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-6 text-white relative overflow-hidden"
             initial={{ scale: 0 }}
@@ -246,7 +246,7 @@ export default function HeroSequence({ onComplete, className = '' }: HeroSequenc
             >
               {stage.title}
             </motion.h1>
-            
+
             <motion.p
               className="text-xl md:text-2xl text-gray-200 mb-12"
               initial={{ opacity: 0, y: 20 }}
@@ -255,7 +255,7 @@ export default function HeroSequence({ onComplete, className = '' }: HeroSequenc
             >
               {stage.subtitle}
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}

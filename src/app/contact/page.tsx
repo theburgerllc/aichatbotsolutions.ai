@@ -21,10 +21,10 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000))
-    
+
     setIsSubmitting(false)
     setIsSubmitted(true)
   }
@@ -174,14 +174,14 @@ export default function ContactPage() {
                 We're Here to Help
               </span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto"
             >
-              Have questions about AI chatbots? Ready to transform your customer service? 
+              Have questions about AI chatbots? Ready to transform your customer service?
               Our team is here to help you find the perfect solution.
             </motion.p>
           </div>
@@ -259,7 +259,7 @@ export default function ContactPage() {
                     />
                   </div>
                 </div>
-                
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
@@ -288,7 +288,7 @@ export default function ContactPage() {
                     />
                   </div>
                 </div>
-                
+
                 <div>
                   <label htmlFor="industry" className="block text-sm font-medium text-gray-700 mb-2">
                     Industry
@@ -310,7 +310,7 @@ export default function ContactPage() {
                     <option value="other">Other</option>
                   </select>
                 </div>
-                
+
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                     Message *
@@ -326,7 +326,7 @@ export default function ContactPage() {
                     placeholder="Tell us about your needs, questions, or how we can help you..."
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Preferred Contact Method
@@ -356,7 +356,7 @@ export default function ContactPage() {
                     </label>
                   </div>
                 </div>
-                
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -440,7 +440,7 @@ export default function ContactPage() {
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Join 2,500+ businesses already saving 80% on customer service costs while providing better support.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/demo"
@@ -466,7 +466,7 @@ export default function ContactPage() {
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">AI Chatbot Solutions</h3>
             <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-              Transforming customer service with AI-powered automation. 
+              Transforming customer service with AI-powered automation.
               Powered by BotPenguin for healthcare, legal, retail, and service businesses.
             </p>
             <div className="border-t border-gray-800 pt-6">

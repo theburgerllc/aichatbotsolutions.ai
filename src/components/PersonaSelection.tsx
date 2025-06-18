@@ -111,8 +111,8 @@ export default function PersonaSelection({ onPersonaSelect }: PersonaSelectionPr
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             className={`relative cursor-pointer transition-all duration-300 ${
-              selectedPersona === persona.id 
-                ? 'scale-105 ring-4 ring-blue-500 ring-opacity-50' 
+              selectedPersona === persona.id
+                ? 'scale-105 ring-4 ring-blue-500 ring-opacity-50'
                 : 'hover:scale-102'
             }`}
             onClick={() => handlePersonaClick(persona.id)}
@@ -144,7 +144,7 @@ export default function PersonaSelection({ onPersonaSelect }: PersonaSelectionPr
               </div>
 
               {/* Try Demo Button */}
-              <motion.div 
+              <motion.div
                 className="mt-6"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -177,7 +177,7 @@ export default function PersonaSelection({ onPersonaSelect }: PersonaSelectionPr
       </div>
 
       {/* Bottom CTA */}
-      <motion.div 
+      <motion.div
         className="text-center mt-12"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

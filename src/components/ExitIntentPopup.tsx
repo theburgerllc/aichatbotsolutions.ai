@@ -37,7 +37,7 @@ export default function ExitIntentPopup({ className = '' }: ExitIntentPopupProps
 
     document.addEventListener('mouseleave', handleMouseLeave)
     window.addEventListener('beforeunload', handleBeforeUnload)
-    
+
     return () => {
       document.removeEventListener('mouseleave', handleMouseLeave)
       window.removeEventListener('beforeunload', handleBeforeUnload)
@@ -49,7 +49,7 @@ export default function ExitIntentPopup({ className = '' }: ExitIntentPopupProps
       const timer = setInterval(() => {
         setTimeLeft(prev => prev > 0 ? prev - 1 : 0)
       }, 1000)
-      
+
       return () => clearInterval(timer)
     }
   }, [showPopup])
@@ -77,14 +77,14 @@ export default function ExitIntentPopup({ className = '' }: ExitIntentPopupProps
 
   return (
     <AnimatePresence>
-      <motion.div 
+      <motion.div
         className={`fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 ${className}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={handleClose}
       >
-        <motion.div 
+        <motion.div
           className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative shadow-2xl"
           initial={{ scale: 0.8, y: 50 }}
           animate={{ scale: 1, y: 0 }}
@@ -92,14 +92,14 @@ export default function ExitIntentPopup({ className = '' }: ExitIntentPopupProps
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
           onClick={(e) => e.stopPropagation()}
         >
-          <button 
+          <button
             onClick={handleClose}
             className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-1"
             aria-label="Close popup"
           >
             <X className="w-5 h-5" />
           </button>
-          
+
           <div className="text-center">
             <motion.div
               initial={{ rotate: -10, scale: 0 }}
@@ -110,7 +110,7 @@ export default function ExitIntentPopup({ className = '' }: ExitIntentPopupProps
               <span className="text-3xl">🚨</span>
             </motion.div>
 
-            <motion.h3 
+            <motion.h3
               className="text-2xl font-bold text-red-600 mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -118,19 +118,19 @@ export default function ExitIntentPopup({ className = '' }: ExitIntentPopupProps
             >
               Wait! Don't Miss Out
             </motion.h3>
-            
-            <motion.p 
+
+            <motion.p
               className="text-gray-700 mb-6 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              Get a <strong className="text-green-600">FREE 30-day trial</strong> + custom setup 
+              Get a <strong className="text-green-600">FREE 30-day trial</strong> + custom setup
               <br />
               <span className="text-sm text-gray-500">(valued at $2,000)</span>
             </motion.p>
-            
-            <motion.div 
+
+            <motion.div
               className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-4 mb-6"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -167,8 +167,8 @@ export default function ExitIntentPopup({ className = '' }: ExitIntentPopupProps
                 </motion.div>
               ))}
             </div>
-            
-            <motion.button 
+
+            <motion.button
               className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-4 px-6 rounded-lg font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-200 shadow-lg mb-3"
               onClick={handleClaimOffer}
               initial={{ opacity: 0, y: 20 }}

@@ -172,7 +172,7 @@ export default function PricingPage() {
                 Pricing
               </span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -181,7 +181,7 @@ export default function PricingPage() {
             >
               Choose the perfect plan for your business. All plans include 24-hour setup, training, and launch.
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -238,7 +238,7 @@ export default function PricingPage() {
                     </div>
                   </div>
                 )}
-                
+
                 <div className={`bg-gradient-to-r ${plan.color} p-6 text-white`}>
                   <div className="flex items-center mb-4">
                     <plan.icon className="w-8 h-8 mr-3" />
@@ -257,7 +257,7 @@ export default function PricingPage() {
                     </p>
                   )}
                 </div>
-                
+
                 <div className="p-6">
                   <div className="mb-6">
                     <h4 className="font-semibold text-gray-900 mb-4">What's included:</h4>
@@ -270,7 +270,7 @@ export default function PricingPage() {
                       ))}
                     </ul>
                   </div>
-                  
+
                   {plan.notIncluded.length > 0 && (
                     <div className="mb-6">
                       <h4 className="font-semibold text-gray-900 mb-4">Not included:</h4>
@@ -284,7 +284,7 @@ export default function PricingPage() {
                       </ul>
                     </div>
                   )}
-                  
+
                   <button className={`w-full py-4 px-6 rounded-xl font-semibold transition-colors ${
                     plan.popular
                       ? 'bg-blue-600 hover:bg-blue-700 text-white'
@@ -292,7 +292,7 @@ export default function PricingPage() {
                   }`}>
                     Get Started
                   </button>
-                  
+
                   <p className="text-center text-sm text-gray-500 mt-3">
                     14-day free trial • No setup fees
                   </p>
@@ -314,7 +314,7 @@ export default function PricingPage() {
               Enhance your chatbot with additional features and services
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {addOns.map((addon, index) => (
               <motion.div
@@ -347,7 +347,7 @@ export default function PricingPage() {
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Most businesses see a 675% return on investment within the first year
             </p>
-            
+
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               {[
                 { number: "80%", label: "Cost Reduction" },
@@ -360,7 +360,7 @@ export default function PricingPage() {
                 </div>
               ))}
             </div>
-            
+
             <Link
               href="/demo"
               className="bg-white text-blue-600 font-semibold py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors inline-flex items-center"
@@ -380,7 +380,7 @@ export default function PricingPage() {
               Frequently Asked Questions
             </h2>
           </div>
-          
+
           <div className="space-y-6">
             {faqs.map((faq, index) => (
               <motion.div
@@ -412,7 +412,7 @@ export default function PricingPage() {
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Start your 14-day free trial today. No credit card required, no setup fees.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/demo"
@@ -438,7 +438,7 @@ export default function PricingPage() {
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">AI Chatbot Solutions</h3>
             <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-              Transforming customer service with AI-powered automation. 
+              Transforming customer service with AI-powered automation.
               Powered by BotPenguin for healthcare, legal, retail, and service businesses.
             </p>
             <div className="border-t border-gray-800 pt-6">

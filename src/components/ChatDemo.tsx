@@ -185,7 +185,7 @@ export default function ChatDemo({ persona, onDemoComplete }: ChatDemoProps) {
     setShowQuickActions(false)
     addMessage('user', text)
     setDemoProgress(50)
-    
+
     // Simulate typing delay
     setIsTyping(true)
     await new Promise(resolve => setTimeout(resolve, 1500))
@@ -193,7 +193,7 @@ export default function ChatDemo({ persona, onDemoComplete }: ChatDemoProps) {
 
     // Get responses for this action
     const responses = script.responses[action] || []
-    
+
     // Send responses with delays
     for (let i = 0; i < responses.length; i++) {
       await new Promise(resolve => setTimeout(resolve, 2000))
@@ -219,7 +219,7 @@ export default function ChatDemo({ persona, onDemoComplete }: ChatDemoProps) {
     // Simple keyword detection for responses
     let action = 'services'
     const lowerMessage = userMessage.toLowerCase()
-    
+
     if (lowerMessage.includes('appointment') || lowerMessage.includes('schedule')) {
       action = persona === 'healthcare' ? 'appointment' : 'meeting'
     } else if (lowerMessage.includes('prescription') || lowerMessage.includes('refill')) {
@@ -238,7 +238,7 @@ export default function ChatDemo({ persona, onDemoComplete }: ChatDemoProps) {
     setIsTyping(false)
 
     const responses = script.responses[action] || ["I understand. Let me connect you with someone who can help you with that specific request."]
-    
+
     for (let i = 0; i < responses.length; i++) {
       await new Promise(resolve => setTimeout(resolve, 2000))
       addMessage('bot', responses[i])
@@ -259,7 +259,7 @@ export default function ChatDemo({ persona, onDemoComplete }: ChatDemoProps) {
           <span className="text-sm text-gray-500">{demoProgress}%</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
-          <motion.div 
+          <motion.div
             className="bg-blue-600 h-2 rounded-full"
             style={{ width: `${demoProgress}%` }}
             transition={{ duration: 0.5 }}
@@ -303,8 +303,8 @@ export default function ChatDemo({ persona, onDemoComplete }: ChatDemoProps) {
                     {message.type === 'bot' ? <Bot className="w-4 h-4" /> : <User className="w-4 h-4" />}
                   </div>
                   <div className={`rounded-2xl p-4 ${
-                    message.type === 'bot' 
-                      ? 'bg-white border border-gray-200' 
+                    message.type === 'bot'
+                      ? 'bg-white border border-gray-200'
                       : 'bg-blue-600 text-white'
                   }`}>
                     <p className="text-sm">{message.content}</p>

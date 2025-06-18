@@ -84,13 +84,13 @@ function ChatbotCharacter() {
         <cylinderGeometry args={[0.8, 0.6, 1.5, 8]} />
         <meshStandardMaterial color="#2563eb" metalness={0.3} roughness={0.4} />
       </mesh>
-      
+
       {/* Head */}
       <mesh position={[0, 1.2, 0]}>
         <sphereGeometry args={[0.5, 32, 32]} />
         <meshStandardMaterial color="#1d4ed8" metalness={0.2} roughness={0.3} />
       </mesh>
-      
+
       {/* Eyes */}
       <mesh position={[-0.2, 1.3, 0.4]}>
         <sphereGeometry args={[0.08, 16, 16]} />
@@ -100,13 +100,13 @@ function ChatbotCharacter() {
         <sphereGeometry args={[0.08, 16, 16]} />
         <meshStandardMaterial color="#60a5fa" emissive="#3b82f6" emissiveIntensity={0.5} />
       </mesh>
-      
+
       {/* Mouth indicator */}
       <mesh position={[0, 1.1, 0.45]} scale={speaking ? [1.2, 0.8, 1] : [1, 1, 1]}>
         <ringGeometry args={[0.05, 0.1, 8]} />
         <meshStandardMaterial color="#93c5fd" emissive="#3b82f6" emissiveIntensity={speaking ? 0.8 : 0.3} />
       </mesh>
-      
+
       {/* Arms */}
       <mesh position={[-0.9, 0.3, 0]} rotation={[0, 0, Math.PI / 6]}>
         <cylinderGeometry args={[0.1, 0.15, 1, 8]} />
@@ -123,15 +123,15 @@ function ChatbotCharacter() {
 function Particles({ isMobile = false }: { isMobile?: boolean }) {
   const particlesRef = useRef<THREE.Points>(null!)
   const particleCount = isMobile ? 50 : 100 // Reduce particles on mobile
-  
+
   const positions = new Float32Array(particleCount * 3)
   const colors = new Float32Array(particleCount * 3)
-  
+
   for (let i = 0; i < particleCount; i++) {
     positions[i * 3] = (Math.random() - 0.5) * 20
     positions[i * 3 + 1] = (Math.random() - 0.5) * 20
     positions[i * 3 + 2] = (Math.random() - 0.5) * 20
-    
+
     colors[i * 3] = Math.random() * 0.5 + 0.5
     colors[i * 3 + 1] = Math.random() * 0.5 + 0.5
     colors[i * 3 + 2] = 1
@@ -163,7 +163,7 @@ function Particles({ isMobile = false }: { isMobile?: boolean }) {
 
 export default function HeroScene() {
   const [isMobile, setIsMobile] = useState(false)
-  
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
     checkMobile()
@@ -173,7 +173,7 @@ export default function HeroScene() {
 
   const messages = [
     "How can I help you today?",
-    "Available 24/7 for support", 
+    "Available 24/7 for support",
     "Reduce costs by 80%",
     "Instant accurate responses",
     "Seamless integration",
@@ -186,9 +186,9 @@ export default function HeroScene() {
         <Canvas
           camera={{ position: [0, 0, 10], fov: 75 }}
           className="absolute inset-0"
-          gl={{ 
+          gl={{
             antialias: false, // Disable for better performance
-            alpha: true, 
+            alpha: true,
             powerPreference: "high-performance",
           }}
           dpr={Math.min(window.devicePixelRatio, 2)}
@@ -199,11 +199,11 @@ export default function HeroScene() {
           <pointLight position={[10, 10, 10]} intensity={1} />
           <pointLight position={[-10, -10, -10]} intensity={0.5} color="#60a5fa" />
           <spotLight position={[0, 10, 0]} angle={0.15} penumbra={1} intensity={0.8} />
-          
+
           <Particles isMobile={isMobile} />
-          
+
           <ChatbotCharacter />
-          
+
           {messages.map((message, index) => (
             <FloatingBubble
               key={index}
@@ -216,9 +216,9 @@ export default function HeroScene() {
               delay={index * 0.5}
             />
           ))}
-          
-          <OrbitControls 
-            enableZoom={false} 
+
+          <OrbitControls
+            enableZoom={false}
             enablePan={false}
             autoRotate
             autoRotateSpeed={0.5}
@@ -243,7 +243,7 @@ export default function HeroScene() {
           </div>
         </div>
       )}
-      
+
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -262,7 +262,7 @@ export default function HeroScene() {
             Actually Work
           </span>
         </motion.h1>
-        
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -273,7 +273,7 @@ export default function HeroScene() {
           <br />
           Reduce costs by 80% while providing instant, accurate support 24/7.
         </motion.p>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -289,7 +289,7 @@ export default function HeroScene() {
           </div>
         </motion.div>
       </motion.div>
-      
+
       {/* Floating action button */}
       <motion.div
         initial={{ opacity: 0, scale: 0 }}

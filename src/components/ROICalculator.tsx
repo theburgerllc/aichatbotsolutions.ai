@@ -20,10 +20,10 @@ export default function ROICalculator({ industry, className = '' }: ROICalculato
   const [currentStaffCost, setCurrentStaffCost] = useState(industryData[industry].monthlyStaffCost)
   const [showResults, setShowResults] = useState(false)
   const [showRevealSequence, setShowRevealSequence] = useState(false)
-  
+
   const data = industryData[industry]
   const roiData = calculateROI(data, ticketsPerMonth)
-  
+
   useEffect(() => {
     const timer = setTimeout(() => setShowResults(true), 500)
     return () => clearTimeout(timer)
@@ -262,7 +262,7 @@ export default function ROICalculator({ industry, className = '' }: ROICalculato
           cursor: pointer;
           box-shadow: 0 2px 6px rgba(59, 130, 246, 0.4);
         }
-        
+
         .slider::-moz-range-thumb {
           height: 20px;
           width: 20px;

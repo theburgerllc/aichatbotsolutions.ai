@@ -101,13 +101,13 @@ export default function DemoPage() {
             </span>
           </div>
           <p className="text-gray-600 mb-4">{getStepDescription()}</p>
-          
+
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
+            <div
               className="bg-blue-600 h-2 rounded-full transition-all duration-500"
               style={{
-                width: currentStep === 'persona' ? '25%' : 
-                       currentStep === 'chat' ? '50%' : 
+                width: currentStep === 'persona' ? '25%' :
+                       currentStep === 'chat' ? '50%' :
                        currentStep === 'roi' ? '75%' : '100%'
               }}
             />
@@ -195,7 +195,7 @@ export default function DemoPage() {
                   className="bg-white rounded-2xl shadow-large p-8 mb-8"
                 >
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">Your Demo Results</h3>
-                  
+
                   <div className="grid md:grid-cols-3 gap-6">
                     <div className="text-center">
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
@@ -204,7 +204,7 @@ export default function DemoPage() {
                       <h4 className="font-semibold text-gray-900 mb-1">Demo Completed</h4>
                       <p className="text-gray-600">Experienced AI conversations</p>
                     </div>
-                    
+
                     <div className="text-center">
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-3">
                         <TrendingUp className="w-6 h-6 text-green-600" />
@@ -212,7 +212,7 @@ export default function DemoPage() {
                       <h4 className="font-semibold text-gray-900 mb-1">Potential Savings</h4>
                       <p className="text-green-600 font-bold">${calculatedSavings.toLocaleString()}/month</p>
                     </div>
-                    
+
                     <div className="text-center">
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-100 rounded-full mb-3">
                         <CheckCircle className="w-6 h-6 text-purple-600" />
@@ -232,10 +232,10 @@ export default function DemoPage() {
                 >
                   <h3 className="text-2xl font-bold text-gray-900">Ready to Get Started?</h3>
                   <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Get your custom AI chatbot built for your {selectedPersona} business. 
+                    Get your custom AI chatbot built for your {selectedPersona} business.
                     Our team will set up everything in just 2-4 weeks.
                   </p>
-                  
+
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <motion.button
                       className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl transition-colors"
@@ -244,7 +244,7 @@ export default function DemoPage() {
                     >
                       Get Your Custom Quote
                     </motion.button>
-                    
+
                     <motion.button
                       className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-4 px-8 rounded-xl transition-colors"
                       whileHover={{ scale: 1.05 }}
@@ -253,7 +253,7 @@ export default function DemoPage() {
                       Schedule Live Demo
                     </motion.button>
                   </div>
-                  
+
                   <p className="text-sm text-gray-500">
                     ✓ 15-minute setup call &nbsp;&nbsp; ✓ Custom industry configuration &nbsp;&nbsp; ✓ 30-day money-back guarantee
                   </p>

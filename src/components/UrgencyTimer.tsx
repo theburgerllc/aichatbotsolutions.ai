@@ -12,11 +12,11 @@ interface UrgencyTimerProps {
   className?: string
 }
 
-export default function UrgencyTimer({ 
-  variant = 'full', 
+export default function UrgencyTimer({
+  variant = 'full',
   initialTime = 3600, // 1 hour default
   spotsLeft = Math.floor(Math.random() * 30) + 20, // 20-50 spots
-  className = '' 
+  className = ''
 }: UrgencyTimerProps) {
   const [timeLeft, setTimeLeft] = useState(initialTime)
   const [currentSpots, setCurrentSpots] = useState(spotsLeft)
@@ -32,7 +32,7 @@ export default function UrgencyTimer({
         return prev - 1
       })
     }, 1000)
-    
+
     return () => clearInterval(timer)
   }, [initialTime])
 
@@ -44,7 +44,7 @@ export default function UrgencyTimer({
         trackInteraction('urgency_spots_decreased', { newCount: currentSpots - 1 })
       }
     }, 45000) // Check every 45 seconds
-    
+
     return () => clearInterval(spotTimer)
   }, [currentSpots])
 
@@ -83,14 +83,14 @@ export default function UrgencyTimer({
         className={`inline-flex items-center space-x-2 bg-red-50 border border-red-200 rounded-lg px-4 py-2 ${className}`}
         onClick={handleClick}
         whileHover={{ scale: 1.02 }}
-        animate={{ 
+        animate={{
           boxShadow: timeLeft < 300 ? [
             '0 0 0 0 rgba(239, 68, 68, 0.4)',
             '0 0 0 10px rgba(239, 68, 68, 0)',
             '0 0 0 0 rgba(239, 68, 68, 0)'
           ] : undefined
         }}
-        transition={{ 
+        transition={{
           boxShadow: { repeat: Infinity, duration: 2 }
         }}
       >
@@ -116,14 +116,14 @@ export default function UrgencyTimer({
             <Zap className="w-5 h-5 animate-pulse" />
             <span className="font-semibold">Limited Time Offer</span>
           </div>
-          
+
           <div className="flex items-center space-x-2">
             <Clock className="w-5 h-5" />
             <span className="font-mono text-lg font-bold">
               {formatTime()}
             </span>
           </div>
-          
+
           <div className="flex items-center space-x-2">
             <Users className="w-5 h-5" />
             <span className="font-semibold">
@@ -163,7 +163,7 @@ export default function UrgencyTimer({
         </motion.div>
         <span className="text-xl font-bold">Limited Beta Access</span>
       </div>
-      
+
       <div className="mb-4">
         <div className="text-4xl font-mono font-bold mb-2">
           {formatTime()}
@@ -172,7 +172,7 @@ export default function UrgencyTimer({
           Expires in
         </div>
       </div>
-      
+
       <motion.div
         className="bg-white bg-opacity-20 rounded-lg p-4 mb-4"
         animate={currentSpots < 25 ? { backgroundColor: ['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.3)', 'rgba(255,255,255,0.2)'] } : {}}
@@ -195,13 +195,13 @@ export default function UrgencyTimer({
           this week
         </div>
       </motion.div>
-      
+
       <div className="grid grid-cols-3 gap-2 text-xs opacity-75">
         <div>✓ No credit card</div>
         <div>✓ 30-day trial</div>
         <div>✓ Setup in 24h</div>
       </div>
-      
+
       {timeLeft < 600 && (
         <motion.div
           className="mt-4 bg-yellow-400 text-yellow-900 px-4 py-2 rounded-lg font-bold text-sm"

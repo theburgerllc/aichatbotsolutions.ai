@@ -16,7 +16,7 @@ interface PersonaDemoPageProps {
 
 export default async function PersonaDemoPage({ params }: PersonaDemoPageProps) {
   const { persona } = await params
-  
+
   // Validate persona exists
   if (!persona || !personaData[persona]) {
     notFound()

@@ -153,7 +153,7 @@ export default function IndustriesPage() {
                 Every Industry
               </span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -162,21 +162,21 @@ export default function IndustriesPage() {
             >
               Discover how businesses across different industries are transforming their customer service with AI-powered chatbots
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Link 
-                href="/demo" 
+              <Link
+                href="/demo"
                 className="bg-white text-blue-600 font-semibold py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors shadow-lg"
               >
                 Get Industry Demo
               </Link>
-              <Link 
-                href="/demo-booking" 
+              <Link
+                href="/demo-booking"
                 className="bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl hover:bg-blue-800 border border-blue-500 transition-colors shadow-lg"
               >
                 Book Consultation
@@ -197,7 +197,7 @@ export default function IndustriesPage() {
               Our AI chatbots are customized for the unique needs and compliance requirements of each industry
             </p>
           </div>
-          
+
           <div className="grid lg:grid-cols-2 gap-8">
             {industries.map((industry, index) => (
               <motion.div
@@ -213,10 +213,10 @@ export default function IndustriesPage() {
                     <h3 className="text-2xl font-bold">{industry.title}</h3>
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <p className="text-gray-600 mb-6">{industry.description}</p>
-                  
+
                   <div className="mb-6">
                     <h4 className="font-semibold text-gray-900 mb-3">Key Features:</h4>
                     <div className="grid grid-cols-2 gap-2">
@@ -228,17 +228,17 @@ export default function IndustriesPage() {
                       ))}
                     </div>
                   </div>
-                  
+
                   <div className="mb-4 p-4 bg-blue-50 rounded-lg">
                     <h4 className="font-semibold text-blue-900 mb-2">Business Impact:</h4>
                     <p className="text-blue-800 text-sm">{industry.benefits}</p>
                   </div>
-                  
+
                   <div className="mb-6 p-4 bg-green-50 rounded-lg">
                     <h4 className="font-semibold text-green-900 mb-2">Success Story:</h4>
                     <p className="text-green-800 text-sm">{industry.caseStudy}</p>
                   </div>
-                  
+
                   <Link
                     href="/demo"
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-flex items-center justify-center"
@@ -264,7 +264,7 @@ export default function IndustriesPage() {
               Our industry-specific AI solutions deliver consistent results regardless of your business type
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div
@@ -297,7 +297,7 @@ export default function IndustriesPage() {
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Get a personalized demo tailored to your specific industry and see how AI can revolutionize your customer service
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/demo"
@@ -323,7 +323,7 @@ export default function IndustriesPage() {
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">AI Chatbot Solutions</h3>
             <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-              Transforming customer service with AI-powered automation. 
+              Transforming customer service with AI-powered automation.
               Powered by BotPenguin for healthcare, legal, retail, and service businesses.
             </p>
             <div className="border-t border-gray-800 pt-6">

@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
         ...data,
         monthlyStaffCost: currentStaffCost
       }, ticketsPerMonth || data.avgTicketsPerMonth)
-      
+
       return NextResponse.json({
         success: true,
         data: customRoi,
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const industry = searchParams.get('industry')
-  
+
   if (!industry || !industryData[industry]) {
     return NextResponse.json(
       { error: 'Invalid or missing industry parameter' },

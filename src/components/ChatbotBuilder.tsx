@@ -55,7 +55,7 @@ export default function ChatbotBuilder({ persona, industry, onComplete }: Chatbo
       icon: MessageSquare
     }
   ])
-  
+
   const [generatedCode, setGeneratedCode] = useState('')
   const [isBuilding, setIsBuilding] = useState(false)
   const [buildComplete, setBuildComplete] = useState(false)
@@ -81,14 +81,14 @@ const chatbot = {
   }
 }`,
     legal: `
-// Legal Services AI Chatbot Configuration  
+// Legal Services AI Chatbot Configuration
 const chatbot = {
   name: "LegalPro Assistant",
   industry: "legal",
   compliance: ["Attorney-Client Privilege", "Bar Standards"],
   capabilities: [
     "consultation_scheduling",
-    "case_status_updates", 
+    "case_status_updates",
     "document_collection",
     "legal_information"
   ],
@@ -102,7 +102,7 @@ const chatbot = {
     retail: `
 // Retail AI Chatbot Configuration
 const chatbot = {
-  name: "RetailBot Assistant", 
+  name: "RetailBot Assistant",
   industry: "retail",
   compliance: ["PCI Compliance", "Consumer Protection"],
   capabilities: [
@@ -135,12 +135,12 @@ const chatbot = {
   useEffect(() => {
     if (isBuilding && currentStep < buildSteps.length) {
       const timer = setTimeout(() => {
-        setBuildSteps(prev => 
-          prev.map((step, index) => 
+        setBuildSteps(prev =>
+          prev.map((step, index) =>
             index === currentStep ? { ...step, completed: true } : step
           )
         )
-        
+
         if (currentStep === buildSteps.length - 1) {
           // Start typewriter effect for code generation
           const code = codeSnippets[industry as keyof typeof codeSnippets] || codeSnippets.retail
@@ -206,12 +206,12 @@ const chatbot = {
       {isBuilding && (
         <div className="space-y-6">
           <h3 className="text-xl font-semibold text-gray-900 mb-4">Building Your Chatbot...</h3>
-          
+
           {buildSteps.map((step, index) => {
             const IconComponent = step.icon
             const isActive = index === currentStep
             const isCompleted = step.completed
-            
+
             return (
               <motion.div
                 key={step.id}
@@ -219,18 +219,18 @@ const chatbot = {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className={`flex items-center space-x-4 p-4 rounded-lg border-2 transition-all duration-300 ${
-                  isCompleted 
-                    ? 'border-green-500 bg-green-50' 
-                    : isActive 
-                    ? 'border-blue-500 bg-blue-50' 
+                  isCompleted
+                    ? 'border-green-500 bg-green-50'
+                    : isActive
+                    ? 'border-blue-500 bg-blue-50'
                     : 'border-gray-200 bg-gray-50'
                 }`}
               >
                 <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
-                  isCompleted 
-                    ? 'bg-green-500' 
-                    : isActive 
-                    ? 'bg-blue-500' 
+                  isCompleted
+                    ? 'bg-green-500'
+                    : isActive
+                    ? 'bg-blue-500'
                     : 'bg-gray-400'
                 }`}>
                   {isCompleted ? (
@@ -246,7 +246,7 @@ const chatbot = {
                     <IconComponent className="w-6 h-6 text-white" />
                   )}
                 </div>
-                
+
                 <div className="flex-1">
                   <h4 className={`font-semibold ${
                     isCompleted ? 'text-green-900' : isActive ? 'text-blue-900' : 'text-gray-600'
@@ -299,13 +299,13 @@ const chatbot = {
               >
                 <CheckCircle className="w-10 h-10 text-white" />
               </motion.div>
-              
+
               <h3 className="text-2xl font-bold mb-4">Your Chatbot is Ready!</h3>
               <p className="text-green-100 mb-6">
                 Your custom {industry} chatbot has been configured and is ready for deployment.
                 Estimated setup time: 2-3 business days.
               </p>
-              
+
               <motion.button
                 className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
                 whileHover={{ scale: 1.05 }}

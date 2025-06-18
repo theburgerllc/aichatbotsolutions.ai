@@ -16,9 +16,9 @@ interface ROIRevealSequenceProps {
 // Confetti component
 const Confetti = ({ active }: { active: boolean }) => {
   if (!active) return null
-  
+
   const confettiPieces = Array.from({ length: 50 }, (_, i) => i)
-  
+
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       {confettiPieces.map((i) => (
@@ -50,28 +50,28 @@ const Confetti = ({ active }: { active: boolean }) => {
   )
 }
 
-export default function ROIRevealSequence({ 
-  currentCost, 
-  aiCost, 
-  savings, 
+export default function ROIRevealSequence({
+  currentCost,
+  aiCost,
+  savings,
   onComplete,
-  className = '' 
+  className = ''
 }: ROIRevealSequenceProps) {
   const [revealStage, setRevealStage] = useState(0)
   const [showConfetti, setShowConfetti] = useState(false)
-  
+
   useEffect(() => {
     const sequence = [
       { delay: 0, stage: 1 },      // Show current costs (dramatic red)
-      { delay: 1500, stage: 2 },   // Show AI costs (small blue)  
+      { delay: 1500, stage: 2 },   // Show AI costs (small blue)
       { delay: 3000, stage: 3 },   // REVEAL savings (massive green with confetti)
     ]
-    
+
     sequence.forEach(({ delay, stage }) => {
       setTimeout(() => {
         setRevealStage(stage)
         trackInteraction('roi_reveal_stage_shown', { stage })
-        
+
         if (stage === 3) {
           setShowConfetti(true)
           setTimeout(() => setShowConfetti(false), 3000)
@@ -82,10 +82,10 @@ export default function ROIRevealSequence({
   }, [currentCost, aiCost, savings, onComplete])
 
   const handleCTAClick = () => {
-    trackInteraction('roi_reveal_cta_clicked', { 
-      savings, 
-      currentCost, 
-      aiCost 
+    trackInteraction('roi_reveal_cta_clicked', {
+      savings,
+      currentCost,
+      aiCost
     })
   }
 
@@ -94,7 +94,7 @@ export default function ROIRevealSequence({
       {/* Stage 1: Current Costs (Dramatic Red) */}
       <AnimatePresence>
         {revealStage >= 1 && (
-          <motion.div 
+          <motion.div
             initial={{ scale: 0, rotate: -10 }}
             animate={{ scale: 1, rotate: 0 }}
             exit={{ scale: 0.8, opacity: 0.5 }}
@@ -107,7 +107,7 @@ export default function ROIRevealSequence({
               transition={{ duration: 2, repeat: Infinity }}
               style={{ opacity: 0.3 }}
             />
-            
+
             <div className="relative z-10 text-center">
               <motion.div
                 initial={{ y: -20, opacity: 0 }}
@@ -118,8 +118,8 @@ export default function ROIRevealSequence({
                 <DollarSign className="w-8 h-8 mr-2" />
                 <h4 className="text-2xl font-bold">Your Current Burden</h4>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="text-6xl font-bold mb-4"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -127,7 +127,7 @@ export default function ROIRevealSequence({
               >
                 {formatCurrency(currentCost)}
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -147,7 +147,7 @@ export default function ROIRevealSequence({
       {/* Stage 2: AI Costs (Small Blue) */}
       <AnimatePresence>
         {revealStage >= 2 && (
-          <motion.div 
+          <motion.div
             initial={{ scale: 0, x: -100 }}
             animate={{ scale: 1, x: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
@@ -171,14 +171,14 @@ export default function ROIRevealSequence({
       {/* Stage 3: SAVINGS REVEAL (Massive Green with Confetti) */}
       <AnimatePresence>
         {revealStage >= 3 && (
-          <motion.div 
+          <motion.div
             initial={{ scale: 0, y: 100 }}
             animate={{ scale: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 150, damping: 12 }}
             className="bg-gradient-to-br from-green-500 via-emerald-600 to-green-600 rounded-3xl p-10 text-white relative overflow-hidden shadow-2xl"
           >
             <Confetti active={showConfetti} />
-            
+
             {/* Animated background elements */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20"
@@ -186,7 +186,7 @@ export default function ROIRevealSequence({
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
               style={{ width: "50%" }}
             />
-            
+
             <div className="text-center relative z-10">
               <motion.div
                 initial={{ scale: 0, rotate: -180 }}
@@ -197,7 +197,7 @@ export default function ROIRevealSequence({
                 <TrendingUp className="w-12 h-12 mr-3" />
                 <h3 className="text-4xl font-bold">🎉 YOU SAVE</h3>
               </motion.div>
-              
+
               <motion.div
                 className="text-8xl md:text-9xl font-bold mb-4"
                 initial={{ scale: 0 }}
@@ -207,7 +207,7 @@ export default function ROIRevealSequence({
               >
                 {formatCurrency(savings)}
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -216,7 +216,7 @@ export default function ROIRevealSequence({
               >
                 Every Single Month!
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -239,7 +239,7 @@ export default function ROIRevealSequence({
                   </div>
                 </div>
               </motion.div>
-              
+
               <motion.button
                 className="w-full bg-white text-green-600 py-6 px-10 rounded-2xl font-bold text-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
                 initial={{ opacity: 0, y: 50 }}
@@ -259,7 +259,7 @@ export default function ROIRevealSequence({
                   START SAVING {formatCurrency(savings)}/MONTH NOW →
                 </div>
               </motion.button>
-              
+
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

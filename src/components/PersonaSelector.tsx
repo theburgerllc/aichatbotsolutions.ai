@@ -21,11 +21,11 @@ export default function PersonaSelector({ onPersonaSelect }: PersonaSelectorProp
   const router = useRouter()
 
   const handlePersonaClick = (personaId: string) => {
-    trackInteraction('persona_selected', { 
+    trackInteraction('persona_selected', {
       persona: personaId,
       timestamp: new Date().toISOString()
     })
-    
+
     if (onPersonaSelect) {
       onPersonaSelect(personaId)
     } else {
@@ -83,7 +83,7 @@ export default function PersonaSelector({ onPersonaSelect }: PersonaSelectorProp
             What's Your Primary Goal?
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Choose your role to see personalized ROI calculations and solutions 
+            Choose your role to see personalized ROI calculations and solutions
             tailored to your specific challenges and objectives.
           </p>
         </motion.div>
@@ -92,7 +92,7 @@ export default function PersonaSelector({ onPersonaSelect }: PersonaSelectorProp
           {Object.values(personaData).map((persona, index) => {
             const IconComponent = iconMap[persona.icon as keyof typeof iconMap]
             const colors = getColorClasses(persona.color)
-            
+
             return (
               <motion.div
                 key={persona.id}
@@ -104,29 +104,29 @@ export default function PersonaSelector({ onPersonaSelect }: PersonaSelectorProp
                 onClick={() => handlePersonaClick(persona.id)}
               >
                 <div className={`
-                  bg-white rounded-2xl shadow-lg ${colors.shadow} transition-all duration-300 
+                  bg-white rounded-2xl shadow-lg ${colors.shadow} transition-all duration-300
                   border-2 ${colors.border} hover:border-opacity-50 h-full p-8
                   group-hover:shadow-2xl
                 `}>
                   <div className="text-center">
                     <motion.div
                       className={`
-                        w-16 h-16 ${colors.bg} ${colors.hover} rounded-full 
+                        w-16 h-16 ${colors.bg} ${colors.hover} rounded-full
                         flex items-center justify-center mx-auto mb-6 transition-colors duration-300
                       `}
                       whileHover={{ rotate: 5, scale: 1.1 }}
                     >
                       <IconComponent className="w-8 h-8 text-white" />
                     </motion.div>
-                    
+
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">
                       {persona.title}
                     </h3>
-                    
+
                     <p className={`text-lg ${colors.text} font-medium mb-6`}>
                       {persona.subtitle}
                     </p>
-                    
+
                     <div className="space-y-3 mb-8">
                       {persona.painPoints.slice(0, 2).map((point, idx) => (
                         <div key={idx} className="flex items-start text-left">
@@ -135,11 +135,11 @@ export default function PersonaSelector({ onPersonaSelect }: PersonaSelectorProp
                         </div>
                       ))}
                     </div>
-                    
+
                     <motion.button
                       className={`
-                        w-full ${colors.bg} ${colors.hover} text-white py-3 px-6 
-                        rounded-lg font-semibold transition-all duration-300 
+                        w-full ${colors.bg} ${colors.hover} text-white py-3 px-6
+                        rounded-lg font-semibold transition-all duration-300
                         flex items-center justify-center space-x-2
                         group-hover:shadow-lg
                       `}

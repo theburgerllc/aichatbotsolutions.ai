@@ -79,12 +79,12 @@ export function trackInteraction(event: string, data: Record<string, any> = {}) 
       url: window.location.href,
       userAgent: navigator.userAgent
     }
-    
+
     // Store locally for demo purposes
     const interactions = JSON.parse(localStorage.getItem('interactions') || '[]')
     interactions.push(interaction)
     localStorage.setItem('interactions', JSON.stringify(interactions.slice(-100))) // Keep last 100
-    
+
     // In production, send to analytics service
     console.log('Interaction tracked:', interaction)
   }

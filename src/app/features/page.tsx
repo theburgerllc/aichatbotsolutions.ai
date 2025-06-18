@@ -127,7 +127,7 @@ export default function FeaturesPage() {
                 Transform Customer Service
               </span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -136,21 +136,21 @@ export default function FeaturesPage() {
             >
               Discover the advanced capabilities that make our AI chatbots the smartest choice for your business
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Link 
-                href="/demo" 
+              <Link
+                href="/demo"
                 className="bg-white text-blue-600 font-semibold py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors shadow-lg"
               >
                 Try Features Now
               </Link>
-              <Link 
-                href="/demo-booking" 
+              <Link
+                href="/demo-booking"
                 className="bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl hover:bg-blue-800 border border-blue-500 transition-colors shadow-lg"
               >
                 Book Demo
@@ -171,7 +171,7 @@ export default function FeaturesPage() {
               Our comprehensive feature set ensures your customers receive the best possible experience
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
@@ -211,7 +211,7 @@ export default function FeaturesPage() {
               Our features deliver measurable impact for businesses worldwide
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-4 gap-8">
             {[
               { number: "675%", label: "Average ROI", icon: "📈" },
@@ -246,7 +246,7 @@ export default function FeaturesPage() {
               Connect with your existing tools and platforms in minutes, not months
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {integrations.map((integration, index) => (
               <motion.div
@@ -278,7 +278,7 @@ export default function FeaturesPage() {
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               See how our AI features can transform your customer service in just 15 minutes
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/demo"
@@ -305,7 +305,7 @@ export default function FeaturesPage() {
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">AI Chatbot Solutions</h3>
             <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-              Transforming customer service with AI-powered automation. 
+              Transforming customer service with AI-powered automation.
               Powered by BotPenguin for healthcare, legal, retail, and service businesses.
             </p>
             <div className="border-t border-gray-800 pt-6">

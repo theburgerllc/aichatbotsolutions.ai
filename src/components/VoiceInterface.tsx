@@ -10,59 +10,59 @@ interface VoiceInterfaceProps {
   triggerPhrase?: string
 }
 
-export default function VoiceInterface({ 
-  onTrigger, 
-  triggerPhrase = "help me" 
+export default function VoiceInterface({
+  onTrigger,
+  triggerPhrase = "help me"
 }: VoiceInterfaceProps) {
   const [isListening, setIsListening] = useState(false)
   const [isSupported, setIsSupported] = useState(false)
   const [transcript, setTranscript] = useState('')
   const [confidence, setConfidence] = useState(0)
   const [error, setError] = useState<string | null>(null)
-  
+
   const recognitionRef = useRef<SpeechRecognition | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-      
+
       if (SpeechRecognition) {
         setIsSupported(true)
         const recognition = new SpeechRecognition()
-        
+
         recognition.continuous = true
         recognition.interimResults = true
         recognition.lang = 'en-US'
         recognition.maxAlternatives = 1
-        
+
         recognition.onstart = () => {
           setIsListening(true)
           setError(null)
           trackInteraction('voice_listening_started')
         }
-        
+
         recognition.onend = () => {
           setIsListening(false)
           if (timeoutRef.current) {
             clearTimeout(timeoutRef.current)
           }
         }
-        
+
         recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
           setError(event.error)
           setIsListening(false)
           trackInteraction('voice_recognition_error', { error: event.error })
         }
-        
+
         recognition.onresult = (event: SpeechRecognitionEvent) => {
           let finalTranscript = ''
           let interimTranscript = ''
-          
+
           for (let i = event.resultIndex; i < event.results.length; i++) {
             const transcript = event.results[i][0].transcript
             const confidence = event.results[i][0].confidence
-            
+
             if (event.results[i].isFinal) {
               finalTranscript += transcript
               setConfidence(confidence)
@@ -70,21 +70,21 @@ export default function VoiceInterface({
               interimTranscript += transcript
             }
           }
-          
+
           const fullTranscript = finalTranscript + interimTranscript
           setTranscript(fullTranscript)
-          
+
           // Check for trigger phrase
           if (fullTranscript.toLowerCase().includes(triggerPhrase.toLowerCase())) {
-            trackInteraction('voice_trigger_detected', { 
+            trackInteraction('voice_trigger_detected', {
               transcript: fullTranscript,
               confidence,
-              triggerPhrase 
+              triggerPhrase
             })
             onTrigger()
             recognition.stop()
           }
-          
+
           // Auto-stop after 10 seconds of continuous listening
           if (timeoutRef.current) {
             clearTimeout(timeoutRef.current)
@@ -93,11 +93,11 @@ export default function VoiceInterface({
             recognition.stop()
           }, 10000)
         }
-        
+
         recognitionRef.current = recognition
       }
     }
-    
+
     return () => {
       if (recognitionRef.current) {
         recognitionRef.current.stop()
@@ -149,29 +149,29 @@ export default function VoiceInterface({
         className={`
           relative p-4 rounded-full transition-all duration-300 shadow-lg
           focus:outline-none focus:ring-2 focus:ring-offset-2
-          ${isListening 
-            ? 'bg-red-500 hover:bg-red-600 text-white focus:ring-red-500' 
+          ${isListening
+            ? 'bg-red-500 hover:bg-red-600 text-white focus:ring-red-500'
             : 'bg-blue-500 hover:bg-blue-600 text-white focus:ring-blue-500'
           }
         `}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        animate={isListening ? { 
+        animate={isListening ? {
           boxShadow: [
             '0 0 0 0 rgba(239, 68, 68, 0.7)',
             '0 0 0 10px rgba(239, 68, 68, 0)',
             '0 0 0 0 rgba(239, 68, 68, 0)'
           ]
         } : {}}
-        transition={{ 
-          boxShadow: { 
-            repeat: isListening ? Infinity : 0, 
-            duration: 2 
+        transition={{
+          boxShadow: {
+            repeat: isListening ? Infinity : 0,
+            duration: 2
           }
         }}
       >
         {isListening ? <MicOff size={24} /> : <Mic size={24} />}
-        
+
         {isListening && (
           <motion.div
             className="absolute inset-0 rounded-full bg-red-400"
@@ -197,7 +197,7 @@ export default function VoiceInterface({
                   Listening for "{triggerPhrase}"...
                 </p>
               </div>
-              
+
               {transcript && (
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -214,7 +214,7 @@ export default function VoiceInterface({
                   )}
                 </motion.div>
               )}
-              
+
               <div className="mt-3 flex justify-center">
                 <div className="flex space-x-1">
                   {[...Array(5)].map((_, i) => (
@@ -236,7 +236,7 @@ export default function VoiceInterface({
             </div>
           </motion.div>
         )}
-        
+
         {error && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}

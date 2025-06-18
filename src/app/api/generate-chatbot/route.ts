@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     await new Promise(resolve => setTimeout(resolve, 2000)) // Simulate processing time
 
     const chatbotConfig = generateChatbotConfig(industry, persona, businessName, primaryGoals, customization)
-    
+
     return NextResponse.json({
       success: true,
       chatbot: chatbotConfig,
@@ -42,8 +42,8 @@ export async function POST(request: NextRequest) {
 }
 
 function generateChatbotConfig(
-  industry: string, 
-  persona: string, 
+  industry: string,
+  persona: string,
   businessName?: string,
   primaryGoals?: string[],
   customization?: any

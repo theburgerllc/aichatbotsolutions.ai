@@ -48,7 +48,7 @@ export default function LiveActivityFeed({ className = '' }: LiveActivityFeedPro
     const interval = setInterval(() => {
       setCurrentActivity(prev => (prev + 1) % activities.length)
     }, 8000)
-    
+
     return () => clearInterval(interval)
   }, [])
 
@@ -74,7 +74,7 @@ export default function LiveActivityFeed({ className = '' }: LiveActivityFeedPro
 
   return (
     <AnimatePresence>
-      <motion.div 
+      <motion.div
         key={currentActivity}
         className={`fixed top-20 right-4 bg-white border border-green-200 shadow-lg rounded-lg p-4 z-50 max-w-sm cursor-pointer hover:shadow-xl transition-shadow ${className}`}
         initial={{ x: 400, opacity: 0 }}
@@ -84,19 +84,19 @@ export default function LiveActivityFeed({ className = '' }: LiveActivityFeedPro
         onClick={handleClick}
         whileHover={{ scale: 1.02 }}
       >
-        <button 
+        <button
           onClick={handleClose}
           className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-sm font-bold w-5 h-5 flex items-center justify-center"
           aria-label="Close notification"
         >
           ×
         </button>
-        
+
         <div className="flex items-start space-x-3">
           <div className="flex-shrink-0">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse mt-2"></div>
           </div>
-          
+
           <div className="flex-1 min-w-0">
             <div className="flex items-center space-x-2 mb-1">
               <span className="text-lg">{activity.icon}</span>
@@ -104,11 +104,11 @@ export default function LiveActivityFeed({ className = '' }: LiveActivityFeedPro
                 {activity.user}
               </span>
             </div>
-            
+
             <p className="text-sm text-gray-700 mb-1">
               {activity.action}
             </p>
-            
+
             <div className="flex items-center justify-between">
               <span className="text-xs text-gray-500">
                 {activity.time}
@@ -119,8 +119,8 @@ export default function LiveActivityFeed({ className = '' }: LiveActivityFeedPro
             </div>
           </div>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           className="mt-2 text-xs text-blue-600 hover:text-blue-700 font-medium"
           whileHover={{ x: 2 }}
         >

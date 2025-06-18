@@ -31,6 +31,14 @@ global.ResizeObserver = class ResizeObserver {
   disconnect() {}
 }
 
+// Ensure global Request is defined for API route tests
+if (typeof global.Request === 'undefined') {
+  global.Request = class {}
+}
+if (typeof global.Response === 'undefined') {
+  global.Response = class {}
+}
+
 // Mock Speech Recognition API
 global.webkitSpeechRecognition = class MockSpeechRecognition {
   constructor() {

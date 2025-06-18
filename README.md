@@ -239,6 +239,17 @@ npm run export
 
 ## 🧪 Testing & Quality Assurance
 
+### Running Checks Locally
+
+Before opening a pull request, run the following commands to ensure the project builds and tests pass:
+
+```bash
+npm run lint
+npm test
+npm run build
+```
+
+Building locally also helps verify that pages, sections, and UI elements remain properly aligned across the application.
 
 ### Browser Compatibility
 - Chrome 90+ (Primary target)

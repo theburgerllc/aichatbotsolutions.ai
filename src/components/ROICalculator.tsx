@@ -6,7 +6,9 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { Calculator, DollarSign, TrendingUp, Clock, Users } from 'lucide-react'
 import { industryData } from '@/data/industry'
 import { calculateROI, formatCurrency, formatPercentage, trackInteraction } from '@/lib/utils'
+import { trackConversion } from '@/lib/conversionTracking'
 import { Industry } from '@/types'
+import ROIRevealSequence from './ROIRevealSequence'
 
 interface ROICalculatorProps {
   industry: Industry
@@ -17,6 +19,7 @@ export default function ROICalculator({ industry, className = '' }: ROICalculato
   const [ticketsPerMonth, setTicketsPerMonth] = useState(industryData[industry].avgTicketsPerMonth)
   const [currentStaffCost, setCurrentStaffCost] = useState(industryData[industry].monthlyStaffCost)
   const [showResults, setShowResults] = useState(false)
+  const [showRevealSequence, setShowRevealSequence] = useState(false)
   
   const data = industryData[industry]
   const roiData = calculateROI(data, ticketsPerMonth)
@@ -64,9 +67,21 @@ export default function ROICalculator({ industry, className = '' }: ROICalculato
   const handleSliderChange = (value: number, type: 'tickets' | 'cost') => {
     if (type === 'tickets') {
       setTicketsPerMonth(value)
+      trackConversion('roi_slider_move', 0.2, { field: 'tickets', value })
     } else {
       setCurrentStaffCost(value)
+      trackConversion('roi_slider_move', 0.2, { field: 'cost', value })
     }
+  }
+
+  const handleCalculateROI = () => {
+    setShowRevealSequence(true)
+    trackConversion('roi_calculate', 1, {
+      industry,
+      ticketsPerMonth,
+      currentStaffCost,
+      savings: roiData.monthlySavings
+    })
   }
 
   return (
@@ -146,64 +161,32 @@ export default function ROICalculator({ industry, className = '' }: ROICalculato
           </div>
         </div>
 
-        {/* Results */}
+        {/* Calculate Button or Results */}
         <div className="space-y-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={showResults ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Your Savings Breakdown</h3>
-            
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <motion.div
-                className="bg-red-50 border border-red-200 rounded-lg p-4 text-center"
-                whileHover={{ scale: 1.02 }}
-              >
-                <DollarSign className="w-6 h-6 text-red-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-red-600">{formatCurrency(currentStaffCost)}</div>
-                <div className="text-sm text-red-600">Current Monthly Cost</div>
-              </motion.div>
-              
-              <motion.div
-                className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center"
-                whileHover={{ scale: 1.02 }}
-              >
-                <Calculator className="w-6 h-6 text-blue-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-blue-600">{formatCurrency(data.aiCost)}</div>
-                <div className="text-sm text-blue-600">AI Monthly Cost</div>
-              </motion.div>
-            </div>
-
+          {!showRevealSequence ? (
             <motion.div
-              className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-6 text-center"
-              whileHover={{ scale: 1.02 }}
-              animate={{ boxShadow: ['0 0 0 0 rgba(16, 185, 129, 0.4)', '0 0 0 10px rgba(16, 185, 129, 0)', '0 0 0 0 rgba(16, 185, 129, 0)'] }}
-              transition={{ boxShadow: { repeat: Infinity, duration: 2 } }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center"
             >
-              <TrendingUp className="w-8 h-8 text-green-600 mx-auto mb-3" />
-              <div className="text-4xl font-bold text-green-600 mb-2">
-                {formatCurrency(roiData.monthlySavings)}
-              </div>
-              <div className="text-lg text-green-700 mb-1">Monthly Savings</div>
-              <div className="text-3xl font-bold text-green-800">
-                {formatCurrency(roiData.annualSavings)}
-              </div>
-              <div className="text-sm text-green-700">Annual Savings</div>
+              <button
+                onClick={handleCalculateROI}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xl font-bold py-6 px-12 rounded-2xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105"
+              >
+                🚀 Calculate My Savings
+              </button>
+              <p className="text-gray-600 mt-4">See your exact ROI in real-time</p>
             </motion.div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-purple-600">{Math.round(roiData.roi)}%</div>
-                <div className="text-sm text-purple-600">ROI</div>
-              </div>
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 text-center">
-                <Clock className="w-5 h-5 text-orange-600 mx-auto mb-1" />
-                <div className="text-lg font-bold text-orange-600">{Math.round(roiData.paybackPeriod)} days</div>
-                <div className="text-sm text-orange-600">Payback Period</div>
-              </div>
-            </div>
-          </motion.div>
+          ) : (
+            <ROIRevealSequence
+              currentCost={currentStaffCost}
+              aiCost={data.aiCost}
+              savings={roiData.monthlySavings}
+              onComplete={() => {
+                trackConversion('roi_reveal_completed', 1, { savings: roiData.monthlySavings })
+              }}
+            />
+          )}
         </div>
       </div>
 

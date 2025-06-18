@@ -1,24 +1,65 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import PersonaSelector from '@/components/PersonaSelector'
 import VoiceInterface from '@/components/VoiceInterface'
+import LiveActivityFeed from '@/components/LiveActivityFeed'
+import ExitIntentPopup from '@/components/ExitIntentPopup'
+import HeroSequence from '@/components/HeroSequence'
+import UrgencyTimer from '@/components/UrgencyTimer'
+import SmartProgressForm from '@/components/SmartProgressForm'
 import { trackInteraction } from '@/lib/utils'
+import { trackConversion } from '@/lib/conversionTracking'
 
 export default function HomePage() {
   const [showPersonas, setShowPersonas] = useState(false)
+  const [showHeroSequence, setShowHeroSequence] = useState(true)
+  const [showMainContent, setShowMainContent] = useState(false)
+  
+  useEffect(() => {
+    trackConversion('page_view', 1, { page: 'homepage' })
+  }, [])
   
   const handleVoiceTrigger = () => {
     trackInteraction('voice_trigger_activated')
+    trackConversion('voice_trigger_activated', 1)
     setShowPersonas(true)
+  }
+
+  const handleHeroSequenceComplete = () => {
+    setShowHeroSequence(false)
+    setShowMainContent(true)
+    trackConversion('hero_sequence_completed', 1)
+  }
+
+  const handleFormSubmit = async (formData: any) => {
+    trackConversion('form_submit_success', 1, formData)
+    // Handle form submission
+    console.log('Form submitted:', formData)
+  }
+
+  // Show hero sequence first, then main content
+  if (showHeroSequence) {
+    return (
+      <div>
+        <HeroSequence onComplete={handleHeroSequenceComplete} />
+        <LiveActivityFeed />
+        <ExitIntentPopup />
+      </div>
+    )
   }
 
   return (
     <div className="min-h-screen bg-white overflow-hidden">
+      {/* Conversion Optimization Components */}
+      <LiveActivityFeed />
+      <ExitIntentPopup />
+      <UrgencyTimer variant="banner" className="fixed top-0 left-0 right-0 z-40" />
+      
       {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b fixed w-full top-0 z-50">
+      <nav className="bg-white shadow-sm border-b fixed w-full top-12 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
@@ -42,7 +83,7 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 flex items-center justify-center pt-32">
+      <section className="relative min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 flex items-center justify-center pt-40">
         <div className="absolute inset-0 bg-black bg-opacity-20"></div>
         
         <motion.div
@@ -80,23 +121,37 @@ export default function HomePage() {
             transition={{ duration: 0.8, delay: 1.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
           >
-            <Link 
-              href="/demo-booking" 
-              className="bg-white text-red-600 font-semibold py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors shadow-lg"
+            <motion.div 
+              className="relative"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Book Free Demo
-            </Link>
+              <Link 
+                href="/demo-booking" 
+                className="bg-gradient-to-r from-red-600 to-red-700 text-white font-bold py-5 px-10 rounded-xl hover:from-red-700 hover:to-red-800 transition-all shadow-2xl"
+                onClick={() => trackConversion('cta_click', 1, { type: 'book_demo', location: 'hero' })}
+              >
+                🔥 Book Free Demo - Save $3,200/Month
+              </Link>
+              <div className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-full animate-bounce">
+                HOT
+              </div>
+            </motion.div>
+            
             <Link 
               href="/interactive-demo" 
               className="bg-orange-600 text-white font-semibold py-4 px-8 rounded-xl hover:bg-orange-700 transition-colors shadow-lg"
+              onClick={() => trackConversion('cta_click', 1, { type: 'interactive_demo', location: 'hero' })}
             >
-              Try Demo Now
+              ⚡ Try Demo Now
             </Link>
+            
             <Link 
               href="/demo" 
               className="bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl hover:bg-blue-800 border border-blue-500 transition-colors shadow-lg"
+              onClick={() => trackConversion('cta_click', 1, { type: 'personalized_demo', location: 'hero' })}
             >
-              Personalized Demo →
+              🎯 Personalized Demo →
             </Link>
           </motion.div>
 
@@ -380,6 +435,51 @@ export default function HomePage() {
               ✓ 15-minute setup call &nbsp;&nbsp; ✓ Custom industry configuration &nbsp;&nbsp; ✓ 30-day money-back guarantee
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Final Conversion Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Ready to Start Saving $3,200+/Month?
+            </h2>
+            <p className="text-xl text-gray-600">
+              Get your free demo and custom ROI report in less than 60 seconds
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <UrgencyTimer className="mb-8" />
+              <div className="bg-white rounded-2xl p-6 shadow-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">What You'll Get:</h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-center">
+                    <span className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold mr-3">✓</span>
+                    Personalized AI chatbot demo for your industry
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold mr-3">✓</span>
+                    Custom ROI calculation showing your exact savings
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold mr-3">✓</span>
+                    30-day free trial with full setup support
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold mr-3">✓</span>
+                    24-hour implementation guarantee
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div>
+              <SmartProgressForm onSubmit={handleFormSubmit} />
+            </div>
+          </div>
         </div>
       </section>
 

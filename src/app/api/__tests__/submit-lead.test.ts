@@ -1,3 +1,14 @@
+// Mock NextResponse before importing the route
+jest.mock('next/server', () => ({
+  NextResponse: {
+    json: (data: any, init?: { status?: number }) => ({
+      status: init?.status || 200,
+      json: async () => data
+    }),
+  },
+  NextRequest: class {}
+}))
+
 import { POST } from '../submit-lead/route'
 import { NextRequest } from 'next/server'
 
@@ -14,13 +25,9 @@ describe('/api/submit-lead', () => {
   })
 
   const createMockRequest = (body: any) => {
-    return new NextRequest('http://localhost:3000/api/submit-lead', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    })
+    return {
+      json: async () => body,
+    } as unknown as NextRequest
   }
 
   it('successfully submits a valid lead', async () => {
@@ -55,7 +62,7 @@ describe('/api/submit-lead', () => {
       company: 'Acme Corp',
       phone: undefined,
       industry: 'healthcare',
-      persona: undefined,
+      persona: 'General Business User',
       message: undefined,
       roi_calculation: null,
       source: 'website_lead_form',

@@ -16,10 +16,10 @@ describe('LeadCapture Component', () => {
   it('renders initial step correctly', () => {
     render(<LeadCapture />)
     
-    expect(screen.getByText('Tell us about yourself')).toBeInTheDocument()
-    expect(screen.getByLabelText(/your name/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/business email/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/company name/i)).toBeInTheDocument()
+    expect(screen.getByText('Contact Information')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('John Smith')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('john@company.com')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('Company Inc.')).toBeInTheDocument()
   })
 
   it('validates required fields on first step', async () => {
@@ -30,15 +30,15 @@ describe('LeadCapture Component', () => {
     expect(nextButton).toBeDisabled()
     
     // Fill in name
-    await user.type(screen.getByLabelText(/your name/i), 'John Doe')
+    await user.type(screen.getByPlaceholderText('John Smith'), 'John Doe')
     expect(nextButton).toBeDisabled()
     
     // Fill in email
-    await user.type(screen.getByLabelText(/business email/i), 'john@example.com')
+    await user.type(screen.getByPlaceholderText('john@company.com'), 'john@example.com')
     expect(nextButton).toBeDisabled()
     
     // Fill in company
-    await user.type(screen.getByLabelText(/company name/i), 'Acme Corp')
+    await user.type(screen.getByPlaceholderText('Company Inc.'), 'Acme Corp')
     expect(nextButton).not.toBeDisabled()
   })
 
@@ -47,24 +47,24 @@ describe('LeadCapture Component', () => {
     render(<LeadCapture />)
     
     // Step 1: Fill basic info
-    await user.type(screen.getByLabelText(/your name/i), 'John Doe')
-    await user.type(screen.getByLabelText(/business email/i), 'john@example.com')
-    await user.type(screen.getByLabelText(/company name/i), 'Acme Corp')
+    await user.type(screen.getByPlaceholderText('John Smith'), 'John Doe')
+    await user.type(screen.getByPlaceholderText('john@company.com'), 'john@example.com')
+    await user.type(screen.getByPlaceholderText('Company Inc.'), 'Acme Corp')
     
     await user.click(screen.getByText('Next Step'))
     
     // Step 2: Should show industry selection
     expect(screen.getByText('Business Information')).toBeInTheDocument()
-    expect(screen.getByLabelText(/industry/i)).toBeInTheDocument()
+    expect(screen.getAllByRole('combobox')[0]).toBeInTheDocument()
     
     // Fill step 2
-    await user.selectOptions(screen.getByLabelText(/industry/i), 'healthcare')
-    await user.type(screen.getByLabelText(/monthly customers/i), '500')
+    await user.selectOptions(screen.getAllByRole('combobox')[0], 'healthcare')
+    await user.selectOptions(screen.getAllByRole('combobox')[1], '500-1000')
     
     await user.click(screen.getByText('Next Step'))
     
     // Step 3: Should show challenges
-    expect(screen.getByText('Current Challenges')).toBeInTheDocument()
+    expect(screen.getByText('Current Situation')).toBeInTheDocument()
   })
 
   it('submits form successfully', async () => {
@@ -79,19 +79,20 @@ describe('LeadCapture Component', () => {
     render(<LeadCapture onSubmit={mockOnSubmit} />)
     
     // Fill all required fields
-    await user.type(screen.getByLabelText(/your name/i), 'John Doe')
-    await user.type(screen.getByLabelText(/business email/i), 'john@example.com')
-    await user.type(screen.getByLabelText(/company name/i), 'Acme Corp')
+    await user.type(screen.getByPlaceholderText('John Smith'), 'John Doe')
+    await user.type(screen.getByPlaceholderText('john@company.com'), 'john@example.com')
+    await user.type(screen.getByPlaceholderText('Company Inc.'), 'Acme Corp')
     await user.click(screen.getByText('Next Step'))
     
-    await user.selectOptions(screen.getByLabelText(/industry/i), 'healthcare')
-    await user.type(screen.getByLabelText(/monthly customers/i), '500')
+    await user.selectOptions(screen.getAllByRole('combobox')[0], 'healthcare')
+    await user.selectOptions(screen.getAllByRole('combobox')[1], '500-1000')
     await user.click(screen.getByText('Next Step'))
     
-    await user.selectOptions(screen.getByLabelText(/current solution/i), 'manual')
-    await user.selectOptions(screen.getByLabelText(/main challenge/i), 'efficiency')
+    await screen.findByText('Current Situation')
+    await user.selectOptions(screen.getByRole('combobox'), 'phone-only')
+    await user.type(screen.getByPlaceholderText(/missing leads/i), 'Efficiency')
     
-    await user.click(screen.getByText('Get My Custom Chatbot'))
+    await user.click(screen.getByText('Get My Custom Quote'))
     
     await waitFor(() => {
       expect(mockFetch).toHaveBeenCalledWith('/api/submit-lead', {
@@ -117,23 +118,24 @@ describe('LeadCapture Component', () => {
     render(<LeadCapture />)
     
     // Fill and submit form
-    await user.type(screen.getByLabelText(/your name/i), 'John Doe')
-    await user.type(screen.getByLabelText(/business email/i), 'john@example.com')
-    await user.type(screen.getByLabelText(/company name/i), 'Acme Corp')
+    await user.type(screen.getByPlaceholderText('John Smith'), 'John Doe')
+    await user.type(screen.getByPlaceholderText('john@company.com'), 'john@example.com')
+    await user.type(screen.getByPlaceholderText('Company Inc.'), 'Acme Corp')
     await user.click(screen.getByText('Next Step'))
     
-    await user.selectOptions(screen.getByLabelText(/industry/i), 'healthcare')
-    await user.type(screen.getByLabelText(/monthly customers/i), '500')
+    await user.selectOptions(screen.getAllByRole('combobox')[0], 'healthcare')
+    await user.selectOptions(screen.getAllByRole('combobox')[1], '500-1000')
     await user.click(screen.getByText('Next Step'))
     
-    await user.selectOptions(screen.getByLabelText(/current solution/i), 'manual')
-    await user.selectOptions(screen.getByLabelText(/main challenge/i), 'efficiency')
+    await screen.findByText('Current Situation')
+    await user.selectOptions(screen.getByRole('combobox'), 'phone-only')
+    await user.type(screen.getByPlaceholderText(/missing leads/i), 'Efficiency')
     
-    await user.click(screen.getByText('Get My Custom Chatbot'))
+    await user.click(screen.getByText('Get My Custom Quote'))
     
     // Should handle error and stop loading
     await waitFor(() => {
-      expect(screen.getByText('Get My Custom Chatbot')).not.toBeDisabled()
+      expect(screen.getByText('Get My Custom Quote')).not.toBeDisabled()
     })
   })
 
@@ -142,9 +144,9 @@ describe('LeadCapture Component', () => {
     render(<LeadCapture />)
     
     // Fill step 1 and go to step 2
-    await user.type(screen.getByLabelText(/your name/i), 'John Doe')
-    await user.type(screen.getByLabelText(/business email/i), 'john@example.com')
-    await user.type(screen.getByLabelText(/company name/i), 'Acme Corp')
+    await user.type(screen.getByPlaceholderText('John Smith'), 'John Doe')
+    await user.type(screen.getByPlaceholderText('john@company.com'), 'john@example.com')
+    await user.type(screen.getByPlaceholderText('Company Inc.'), 'Acme Corp')
     await user.click(screen.getByText('Next Step'))
     
     // Should be on step 2
@@ -154,7 +156,7 @@ describe('LeadCapture Component', () => {
     await user.click(screen.getByText('Previous'))
     
     // Should be back on step 1
-    expect(screen.getByText('Tell us about yourself')).toBeInTheDocument()
+    expect(screen.getByText('Contact Information')).toBeInTheDocument()
     expect(screen.getByDisplayValue('John Doe')).toBeInTheDocument()
   })
 })

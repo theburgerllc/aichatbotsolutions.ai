@@ -50,7 +50,7 @@ function FloatingBubble({ position, text, delay }: FloatingBubbleProps) {
           anchorY="middle"
           maxWidth={2}
           textAlign="center"
-          font="/fonts/inter-medium.woff"
+          font="/fonts/inter-medium.woff2"
         >
           {text}
         </Text>
@@ -163,11 +163,24 @@ function Particles({ isMobile = false }: { isMobile?: boolean }) {
 
 export default function HeroScene() {
   const [isMobile, setIsMobile] = useState(false)
+  const [webglSupported, setWebglSupported] = useState(true)
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
     checkMobile()
     window.addEventListener('resize', checkMobile)
+    
+    // Check WebGL support
+    try {
+      const canvas = document.createElement('canvas')
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+      if (!gl) {
+        setWebglSupported(false)
+      }
+    } catch (e) {
+      setWebglSupported(false)
+    }
+    
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
@@ -182,7 +195,7 @@ export default function HeroScene() {
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900">
-      {!isMobile ? (
+      {!isMobile && webglSupported ? (
         <Canvas
           camera={{ position: [0, 0, 10], fov: 75 }}
           className="absolute inset-0"
@@ -191,9 +204,20 @@ export default function HeroScene() {
             alpha: true,
             powerPreference: "high-performance",
           }}
-          dpr={Math.min(window.devicePixelRatio, 2)}
+          dpr={typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, 2) : 1}
           frameloop="demand" // Only render when needed
           performance={{ min: 0.5 }} // Reduce quality when needed
+          onCreated={(state) => {
+            // Add context loss recovery
+            const canvas = state.gl.domElement
+            canvas.addEventListener('webglcontextlost', (e) => {
+              e.preventDefault()
+              console.warn('WebGL context lost')
+            })
+            canvas.addEventListener('webglcontextrestored', () => {
+              console.log('WebGL context restored')
+            })
+          }}
         >
           <ambientLight intensity={0.4} />
           <pointLight position={[10, 10, 10]} intensity={1} />
